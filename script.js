@@ -71,42 +71,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 폼 유효성 검사
     const contactForm = document.getElementById('contactForm');
-    const formGroups = document.querySelectorAll('.form-group');
+    if (contactForm) {  // contactForm이 존재할 때만 실행
+        const formGroups = document.querySelectorAll('.form-group');
 
-    formGroups.forEach(group => {
-        const input = group.querySelector('.form-control');
-        const error = group.querySelector('.form-error');
-
-        input.addEventListener('blur', () => {
-            validateField(input, error);
-        });
-    });
-
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        let isValid = true;
         formGroups.forEach(group => {
             const input = group.querySelector('.form-control');
             const error = group.querySelector('.form-error');
-            if (!validateField(input, error)) {
-                isValid = false;
-            }
+
+            input.addEventListener('blur', () => {
+                validateField(input, error);
+            });
         });
 
-        if (isValid) {
-            // 폼 제출 처리
-            const formStatus = document.getElementById('formStatus');
-            formStatus.textContent = '문의가 성공적으로 전송되었습니다.';
-            formStatus.style.color = 'green';
-            contactForm.reset();
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            // 3초 후 메시지 초기화
-            setTimeout(() => {
-                formStatus.textContent = '';
-            }, 3000);
-        }
-    });
+            let isValid = true;
+            formGroups.forEach(group => {
+                const input = group.querySelector('.form-control');
+                const error = group.querySelector('.form-error');
+                if (!validateField(input, error)) {
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                // 폼 제출 처리
+                const formStatus = document.getElementById('formStatus');
+                formStatus.textContent = '문의가 성공적으로 전송되었습니다.';
+                formStatus.style.color = 'green';
+                contactForm.reset();
+                
+                // 3초 후 메시지 초기화
+                setTimeout(() => {
+                    formStatus.textContent = '';
+                }, 3000);
+            }
+        });
+    }
 
     // 필드 유효성 검사 함수
     function validateField(input, error) {
@@ -159,36 +161,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupClose = document.querySelector('.popup-close');
     const featureCards = document.querySelectorAll('.feature-card');
 
-    featureCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const title = card.querySelector('.feature-title').textContent;
-            const text = card.querySelector('.feature-text').textContent;
-            
-            // 팝업 내용 설정
-            popupOverlay.querySelector('.popup-title').textContent = title;
-            popupOverlay.querySelector('.popup-description').textContent = text;
-            
-            // 팝업 표시
-            popupOverlay.style.display = 'flex';
-            setTimeout(() => {
-                popupOverlay.classList.add('active');
-            }, 10);
+    // 팝업 관련 요소가 존재할 때만 팝업 기능 초기화
+    if (popupOverlay && popupClose && featureCards.length > 0) {
+        featureCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.feature-title').textContent;
+                const text = card.querySelector('.feature-text').textContent;
+                
+                // 팝업 내용 설정
+                popupOverlay.querySelector('.popup-title').textContent = title;
+                popupOverlay.querySelector('.popup-description').textContent = text;
+                
+                // 팝업 표시
+                popupOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    popupOverlay.classList.add('active');
+                }, 10);
+            });
         });
-    });
 
-    popupClose.addEventListener('click', () => {
-        popupOverlay.classList.remove('active');
-        setTimeout(() => {
-            popupOverlay.style.display = 'none';
-        }, 300);
-    });
+        popupClose.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+            setTimeout(() => {
+                popupOverlay.style.display = 'none';
+            }, 300);
+        });
 
-    // ESC 키로 팝업 닫기
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
-            popupClose.click();
-        }
-    });
+        // ESC 키로 팝업 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
+                popupClose.click();
+            }
+        });
+    }
 
     // Program data
     const programs = {
@@ -220,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
             includes: [
                 '교육 교재 및 실습 자료',
                 '개발 도구 및 소프트웨어',
-                '중식 제공',
                 '프로젝트 결과물',
                 '수료증'
             ]
@@ -252,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function() {
             includes: [
                 '워크숍 교재',
                 '실습용 장비',
-                '중식 제공',
                 '결과물 소스코드',
                 '수료증'
             ]
