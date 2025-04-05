@@ -1,3 +1,16 @@
+// 성능 최적화를 위한 디바운스 함수
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded');
     
@@ -10,26 +23,28 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Nav Links:', navLinks);
 
     // 모바일 메뉴 토글
-    mobileToggle.addEventListener('click', function() {
-        mobileToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
-
-    // 메뉴 링크 클릭시 메뉴 닫기
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         });
-    });
 
-    // 스크롤 이벤트 처리
+        // 메뉴 링크 클릭시 메뉴 닫기
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+    }
+
+    // 스크롤 이벤트 처리 (디바운스 적용)
     const header = document.querySelector('header');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = debounce(() => {
         const currentScroll = window.pageYOffset;
         
         if (currentScroll <= 0) {
@@ -38,15 +53,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (currentScroll > lastScroll && !header.classList.contains('scrolled')) {
-            // 스크롤 다운
             header.classList.add('scrolled');
         } else if (currentScroll < lastScroll && header.classList.contains('scrolled')) {
-            // 스크롤 업
             header.classList.remove('scrolled');
         }
         
         lastScroll = currentScroll;
-    });
+    }, 100);
+
+    window.addEventListener('scroll', handleScroll);
 
     // 프로그램 탭 전환
     const programTabs = document.querySelectorAll('.program-tab');
@@ -69,43 +84,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 폼 유효성 검사
+    // 폼 유효성 검사 최적화
     const contactForm = document.getElementById('contactForm');
-    if (contactForm) {  // contactForm이 존재할 때만 실행
-        const formGroups = document.querySelectorAll('.form-group');
-
-        formGroups.forEach(group => {
-            const input = group.querySelector('.form-control');
-            const error = group.querySelector('.form-error');
-
-            input.addEventListener('blur', () => {
-                validateField(input, error);
-            });
+    if (contactForm) {
+        const formFields = contactForm.querySelectorAll('input, textarea');
+        
+        formFields.forEach(field => {
+            field.addEventListener('input', debounce(function() {
+                validateField(this, document.getElementById(this.id + 'Error'));
+            }, 300));
         });
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             let isValid = true;
-            formGroups.forEach(group => {
-                const input = group.querySelector('.form-control');
-                const error = group.querySelector('.form-error');
-                if (!validateField(input, error)) {
+
+            formFields.forEach(field => {
+                if (!validateField(field, document.getElementById(field.id + 'Error'))) {
                     isValid = false;
                 }
             });
 
             if (isValid) {
                 // 폼 제출 처리
-                const formStatus = document.getElementById('formStatus');
-                formStatus.textContent = '문의가 성공적으로 전송되었습니다.';
-                formStatus.style.color = 'green';
-                contactForm.reset();
-                
-                // 3초 후 메시지 초기화
-                setTimeout(() => {
-                    formStatus.textContent = '';
-                }, 3000);
+                submitForm(this);
             }
         });
     }

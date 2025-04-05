@@ -7,6 +7,9 @@
     --dark: #5D4037;
     --light: #FFF8F0;
     --gray: #9E9E9E;
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -21,28 +24,35 @@ body {
     color: var(--dark);
     background-color: var(--light);
     overflow-x: hidden;
+    will-change: transform;
+    min-width: 480px;
     transition: background-color 0.3s ease;
 }
 
 html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
+    text-rendering: optimizeLegibility;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: color var(--transition-speed) ease;
+    will-change: color;
 }
 
 ul {
-    list-style:none;
+    list-style: none;
 }
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -52,15 +62,17 @@ ul {
 
 .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
     font-weight: 600;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: none;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    will-change: transform, box-shadow;
     position: relative;
     overflow: hidden;
+    border: none;
+    outline: none;
 }
 
 .btn::before {
@@ -149,19 +161,28 @@ header.scrolled {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary);
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: color var(--transition-speed) ease;
 }
-.logo span {
-    /* ... 기존 스타일 ... */
-    margin-left: 10px; /* 텍스트 왼쪽에 10px 간격 추가 */
-  }
 
-.logo i {
+.logo img {
+    width: 36px;
+    height: 36px;
     margin-right: 0.5rem;
+    object-fit: contain;
+}
+
+.logo span {
+    margin-left: 0.5rem;
+}
+
+.logo:hover {
+    color: var(--primary);
 }
 
 .nav-menu {
@@ -293,6 +314,7 @@ header.scrolled {
     height: auto;
     border-radius: 10px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    will-change: transform;
 }
 
 @keyframes float {
@@ -479,6 +501,7 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .program-card:hover .program-img img {
@@ -561,6 +584,7 @@ section {
     position: relative;
     z-index: 1;
 }
+
 .language-card::before {
     content: '';
     position: absolute;
@@ -598,6 +622,7 @@ section {
 
 .language-logo img {
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
 }
 
 .language-card:hover .language-logo img {
@@ -669,6 +694,7 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    will-change: transform;
 }
 
 .mentor-card:hover .mentor-img img {
@@ -709,9 +735,9 @@ section {
 
 .review-slider {
     display: flex;
-    overflow: hidden; /* hidden으로 변경 */
-    width: 100%; /* 슬라이더 영역을 명확히 지정 */
-    position: relative; /* 트랙 이동을 위해 */
+    overflow: hidden;
+    width: 100%;
+    position: relative;
     padding-bottom: 2rem;
 }
 
@@ -722,14 +748,14 @@ section {
 .review-slider-track {
     display: flex;
     gap: 2rem;
-    width: calc(var(--card-width) * var(--card-count) * 2); /* 전체 너비: (카드너비 * 카드개수) * 2 */
-    animation: slideTrack 40s linear infinite; /* 애니메이션 속도 조절 */
-    --card-width: 320px; /* 각 카드 너비 */
-    --card-count: 8; /* 카드 개수 */
+    width: calc(var(--card-width) * var(--card-count) * 2);
+    animation: slideTrack 40s linear infinite;
+    --card-width: 320px;
+    --card-count: 8;
 }
 
 .review-card {
-    flex: 0 0 var(--card-width); /* 카드 너비 유지 */
+    flex: 0 0 var(--card-width);
     background: white;
     border-radius: 15px;
     padding: 2rem;
@@ -753,14 +779,16 @@ section {
     height: 100%;
     background: linear-gradient(to bottom, var(--primary), var(--secondary));
 }
+
 @keyframes slideTrack {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(var(--card-width) * var(--card-count) * -1)); /* 전체 카드의 절반만큼 이동 */
+        transform: translateX(calc(var(--card-width) * var(--card-count) * -1));
     }
 }
+
 .review-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 35px rgba(255, 126, 95, 0.1);
@@ -1046,27 +1074,32 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 2.5rem;
+    html, body {
+        min-width: 480px;
+        overflow-x: auto;
     }
-    .hero-subtitle {
-        font-size: 1rem;
+    
+    .container {
+        width: 100%;
+        min-width: 480px;
     }
-    .section-title{
-        font-size: 2rem;
+    
+    .hero-content {
+        flex-direction: column;
     }
-    .footer-logo{
-        font-size: 1.5rem;
+    
+    .hero-img {
+        width: 100%;
+        max-width: 480px;
     }
-    .footer-text{
-        font-size: 0.8rem;
+    
+    .mentor-grid, .program-grid, .language-grid {
+        grid-template-columns: 1fr;
     }
-    .language-logo {
-        height: 100px;
-        padding: 0.5rem;
-    }
-    .language-logo img{
-        max-height: 70px;
+    
+    .review-card {
+        width: 100%;
+        min-width: 300px;
     }
 }
 
@@ -1370,6 +1403,7 @@ footer {
     width: 100%;
     height: auto;
     display: block;
+    will-change: transform;
 }
 
 .program-detail-badge {
@@ -1518,4 +1552,79 @@ footer {
         flex-direction: column;
         gap: 10px;
     }
+}
+
+/* 애니메이션 최적화 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn var(--transition-speed) ease forwards;
+}
+
+/* 미디어 쿼리 최적화 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+/* 성능 최적화를 위한 transform 사용 */
+.hover-scale {
+    transition: transform var(--transition-speed) ease;
+    will-change: transform;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* 레이아웃 최적화 */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* 폼 요소 최적화 */
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--gray);
+    border-radius: var(--border-radius);
+    transition: border-color var(--transition-speed) ease;
+    will-change: border-color;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* 로딩 상태 최적화 */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
