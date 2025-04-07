@@ -42,10 +42,10 @@
 │   ├── logo.png            # 로고 이미지
 │   ├── logo_36.png         # 작은 로고 이미지
 │   ├── hero_img.jpg        # 홈페이지 배너 이미지
-│   ├── mentor1.png         # 멘토 이미지
-│   ├── mentor2.png         # 멘토 이미지
-│   ├── mentor3.png         # 멘토 이미지
-│   ├── mentor4.png         # 멘토 이미지
+│   ├── mentor1.jpg         # 멘토 이미지
+│   ├── mentor2.jpg         # 멘토 이미지
+│   ├── mentor3.jpg         # 멘토 이미지
+│   ├── mentor4.jpg         # 멘토 이미지
 │   ├── program-*.jpg       # 프로그램 관련 이미지들
 │   └── favicon.png         # 파비콘
 │
