@@ -1,15 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://cosmoedu25.github.io/sitemap.xml
-
-# 이미지 최적화를 위한 크롤링 정책
-Allow: /img/
-Allow: /*.jpg$
-Allow: /*.png$
-Allow: /*.gif$
-Allow: /*.webp$
-
-# CSS, JS, 기타 리소스
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.ico$ 

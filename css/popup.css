@@ -1,0 +1,148 @@
+@import 'variables.css';
+
+/* 폼 팝업 스타일 */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.form-popup {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 90%;
+    height: 90vh;
+    max-width: 800px;
+    max-height: 1000px;
+    display: flex;
+    /* overflow: hidden; */
+    margin: auto;
+    /* top: 50%; */
+    transform: translateY(-50%);
+}
+
+.form-container {
+    width: 80%;
+    height: 100%;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.form-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    min-height: 600px;
+}
+
+.popup-close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    z-index: 1;
+}
+
+.popup-close:hover {
+    color: #000;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: auto;
+}
+
+.popup-title {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.popup-description {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.popup-list {
+    list-style: none;
+    padding-left: 1.5rem;
+}
+
+.popup-list li {
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+.popup-list li::before {
+    content: '✓';
+    position: absolute;
+    left: -1.5rem;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* 스크롤바 스타일링 */
+.popup-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* 모바일 스타일 */
+@media (max-width: 768px) {
+    .form-popup {
+        width: 80%;
+        min-width: 480px;
+    }
+    
+    .popup-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 10px auto;
+    }
+    
+    .popup-title {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,399 @@
+@import 'variables.css';
+
+/* 히어로 섹션 */
+.hero {
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.08), rgba(254, 180, 123, 0.08));
+    min-height: 100vh;
+    padding: 8rem 0 4rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 80%;
+    height: 200%;
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
+    transform: rotate(-45deg);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    z-index: 0;
+    animation: floatBg 15s ease-in-out infinite alternate;
+}
+
+@keyframes floatBg {
+    0% {
+        transform: rotate(-45deg) translate(0, 0);
+    }
+    100% {
+        transform: rotate(-40deg) translate(5%, 5%);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    animation: titleGradient 8s ease infinite;
+}
+
+@keyframes titleGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: var(--dark);
+}
+
+.hero-img {
+    flex: 1;
+    text-align: center;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-img img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    will-change: transform;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* 특징 섹션 */
+.features {
+    background-color: white;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(180deg, rgba(255, 126, 95, 0.05) 0%, rgba(254, 180, 123, 0.05) 100%);
+    transition: height 0.4s ease;
+    z-index: 0;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 126, 95, 0.15);
+}
+
+.feature-card:hover::after {
+    height: 100%;
+}
+
+.feature-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.1), rgba(254, 180, 123, 0.1));
+    color: var(--primary);
+    font-size: 1.8rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.2), rgba(254, 180, 123, 0.2));
+    box-shadow: 0 5px 15px rgba(255, 126, 95, 0.15);
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.feature-text {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+/* 멘토 섹션 */
+.mentors {
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
+}
+
+.mentor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.mentor-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mentor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255, 126, 95, 0.15);
+}
+
+.mentor-img {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mentor-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.mentor-card:hover .mentor-img img {
+    transform: scale(1.05);
+}
+
+.mentor-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.mentor-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.mentor-desc li{
+    margin-bottom: 0;
+    position: relative;
+    color: var(--gray);
+}
+.mentor-desc li::before{
+    content: '✓';
+    position: absolute;
+    left: -1.5rem;
+    color: var(--primary);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+/* 후기 섹션 */
+.reviews {
+    background-color: white;
+}
+
+.review-slider {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.review-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.review-slider-track {
+    display: flex;
+    gap: 2rem;
+    width: calc(var(--card-width) * var(--card-count) * 2);
+    animation: slideTrack 40s linear infinite;
+    --card-width: 320px;
+    --card-count: 8;
+}
+
+.review-card {
+    flex: 0 0 var(--card-width);
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+@keyframes slideTrack {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(var(--card-width) * var(--card-count) * -1));
+    }
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(255, 126, 95, 0.1);
+}
+
+.review-content {
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    flex: 1;
+}
+
+.review-author {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: right;
+}
+
+/* 신청 섹션 */
+.apply {
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
+}
+
+.apply-content {
+    text-align: center;
+}
+
+.apply-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.apply-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--gray);
+}
+
+.apply-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.apply-buttons .btn {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-img {
+        order: -1;
+    }
+
+    .review-card {
+        padding: 1.5rem;
+    }
+    
+    .review-content{
+        font-size: 0.95rem;
+    }
+}

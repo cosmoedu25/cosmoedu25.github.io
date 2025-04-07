@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>교육 프로그램 신청 | 코스모에듀벤처</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="코스모에듀벤처의 교육 프로그램 신청 페이지입니다. 학교 맞춤형 코딩 교육 프로그램을 신청하세요.">
+    <meta name="keywords" content="코딩교육, 학교코딩, 코딩프로그램, 코스모에듀벤처, 프로그램신청, 코딩교육신청">
+    <meta name="author" content="코스모에듀벤처">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cosmoedu25.github.io/apply.html">
+    <meta property="og:title" content="교육 프로그램 신청 | 코스모에듀벤처">
+    <meta property="og:description" content="코스모에듀벤처의 교육 프로그램 신청 페이지입니다. 학교 맞춤형 코딩 교육 프로그램을 신청하세요.">
+    <meta property="og:image" content="img/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cosmoedu25.github.io/apply.html">
+    <meta property="twitter:title" content="교육 프로그램 신청 | 코스모에듀벤처">
+    <meta property="twitter:description" content="코스모에듀벤처의 교육 프로그램 신청 페이지입니다. 학교 맞춤형 코딩 교육 프로그램을 신청하세요.">
+    <meta property="twitter:image" content="img/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 추가 스타일시트 -->
+    <style>
+        .apply-section {
+            padding: 5rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .apply-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        .apply-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .apply-header h1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-form {
+            height: 800px;
+            width: 100%;
+            border: none;
+        }
+        
+        .loading-animation {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        .loading-animation i {
+            animation: spin 1.5s linear infinite;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="img/logo_36.png" alt="코스모에듀벤처 로고" width="36" height="36" loading="lazy">
+                    <span> 코스모에듀벤처</span>
+                </a>
+                <nav class="nav-menu" id="navMenu">
+                    <a href="about.html" class="nav-link">소개</a>
+                    <a href="course.html" class="nav-link">프로그램</a>
+                    <a href="teacher.html" class="nav-link">교원연수</a>
+                    <a href="index.html#mentors" class="nav-link">멘토</a>
+                    <a href="index.html#reviews" class="nav-link">후기</a>
+                    <a href="apply.html" class="nav-link">신청</a>
+                </nav>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="apply-section">
+            <div class="container">
+                <div class="apply-container">
+                    <div class="apply-header">
+                        <h1>교육 프로그램 신청</h1>
+                        <p>코스모에듀벤처의 다양한 교육 프로그램을 신청해보세요.</p>
+                    </div>
+                    <div id="formContainer">
+                        <div class="loading-animation" id="loadingAnimation">
+                            <i class="fas fa-spinner" aria-hidden="true"></i>
+                            <p>신청 폼을 불러오는 중입니다...</p>
+                        </div>
+                        <iframe id="applicationForm" 
+                                src="about:blank"
+                                data-src="https://docs.google.com/forms/d/e/1FAIpQLSf6FqFfq48Z9hwxQ-rfbNKRfoQSuPE4exm30hZB6KnR1VRQDA/viewform?embedded=true" 
+                                class="apply-form"
+                                frameborder="0" 
+                                marginheight="0" 
+                                marginwidth="0"
+                                title="프로그램 신청 양식">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <span>코스모에듀벤처</span>
+                </a>
+                <div class="footer-contact">
+                    <p>대표번호: 070-4337-4337</p>
+                    <p>이메일: cosmoedu@cosmoedu.co.kr</p>
+                </div>
+                <p class="footer-text">
+                    © 2024 코스모에듀벤처. All rights reserved.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모듈화된 JavaScript -->
+    <script type="module" src="js/main.js"></script>
+    
+    <!-- 신청 폼 로딩 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // iframe 로딩
+            setTimeout(function() {
+                const iframe = document.getElementById('applicationForm');
+                const loadingAnimation = document.getElementById('loadingAnimation');
+                
+                // iframe 로드 완료 시 로딩 애니메이션 숨기기
+                iframe.onload = function() {
+                    loadingAnimation.style.display = 'none';
+                };
+                
+                // iframe src 설정
+                iframe.src = iframe.getAttribute('data-src');
+            }, 500); // 잠시 지연 후 로드
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+@import 'variables.css';
+
+/* 언어 섹션 */
+.languages {
+    background-color: white;
+}
+
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.language-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.language-card::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 126, 95, 0.05) 0%, rgba(254, 180, 123, 0.1) 100%);
+    transition: transform 0.4s ease;
+}
+
+.language-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(255, 126, 95, 0.15);
+}
+
+.language-card:hover::before {
+    transform: translateY(-100%);
+}
+
+.language-logo {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
+    transition: all 0.3s ease;
+}
+
+.language-card:hover .language-logo {
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.1), rgba(254, 180, 123, 0.1));
+}
+
+.language-logo i {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.language-card:hover .language-logo i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.language-info {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.language-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.language-desc {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.program-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: auto;
+}
+
+.program-list li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--dark);
+}
+
+.program-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* 연수 옵션 섹션 */
+.training-options {
+    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.feature-list li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--dark);
+}
+
+.feature-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .language-logo {
+        height: 120px;
+        padding: 1rem;
+    }
+    
+    .language-logo i {
+        font-size: 2.5rem;
+    }
+    
+    .language-name {
+        font-size: 1.2rem;
+    }
+    
+    .language-desc, .program-list li, .feature-list li {
+        font-size: 0.95rem;
+    }
+}
