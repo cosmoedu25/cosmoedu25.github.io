@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // 신청 페이지 관련 기능
             // 이미 별도의 스크립트로 처리됨
             break;
-=======
     }
     
     // 폼이 있는 페이지에서만 유효성 검사 초기화
