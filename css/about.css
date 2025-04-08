@@ -6,7 +6,9 @@
 }
 
 .about-content {
-    display: grid;
+    display: flex;
+    width : 800px;
+    justify-content: center;
     grid-template-columns: 2fr 1fr;
     gap: 4rem;
     margin-top: 2rem;
