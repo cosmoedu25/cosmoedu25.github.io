@@ -12,6 +12,7 @@ body {
     overflow-x: hidden;
     will-change: transform;
     transition: background-color 0.3s ease;
+    word-break: keep-all;
 }
 
 html {
@@ -155,6 +156,11 @@ section {
     max-width: 700px;
     margin: 0 auto 3rem;
     color: var(--gray);
+    word-break: keep-all;
+}
+
+p, li, .text-content {
+    word-break: keep-all;
 }
 
 /* 애니메이션 최적화 */
