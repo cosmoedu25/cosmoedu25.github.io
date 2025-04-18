@@ -69,28 +69,32 @@
                     <a href="career.html" class="nav-link">진로/진학</a>
                     <a href="apply.html" class="nav-link">신청</a>
                 </nav>
-                <div class="mobile-toggle" id="mobileToggle" aria-label="메뉴 열기">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="page-header">
+        <section class="course-hero">
             <div class="container">
-                <h1 class="page-title">프로그램 안내</h1>
-                <p class="page-subtitle fas fa-user color:red"> 개인을 위한 맟춤형 교육(온/오프)</p><br>
-                <p class="page-subtitle fas fa-school"> 학교/단체를 위한 맞춤형 교육(위탁/출강)</p>
-                <p class="page-subtitle">코스모에듀벤처의 다양한 교육 프로그램을 소개합니다.</p>
-                
+                <h1>프로그램 안내</h1>
+                <p>코스모에듀벤처의 다양한 코딩 교육 프로그램을 소개합니다.</p>
+                <div class="course-tags">
+                    <span class="course-tag"><i class="fas fa-user"></i> 개인을 위한 맞춤형 교육(온/오프)</span>
+                    <span class="course-tag"><i class="fas fa-school"></i> 학교/단체를 위한 맞춤형 교육(위탁/출강)</span>
+                </div>
             </div>
         </section>
 
-        <section class="programs">
+        <section class="programs-section">
             <div class="container">
+                <h2 class="section-title">코딩 교육 프로그램</h2>
+                <p class="section-subtitle">코스모에듀벤처만의 특별한 코딩 교육 프로그램을 경험해보세요.</p>
+                
                 <div class="program-grid">
                     <a href="program-detail.html?id=explorer" class="program-card">
                         <div class="program-img">
@@ -201,29 +205,15 @@
                             </div>
                         </div>
                     </a>
-
-                    <!-- <a href="program-detail.html?id=career" class="program-card">
-                        <div class="program-img">
-                            <img src="img/program-battle.jpg" alt="코드 배틀">
-                            <div class="program-badge">진로/진학</div>
-                        </div>
-                        <div class="program-details">
-                            <h3 class="program-title">퓨처 네비게이터</h3>
-                            <p class="program-summary">학생 대상 진로 패키지</p>
-                            <div class="program-meta">
-                                <div class="program-rating">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <span>4.9</span>
-                                    <span>(72)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a> -->
                 </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="container">
+                <h2>코딩으로 만드는 창의적인 미래</h2>
+                <p>학생들의 잠재력을 발휘할 수 있는 최고의 코딩 교육 프로그램을 제공합니다.</p>
+                <a href="apply.html" class="btn-white">프로그램 신청하기</a>
             </div>
         </section>
     </main>

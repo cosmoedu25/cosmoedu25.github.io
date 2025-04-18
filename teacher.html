@@ -69,109 +69,189 @@
                     <a href="career.html" class="nav-link">진로/진학</a>
                     <a href="apply.html" class="nav-link">신청</a>
                 </nav>
-                <div class="mobile-toggle" id="mobileToggle" aria-label="메뉴 열기">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="page-header">
+        <section class="teacher-hero">
             <div class="container">
-                <h1 class="page-title">교원 연수 프로그램</h1>
-                <p class="page-subtitle">
-                    코스모에듀벤처는 현장에서 바로 적용할 수 있는 실질적인 역량 개발에 중점을 둡니다. 미래 교육을 선도할 교원의 디지털 교육 역량 강화를 위한 최고의 파트너가 되겠습니다.
-                </p>
+                <h1>교원 연수 프로그램</h1>
+                <p>코스모에듀벤처는 현장에서 바로 적용할 수 있는 실질적인 역량 개발에 중점을 둡니다. 미래 교육을 선도할 교원의 디지털 교육 역량 강화를 위한 최고의 파트너가 되겠습니다.</p>
             </div>
         </section>
 
-        <section id="teacher-training" class="languages">
+        <section class="programs-section">
             <div class="container">
-                <div class="language-grid">
-                    <div class="language-card">
-                        <div class="language-logo">
-                            <i class="fas fa-chalkboard-teacher fa-3x" style="color: var(--primary);"></i>
+                <h2 class="section-title">교원 연수 프로그램</h2>
+                <p class="section-subtitle">코스모에듀벤처는 교육 현장에서 필요한 실질적인 디지털 역량 강화를 위한 다양한 프로그램을 제공합니다.</p>
+                
+                <div class="program-grid">
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3 class="program-title">코딩 티처 베이직</h3>
+                            <p class="program-subtitle">블록 코딩 기초 과정</p>
                         </div>
-                        <div class="language-info">
-                            <h3 class="language-name">코딩 티처 베이직</h3>
-                            <p class="language-desc">
-                                블록 코딩 기초, 컴퓨팅 사고력 교육 방법론, 교과 연계 코딩 교육 사례, 학생 평가 및 피드백 방법을 15시간 과정으로 학습합니다.
-                            </p>
-                            <ul class="program-list">
-                                <li>대상: 코딩 교육 입문 교원</li>
-                                <li>기간: 15시간 (2일 집중과정 또는 5주 분산과정)</li>
-                                <li>인원: 최소 10명 ~ 최대 20명</li>
-                                <li>제공 자료: 교원용 워크북, 수업 지도안, 실습 교구 대여</li>
+                        <div class="program-body">
+                            <div class="program-icon">
+                                <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+                            </div>
+                            <p>블록 코딩 기초, 컴퓨팅 사고력 교육 방법론, 교과 연계 코딩 교육 사례, 학생 평가 및 피드백 방법을 15시간 과정으로 학습합니다.</p>
+                            
+                            <h3>대상</h3>
+                            <p>코딩 교육 입문 교원</p>
+                            
+                            <h3>기간</h3>
+                            <p>15시간 (2일 집중과정 또는 5주 분산과정)</p>
+                            
+                            <h3>인원</h3>
+                            <p>최소 10명 ~ 최대 20명</p>
+                            
+                            <h3>제공 자료</h3>
+                            <ul>
+                                <li>교원용 워크북</li>
+                                <li>수업 지도안</li>
+                                <li>실습 교구 대여</li>
                             </ul>
+                        </div>
+                        <div class="program-footer">
+                            <a href="apply.html" class="btn">신청하기</a>
                         </div>
                     </div>
-                    <div class="language-card">
-                        <div class="language-logo">
-                            <i class="fas fa-laptop-code fa-3x" style="color: var(--primary);"></i>
+                    
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3 class="program-title">코딩 티처 어드밴스</h3>
+                            <p class="program-subtitle">텍스트 코딩 심화 과정</p>
                         </div>
-                        <div class="language-info">
-                            <h3 class="language-name">코딩 티처 어드밴스</h3>
-                            <p class="language-desc">
-                                Python, JavaScript, 피지컬 컴퓨팅, 프로젝트 기반 코딩 교육 설계, AI 교육 기초를 30시간 과정으로 심도있게 학습합니다.
-                            </p>
-                            <ul class="program-list">
-                                <li>대상: 기초 코딩 지식 보유 교원</li>
-                                <li>기간: 30시간 (4일 집중과정 또는 10주 분산과정)</li>
-                                <li>인원: 최소 8명 ~ 최대 16명</li>
-                                <li>제공 자료: 심화 교재, 교구 키트 1세트, 온라인 강의 1년 이용권</li>
+                        <div class="program-body">
+                            <div class="program-icon">
+                                <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                            </div>
+                            <p>Python, JavaScript, 피지컬 컴퓨팅, 프로젝트 기반 코딩 교육 설계, AI 교육 기초를 30시간 과정으로 심도있게 학습합니다.</p>
+                            
+                            <h3>대상</h3>
+                            <p>기초 코딩 지식 보유 교원</p>
+                            
+                            <h3>기간</h3>
+                            <p>30시간 (4일 집중과정 또는 10주 분산과정)</p>
+                            
+                            <h3>인원</h3>
+                            <p>최소 8명 ~ 최대 16명</p>
+                            
+                            <h3>제공 자료</h3>
+                            <ul>
+                                <li>심화 교재</li>
+                                <li>교구 키트 1세트</li>
+                                <li>온라인 강의 1년 이용권</li>
                             </ul>
+                        </div>
+                        <div class="program-footer">
+                            <a href="apply.html" class="btn">신청하기</a>
                         </div>
                     </div>
-                    <div class="language-card">
-                        <div class="language-logo">
-                            <i class="fas fa-user-tie fa-3x" style="color: var(--primary);"></i>
+                    
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3 class="program-title">에듀테크 리더십</h3>
+                            <p class="program-subtitle">학교 관리자 맞춤 과정</p>
                         </div>
-                        <div class="language-info">
-                            <h3 class="language-name">에듀테크 리더십</h3>
-                            <p class="language-desc">
-                                학교 관리자를 위한 미래 교육 트렌드, 학교 디지털 혁신 전략, 에듀테크 도입 성공 사례를 8시간 과정으로 제공합니다.
-                            </p>
-                            <ul class="program-list">
-                                <li>대상: 학교 관리자, 교육청 담당자</li>
-                                <li>기간: 8시간 (1일 집중과정)</li>
-                                <li>인원: 최소 5명 ~ 최대 15명</li>
-                                <li>제공 자료: 정책 자료집, 학교 혁신 가이드북</li>
+                        <div class="program-body">
+                            <div class="program-icon">
+                                <i class="fas fa-user-tie" aria-hidden="true"></i>
+                            </div>
+                            <p>학교 관리자를 위한 미래 교육 트렌드, 학교 디지털 혁신 전략, 에듀테크 도입 성공 사례를 8시간 과정으로 제공합니다.</p>
+                            
+                            <h3>대상</h3>
+                            <p>학교 관리자, 교육청 담당자</p>
+                            
+                            <h3>기간</h3>
+                            <p>8시간 (1일 집중과정)</p>
+                            
+                            <h3>인원</h3>
+                            <p>최소 5명 ~ 최대 15명</p>
+                            
+                            <h3>제공 자료</h3>
+                            <ul>
+                                <li>정책 자료집</li>
+                                <li>학교 혁신 가이드북</li>
                             </ul>
+                        </div>
+                        <div class="program-footer">
+                            <a href="apply.html" class="btn">신청하기</a>
                         </div>
                     </div>
-                    <div class="language-card">
-                        <div class="language-logo">
-                            <i class="fas fa-project-diagram fa-3x" style="color: var(--primary);"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="programs-section">
+            <div class="container">
+                <h2 class="section-title">특화 연수 프로그램</h2>
+                <p class="section-subtitle">특정 분야와 교과에 맞춤화된 전문적인 연수 프로그램입니다.</p>
+                
+                <div class="program-grid">
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3 class="program-title">교과 융합 코딩 연수</h3>
+                            <p class="program-subtitle">교과별 맞춤형 과정</p>
                         </div>
-                        <div class="language-info">
-                            <h3 class="language-name">교과 융합 코딩 연수</h3>
-                            <p class="language-desc">
-                                교과별 맞춤형 코딩 융합 수업 개발을 위한 10시간 특화 과정으로, 각 교과의 특성에 맞는 코딩 교육을 설계합니다.
-                            </p>
-                            <ul class="program-list">
-                                <li>대상: 교과 교사 (국어, 수학, 과학, 사회, 영어, 예체능)</li>
-                                <li>기간: 10시간 (1일 또는 3주 분산)</li>
-                                <li>특징: 교과별 맞춤형 코딩 융합 수업 개발</li>
+                        <div class="program-body">
+                            <div class="program-icon">
+                                <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                            </div>
+                            <p>교과별 맞춤형 코딩 융합 수업 개발을 위한 10시간 특화 과정으로, 각 교과의 특성에 맞는 코딩 교육을 설계합니다.</p>
+                            
+                            <h3>대상</h3>
+                            <p>교과 교사 (국어, 수학, 과학, 사회, 영어, 예체능)</p>
+                            
+                            <h3>기간</h3>
+                            <p>10시간 (1일 또는 3주 분산)</p>
+                            
+                            <h3>특징</h3>
+                            <ul>
+                                <li>교과별 맞춤형 코딩 융합 수업 개발</li>
+                                <li>교과 특성에 맞는 차별화된 콘텐츠</li>
+                                <li>학생 참여형 수업 설계 방법론</li>
                             </ul>
+                        </div>
+                        <div class="program-footer">
+                            <a href="apply.html" class="btn">신청하기</a>
                         </div>
                     </div>
-                    <div class="language-card">
-                        <div class="language-logo">
-                            <i class="fas fa-brain fa-3x" style="color: var(--primary);"></i>
+                    
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3 class="program-title">AI 교육 전문가 과정</h3>
+                            <p class="program-subtitle">인공지능 교육 전문가 양성</p>
                         </div>
-                        <div class="language-info">
-                            <h3 class="language-name">AI 교육 전문가 과정</h3>
-                            <p class="language-desc">
-                                AI 개념, 머신러닝 기초, 학생용 AI 교육 커리큘럼 개발을 20시간 과정으로 학습하는 전문가 과정입니다.
-                            </p>
-                            <ul class="program-list">
-                                <li>대상: 코딩 교육 경험이 있는 교원</li>
-                                <li>기간: 20시간 (연중 수시)</li>
-                                <li>내용: AI 개념, 머신러닝 기초, 학생용 AI 교육 커리큘럼 개발</li>
+                        <div class="program-body">
+                            <div class="program-icon">
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                            </div>
+                            <p>AI 개념, 머신러닝 기초, 학생용 AI 교육 커리큘럼 개발을 20시간 과정으로 학습하는 전문가 과정입니다.</p>
+                            
+                            <h3>대상</h3>
+                            <p>코딩 교육 경험이 있는 교원</p>
+                            
+                            <h3>기간</h3>
+                            <p>20시간 (연중 수시)</p>
+                            
+                            <h3>내용</h3>
+                            <ul>
+                                <li>AI 개념 및 원리 이해</li>
+                                <li>머신러닝 기초 실습</li>
+                                <li>학생용 AI 교육 커리큘럼 개발</li>
+                                <li>생성형 AI 활용 교육 방법</li>
                             </ul>
+                        </div>
+                        <div class="program-footer">
+                            <a href="apply.html" class="btn">신청하기</a>
                         </div>
                     </div>
                 </div>
@@ -181,29 +261,56 @@
         <section class="training-options">
             <div class="container">
                 <h2 class="section-title">연수 진행 방식</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
+                <p class="section-subtitle">학교와 교육청 상황에 맞게 유연하게 진행 가능한 연수 방식을 제공합니다.</p>
+                
+                <div class="training-grid">
+                    <div class="training-card">
+                        <div class="training-icon">
                             <i class="fas fa-school" aria-hidden="true"></i>
                         </div>
-                        <h3 class="feature-title">찾아가는 연수</h3>
+                        <h3 class="training-title">찾아가는 연수</h3>
                         <ul class="feature-list">
                             <li>학교/교육청으로 전문 강사 파견</li>
                             <li>맞춤형 일정 조율 가능</li>
+                            <li>학교 환경에 맞는 맞춤형 실습</li>
+                            <li>집중적이고 효과적인 오프라인 교육</li>
                         </ul>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
+                    
+                    <div class="training-card">
+                        <div class="training-icon">
                             <i class="fas fa-video" aria-hidden="true"></i>
                         </div>
-                        <h3 class="feature-title">온라인 실시간 연수</h3>
+                        <h3 class="training-title">온라인 실시간 연수</h3>
                         <ul class="feature-list">
                             <li>화상 회의 플랫폼 활용</li>
                             <li>양방향 소통 및 실습 가능</li>
                             <li>녹화 영상 30일 복습 가능</li>
+                            <li>장소 제약 없이 편리하게 참여</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="training-card">
+                        <div class="training-icon">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="training-title">블렌디드 연수</h3>
+                        <ul class="feature-list">
+                            <li>온라인 사전 학습 + 오프라인 실습</li>
+                            <li>교원 일정에 맞춘 유연한 학습</li>
+                            <li>온/오프라인 장점 결합</li>
+                            <li>효율적인 시간 활용 가능</li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>교육 혁신의 중심에 서는 교원 역량 강화</h2>
+                <p>미래 교육을 선도할 교원의 디지털 교육 역량 강화를 위한 최고의 프로그램을 경험해보세요.</p>
+                <a href="apply.html" class="btn-white">연수 프로그램 신청하기</a>
             </div>
         </section>
     </main>
