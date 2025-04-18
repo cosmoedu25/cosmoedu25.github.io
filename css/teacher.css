@@ -1,124 +1,137 @@
-@import 'variables.css';
+/* 교원연수 페이지 스타일 */
 
-/* 언어 섹션 */
-.languages {
-    background-color: white;
+.teacher-hero {
+    background: linear-gradient(135deg, var(--primary), #7e57c2);
+    color: white;
+    padding: 6rem 0 4rem;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.language-grid {
+.teacher-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.teacher-hero p {
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out;
+}
+
+.program-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
+    margin-bottom: 4rem;
 }
 
-.language-card {
-    background: white;
-    border-radius: 15px;
+.program-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.language-card::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(255, 126, 95, 0.05) 0%, rgba(254, 180, 123, 0.1) 100%);
-    transition: transform 0.4s ease;
+.program-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.language-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 20px 40px rgba(255, 126, 95, 0.15);
-}
-
-.language-card:hover::before {
-    transform: translateY(-100%);
-}
-
-.language-logo {
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.program-header {
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
 }
 
-.language-card:hover .language-logo {
-    background: linear-gradient(135deg, rgba(255, 126, 95, 0.1), rgba(254, 180, 123, 0.1));
+.program-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
 }
 
-.language-logo i {
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform;
+.program-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-.language-card:hover .language-logo i {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.language-info {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.language-name {
-    font-size: 1.3rem;
-    font-weight: 700;
+.program-icon {
+    font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--primary);
 }
 
-.language-desc {
-    color: var(--gray);
-    margin-bottom: 1.5rem;
-    flex: 1;
+.program-body {
+    padding: 1.5rem;
 }
 
-.program-list {
-    list-style: none;
-    padding-left: 0;
-    margin-top: auto;
-}
-
-.program-list li {
-    padding: 0.5rem 0;
-    position: relative;
-    padding-left: 1.5rem;
+.program-body h3 {
+    font-size: 1.2rem;
+    margin: 1rem 0 0.5rem;
     color: var(--dark);
 }
 
-.program-list li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: bold;
+.program-body ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-/* 연수 옵션 섹션 */
+.program-body ul li {
+    margin-bottom: 0.5rem;
+}
+
+.program-footer {
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
 .training-options {
-    background: linear-gradient(135deg, rgba(255, 126, 95, 0.05), rgba(254, 180, 123, 0.05));
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+    margin: 3rem 0;
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.training-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.training-card:hover {
+    transform: translateY(-5px);
+}
+
+.training-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.training-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
 }
 
 .feature-list {
     list-style: none;
     padding-left: 0;
     margin-top: 1rem;
+    text-align: left;
 }
 
 .feature-list li {
@@ -136,21 +149,69 @@
     font-weight: bold;
 }
 
+.cta-section {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-white {
+    background-color: white;
+    color: var(--primary);
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 반응형 스타일 */
 @media (max-width: 768px) {
-    .language-logo {
-        height: 120px;
-        padding: 1rem;
+    .teacher-hero {
+        padding: 4rem 0 3rem;
     }
     
-    .language-logo i {
-        font-size: 2.5rem;
+    .teacher-hero h1 {
+        font-size: 2rem;
     }
     
-    .language-name {
-        font-size: 1.2rem;
+    .program-grid {
+        grid-template-columns: 1fr;
     }
     
-    .language-desc, .program-list li, .feature-list li {
-        font-size: 0.95rem;
+    .training-grid {
+        grid-template-columns: 1fr;
     }
 }
