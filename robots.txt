@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.cosmoedu.co.kr
+Sitemap: https://www.cosmoedu.co.kr/sitemap.xml
