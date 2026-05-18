@@ -42,8 +42,8 @@ img{max-width:100%}
 .hd.scrolled{padding:.5rem 0;background:rgba(255,255,255,.98);box-shadow:0 2px 12px rgba(15,23,42,.08)}
 .hd-inner{display:flex;justify-content:space-between;align-items:center}
 .hd-logo{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;color:var(--text)}
-.hd-logo img{width:30px;height:30px;object-fit:contain}
-.hd-logo:hover{color:var(--blue)}
+.hd-logo img{height:28px;width:auto;object-fit:contain;filter:brightness(0)}
+.hd-logo:hover{opacity:.75}
 .hd-nav{display:flex;align-items:center;gap:.2rem}
 .hd-link{padding:.4rem .85rem;font-size:.88rem;font-weight:500;color:var(--muted);border-radius:8px;transition:all var(--tr)}
 .hd-link:hover{color:var(--text);background:rgba(15,23,42,.05)}
@@ -145,9 +145,11 @@ img{max-width:100%}
 .spec-item{display:flex;align-items:center;gap:.7rem;font-size:.88rem}
 .spec-item .spec-k{color:var(--muted);flex-shrink:0;min-width:90px;font-size:.82rem}
 .spec-item .spec-v{color:var(--text);font-weight:600}
-.rental-process{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.8rem}
-.rp-step{text-align:center;padding:1.2rem .8rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);box-shadow:0 1px 4px rgba(15,23,42,.04)}
-.rp-step .rp-icon{width:44px;height:44px;border-radius:50%;margin:0 auto .7rem;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:2px solid var(--border)}
+.rental-process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2rem;position:relative}
+.rental-process::before{content:'';position:absolute;top:22px;left:calc(12.5% + 22px);right:calc(12.5% + 22px);height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:0}
+.rp-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 .5rem}
+.rp-step .rp-icon{width:44px;height:44px;border-radius:50%;margin:0 auto .9rem;display:flex;align-items:center;justify-content:center;font-size:1.05rem;border:2px solid var(--blue);background:var(--bg3);transition:all var(--tr)}
+.rp-step:hover .rp-icon{background:var(--blue);color:#fff!important;box-shadow:0 0 16px rgba(37,99,235,.25)}
 .rp-step h5{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
 .rp-step p{font-size:.78rem;color:var(--muted);line-height:1.5;word-break:keep-all}
 .rental-price-banner{margin-top:1.8rem;background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:1.4rem 1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
@@ -261,6 +263,7 @@ img{max-width:100%}
   .curr-panel.on{grid-template-columns:repeat(2,1fr)}
   .cm-icon{width:40px;height:40px;font-size:1rem}
   .rental-process{grid-template-columns:repeat(2,1fr)}
+  .rental-process::before{display:none}
   .remote-flow{grid-template-columns:repeat(2,1fr)}
   .remote-flow::before{display:none}
   .footer-links{gap:1.5rem;flex-wrap:wrap}
@@ -283,8 +286,7 @@ img{max-width:100%}
   <div class="wrap">
     <div class="hd-inner">
       <a href="index.html" class="hd-logo">
-        <img src="img/logo_36.png" alt="코스모에듀벤처" loading="lazy">
-        <span>코스모에듀벤처</span>
+        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(white)_850x180.png" alt="코스모에듀" loading="lazy">
       </a>
       <nav class="hd-nav" id="hdNav">
         <a href="#packages" class="hd-link">패키지</a>
@@ -306,7 +308,7 @@ img{max-width:100%}
 
       <!-- 텍스트 -->
       <div class="hero-text">
-        <div class="hero-badge"><span class="dot"></span>전국 미인가 대안학교 전용</div>
+        <div class="hero-badge"><span class="dot"></span>AI·코딩 수업 구축 전문</div>
         <h1 class="hero-h1">우리 학교에도<br><span class="g">AI 수업이<br>시작됩니다.</span></h1>
         <p class="hero-p">강사 없이도, 장비 없이도, 커리큘럼 걱정 없이도.<br>우리 학교 상황에 맞는 패키지로 시작하세요.</p>
         <div class="hero-btns">
@@ -569,7 +571,7 @@ img{max-width:100%}
       <div class="pkg-card rv d1">
         <div class="pk-situation">
           <div class="pk-sit-label">이런 학교에 맞아요</div>
-          <div class="pk-sit-title">컴퓨터는 있는데<br>수업 콘텐츠가 없어요</div>
+          <div class="pk-sit-title">컴퓨터와 강사는 있는데,<br>수업 콘텐츠가 없어요</div>
         </div>
         <div class="pk-body">
           <div>
@@ -856,27 +858,27 @@ img{max-width:100%}
       </div>
     </div>
 
-    <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:2.2rem 0 0" class="rv">렌탈 프로세스</h3>
-    <div class="rental-process">
-      <div class="rp-step rv">
-        <div class="rp-icon" style="border-color:rgba(59,130,246,.4);color:var(--blue)"><i class="fas fa-clipboard-check"></i></div>
-        <h5>신청 & 확정</h5>
-        <p>학생 수 확인 후 렌탈 수량 결정</p>
+    <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:2.2rem 0 .2rem" class="rv">렌탈 프로세스</h3>
+    <div class="rental-process rv">
+      <div class="rp-step">
+        <div class="rp-icon" style="color:var(--blue)"><i class="fas fa-comments"></i></div>
+        <h5>신청 &amp; 상담</h5>
+        <p>학교 환경·학생 수 파악, 대수 결정</p>
       </div>
-      <div class="rp-step rv d1">
-        <div class="rp-icon" style="border-color:rgba(6,182,212,.4);color:var(--cyan)"><i class="fas fa-tools"></i></div>
-        <h5>세팅 & 준비</h5>
-        <p>프로그램 설치, 계정 생성, 테스트</p>
+      <div class="rp-step">
+        <div class="rp-icon" style="color:var(--cyan)"><i class="fas fa-key"></i></div>
+        <h5>계정 발급</h5>
+        <p>플랫폼 계정 생성 및 환경 세팅</p>
       </div>
-      <div class="rp-step rv d2">
-        <div class="rp-icon" style="border-color:rgba(139,92,246,.4);color:var(--purple)"><i class="fas fa-truck"></i></div>
+      <div class="rp-step">
+        <div class="rp-icon" style="color:var(--purple)"><i class="fas fa-truck"></i></div>
         <h5>배송</h5>
-        <p>학교 주소로 직접 배송, 택배 포함</p>
+        <p>세팅 완료된 노트북 학교로 직배송</p>
       </div>
-      <div class="rp-step rv d3">
-        <div class="rp-icon" style="border-color:rgba(16,185,129,.4);color:var(--green)"><i class="fas fa-headset"></i></div>
-        <h5>원격 지원</h5>
-        <p>문제 발생 시 원격 접속 지원</p>
+      <div class="rp-step">
+        <div class="rp-icon" style="color:var(--green)"><i class="fas fa-chalkboard-teacher"></i></div>
+        <h5>원격 교사교육</h5>
+        <p>담당 교사 대상 플랫폼·수업 운영 교육</p>
       </div>
     </div>
   </div>
