@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(wc -l \"/mnt/c/Users/User/Documents/pioneer/cosmoedu25_web/.claude/worktrees/goofy-noyce-8886b5/alternative.html\")",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\User\\\\Documents\\\\pioneer\\\\cosmoedu25_web\\\\.claude\\\\worktrees\\\\goofy-noyce-8886b5\\\\alternative.html\"\\).Count)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
+    ]
+  }
+}
