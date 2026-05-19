@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>플랫폼 소개 | 코스모에듀</title>
+<meta name="description" content="코스모에듀 AI·코딩 교육 플랫폼 상세 소개 페이지입니다.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --bg:#F8FAFC;--bg2:#EFF6FF;--bg3:#FFFFFF;
+  --blue:#2563EB;--blue-d:#1D4ED8;--blue-l:#3B82F6;
+  --cyan:#0891B2;--cyan-l:#06B6D4;
+  --purple:#7C3AED;--green:#059669;--amber:#D97706;
+  --text:#0F172A;--muted:#64748B;--dim:#94A3B8;
+  --border:rgba(15,23,42,.1);
+  --r:12px;--tr:.28s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Malgun Gothic',sans-serif;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 1.5rem}
+.sec{padding:80px 0}
+.sec-alt{background:var(--bg2)}
+.sec-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);background:rgba(8,145,178,.08);border:1px solid rgba(8,145,178,.25);padding:.28rem .85rem;border-radius:100px;margin-bottom:.9rem}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;line-height:1.2;margin-bottom:.8rem;color:var(--text)}
+.sec-title .hl{background:linear-gradient(130deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{font-size:1rem;color:var(--muted);max-width:600px;word-break:keep-all}
+.center{text-align:center}.center .sec-sub{margin:0 auto}
+
+/* ── 헤더 ── */
+.hd{position:fixed;top:0;left:0;width:100%;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:all var(--tr);padding:.85rem 0}
+.hd.scrolled{padding:.5rem 0;background:rgba(255,255,255,.98);box-shadow:0 2px 12px rgba(15,23,42,.08)}
+.hd-inner{display:flex;justify-content:space-between;align-items:center}
+.hd-logo{display:flex;align-items:center;transition:opacity var(--tr)}
+.hd-logo img{height:26px;width:auto;object-fit:contain}
+.hd-logo:hover{opacity:.7}
+.hd-back{display:inline-flex;align-items:center;gap:.45rem;font-size:.88rem;font-weight:500;color:var(--muted);border-radius:8px;padding:.4rem .85rem;transition:all var(--tr)}
+.hd-back:hover{color:var(--text);background:rgba(15,23,42,.05)}
+.hd-cta{background:var(--blue);color:#fff!important;padding:.45rem 1rem;border-radius:8px;font-weight:600;font-size:.88rem;transition:all var(--tr)}
+.hd-cta:hover{background:var(--blue-d)}
+
+/* ── 히어로 ── */
+.plat-hero{padding:120px 0 80px;background:linear-gradient(160deg,#F0F7FF 0%,#F8FAFC 55%,#EFF6FF 100%);text-align:center}
+.plat-hero .sec-label{display:inline-block}
+.plat-hero h1{font-size:clamp(2rem,4.5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:1rem;word-break:keep-all}
+.plat-hero p{font-size:1.05rem;color:var(--muted);max-width:540px;margin:0 auto 2rem;word-break:keep-all}
+.ph-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.7rem;border-radius:var(--r);font-weight:700;font-size:.97rem;cursor:pointer;border:none;transition:all var(--tr)}
+.btn-p{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 4px 18px rgba(37,99,235,.25)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.38)}
+.btn-o{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-o:hover{border-color:var(--blue);color:var(--blue);background:rgba(37,99,235,.04)}
+
+/* ── 플레이스홀더 섹션 ── */
+.ph-section{border:2px dashed rgba(37,99,235,.2);border-radius:var(--r);padding:3rem 2rem;text-align:center;background:rgba(37,99,235,.02);margin-bottom:2rem}
+.ph-section .ph-icon{font-size:2.5rem;color:rgba(37,99,235,.25);margin-bottom:1rem}
+.ph-section h3{font-size:1.1rem;font-weight:700;color:var(--muted);margin-bottom:.5rem}
+.ph-section p{font-size:.88rem;color:var(--dim);line-height:1.6}
+
+/* ── 섹션 타이틀 구분선 ── */
+.section-divider{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.section-divider h2{font-size:1.2rem;font-weight:700;color:var(--text);white-space:nowrap}
+.section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── 푸터 ── */
+.footer{background:#0F172A;border-top:1px solid rgba(255,255,255,.06);padding:2rem 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-logo img{height:20px;width:auto;object-fit:contain}
+.footer-copy{font-size:.78rem;color:#475569}
+
+/* ── 애니메이션 ── */
+.jr .rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.jr .rv.in{opacity:1;transform:translateY(0)}
+.jr .rv.d1{transition-delay:.1s}.jr .rv.d2{transition-delay:.2s}.jr .rv.d3{transition-delay:.3s}
+
+@media(max-width:768px){
+  .sec{padding:56px 0}
+  .plat-hero{padding:100px 0 60px}
+  .ph-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="hd" id="hd">
+  <div class="wrap">
+    <div class="hd-inner">
+      <a href="index.html" class="hd-logo">
+        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(black)_850x180.png" alt="코스모에듀" loading="lazy">
+      </a>
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <a href="index.html" class="hd-back"><i class="fas fa-arrow-left"></i> 메인으로 돌아가기</a>
+        <a href="index.html#contact" class="hd-cta">무료 상담</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══ 히어로 ══ -->
+<div class="plat-hero">
+  <div class="wrap">
+    <div class="sec-label rv">코스모에듀 플랫폼</div>
+    <h1 class="rv">수업이 쉬워지는<br><span style="background:linear-gradient(130deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">올인원 교육 플랫폼</span></h1>
+    <p class="rv d1">강사도, 교재도, 과제 관리도 — 하나의 플랫폼에서 모두 해결됩니다.</p>
+    <div class="ph-btns">
+      <a href="index.html#contact" class="btn btn-p rv d2"><i class="fas fa-comments"></i> 도입 상담 신청</a>
+      <a href="index.html#packages" class="btn btn-o rv d2">패키지 보기</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 콘텐츠 영역 (내용 준비 중) ══ -->
+<section class="sec">
+  <div class="wrap">
+
+    <!-- 섹션 1: 플랫폼 개요 -->
+    <div class="section-divider rv"><h2>플랫폼 개요</h2></div>
+    <div class="ph-section rv d1">
+      <div class="ph-icon"><i class="fas fa-desktop"></i></div>
+      <h3>플랫폼 주요 화면 소개</h3>
+      <p>대시보드, 수업 목록, 학생 관리 화면 등 주요 UI를 스크린샷과 함께 소개할 예정입니다.<br>내용을 정리 후 업데이트됩니다.</p>
+    </div>
+
+    <!-- 섹션 2: 주요 기능 -->
+    <div class="section-divider rv" style="margin-top:3rem"><h2>주요 기능</h2></div>
+    <div class="ph-section rv d1">
+      <div class="ph-icon"><i class="fas fa-list-ul"></i></div>
+      <h3>기능 상세 설명</h3>
+      <p>수업 콘텐츠, 과제 관리, 학생 진도 추적, 계정 관리 등 각 기능별 상세 설명이 추가될 예정입니다.</p>
+    </div>
+
+    <!-- 섹션 3: 수업 콘텐츠 -->
+    <div class="section-divider rv" style="margin-top:3rem"><h2>수업 콘텐츠</h2></div>
+    <div class="ph-section rv d1">
+      <div class="ph-icon"><i class="fas fa-book-open"></i></div>
+      <h3>콘텐츠 목록 & 샘플</h3>
+      <p>AI·코딩 교육 전 과정의 콘텐츠 목록과 샘플 수업 화면이 추가될 예정입니다.</p>
+    </div>
+
+    <!-- 섹션 4: 교사용 관리 도구 -->
+    <div class="section-divider rv" style="margin-top:3rem"><h2>교사용 관리 도구</h2></div>
+    <div class="ph-section rv d1">
+      <div class="ph-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+      <h3>교사 대시보드</h3>
+      <p>학생별 진도 현황, 과제 제출 확인, 학습 리포트 등 교사용 관리 기능 설명이 추가될 예정입니다.</p>
+    </div>
+
+    <!-- 섹션 5: 요금제 연결 -->
+    <div class="section-divider rv" style="margin-top:3rem"><h2>플랫폼 이용 요금</h2></div>
+    <div class="ph-section rv d1">
+      <div class="ph-icon"><i class="fas fa-won-sign"></i></div>
+      <h3>요금 안내</h3>
+      <p>플랫폼 기본형(월 11만원)을 포함한 각 패키지별 요금 상세 내용이 추가될 예정입니다.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="rv" style="margin-top:3.5rem;text-align:center;padding:2.5rem;background:rgba(37,99,235,.04);border:1px solid rgba(37,99,235,.15);border-radius:var(--r)">
+      <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:.7rem">플랫폼을 직접 경험해보고 싶으신가요?</h3>
+      <p style="color:var(--muted);font-size:.92rem;margin-bottom:1.5rem">무료 상담을 통해 데모 계정을 체험해 보실 수 있습니다.</p>
+      <a href="index.html#contact" class="btn btn-p"><i class="fas fa-comments"></i> 무료 상담 신청하기</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">
+        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(white)_850x180.png" alt="코스모에듀" loading="lazy">
+      </a>
+      <p class="footer-copy">© 2025 코스모에듀벤처. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══ JS ══ -->
+<script>
+(function(){
+  'use strict';
+  var hd = document.getElementById('hd');
+  window.addEventListener('scroll', function(){ hd.classList.toggle('scrolled', window.scrollY > 50); }, {passive:true});
+  document.body.classList.add('jr');
+  var ro = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
+  }, {threshold:0.08, rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ ro.observe(el); });
+})();
+</script>
+</body>
+</html>
