@@ -36,9 +36,9 @@ img{max-width:100%}
 .hd{position:fixed;top:0;left:0;width:100%;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:all var(--tr);padding:.85rem 0}
 .hd.scrolled{padding:.5rem 0;background:rgba(255,255,255,.98);box-shadow:0 2px 12px rgba(15,23,42,.08)}
 .hd-inner{display:flex;justify-content:space-between;align-items:center}
-.hd-logo{display:flex;align-items:center;transition:opacity var(--tr)}
-.hd-logo img{height:26px;width:auto;object-fit:contain}
-.hd-logo:hover{opacity:.7}
+.hd-logo{display:flex;align-items:center;background:var(--blue);border-radius:6px;padding:.28rem .8rem;transition:opacity var(--tr)}
+.hd-logo img{height:22px;width:auto;object-fit:contain}
+.hd-logo:hover{opacity:.82}
 .hd-back{display:inline-flex;align-items:center;gap:.45rem;font-size:.88rem;font-weight:500;color:var(--muted);border-radius:8px;padding:.4rem .85rem;transition:all var(--tr)}
 .hd-back:hover{color:var(--text);background:rgba(15,23,42,.05)}
 .hd-cta{background:var(--blue);color:#fff!important;padding:.45rem 1rem;border-radius:8px;font-weight:600;font-size:.88rem;transition:all var(--tr)}
@@ -68,10 +68,10 @@ img{max-width:100%}
 .section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* ── 푸터 ── */
-.footer{background:#0F172A;border-top:1px solid rgba(255,255,255,.06);padding:2rem 0}
+.footer{background:#F1F5F9;border-top:1px solid var(--border);padding:2rem 0}
 .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-logo img{height:20px;width:auto;object-fit:contain}
-.footer-copy{font-size:.78rem;color:#475569}
+.footer-copy{font-size:.78rem;color:var(--muted)}
 
 /* ── 애니메이션 ── */
 .jr .rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
@@ -92,7 +92,7 @@ img{max-width:100%}
   <div class="wrap">
     <div class="hd-inner">
       <a href="index.html" class="hd-logo">
-        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(black)_850x180.png" alt="코스모에듀" loading="lazy">
+        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(white)_850x180.png" alt="코스모에듀" loading="lazy">
       </a>
       <div style="display:flex;align-items:center;gap:.5rem">
         <a href="index.html" class="hd-back"><i class="fas fa-arrow-left"></i> 메인으로 돌아가기</a>
@@ -177,7 +177,7 @@ img{max-width:100%}
   <div class="wrap">
     <div class="footer-inner">
       <a href="index.html" class="footer-logo">
-        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(white)_850x180.png" alt="코스모에듀" loading="lazy">
+        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(black)_850x180.png" alt="코스모에듀" loading="lazy">
       </a>
       <p class="footer-copy">© 2025 코스모에듀벤처. All rights reserved.</p>
     </div>
