@@ -182,11 +182,30 @@ img{max-width:100%}
 .rp-step:hover .rp-icon{background:var(--blue);color:#fff!important;box-shadow:0 0 16px rgba(37,99,235,.25)}
 .rp-step h5{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
 .rp-step p{font-size:.78rem;color:var(--muted);line-height:1.5;word-break:keep-all}
-.rental-price-banner{margin-top:1.8rem;background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:1.4rem 1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.rpb-left h4{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
-.rpb-left p{font-size:.85rem;color:var(--muted);word-break:keep-all}
-.rpb-price{font-size:2rem;font-weight:900;color:var(--blue)}
-.rpb-price span{font-size:.85rem;font-weight:400;color:var(--muted)}
+.rental-price-banner{margin-top:1.8rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem 1.8rem;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+.rpb-top{margin-bottom:1.1rem}
+.rpb-top h4{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.rpb-top p{font-size:.85rem;color:var(--muted);word-break:keep-all}
+.rpb-dual{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch}
+.rpb-divider{display:flex;align-items:center;justify-content:center;padding:0 1.2rem;color:var(--dim);font-size:.78rem;font-weight:600}
+.rpb-type-card{border-radius:10px;padding:1rem 1.2rem}
+.rpb-type-card.lease{background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.18)}
+.rpb-type-card.own{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.2)}
+.rpb-type-label{display:flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:700;margin-bottom:.85rem}
+.rpb-type-label .badge{padding:.18rem .65rem;border-radius:100px;font-size:.68rem;font-weight:700}
+.rpb-type-label .badge.lease{background:rgba(37,99,235,.12);color:var(--blue)}
+.rpb-type-label .badge.own{background:rgba(124,58,237,.12);color:var(--purple)}
+.rpb-period-grid{display:flex;flex-direction:column;gap:.5rem}
+.rpb-period-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.rpb-period-row .period{font-size:.76rem;color:var(--muted);white-space:nowrap;min-width:46px}
+.rpb-period-row .price{font-size:1.05rem;font-weight:800;color:var(--text);white-space:nowrap}
+.rpb-period-row .price sub{font-size:.65rem;font-weight:400;color:var(--muted)}
+.rpb-period-row.best .period{color:var(--blue);font-weight:700}
+.rpb-period-row.best .price{color:var(--blue);font-size:1.25rem}
+.rpb-period-row.best-own .period{color:var(--purple);font-weight:700}
+.rpb-period-row.best-own .price{color:var(--purple);font-size:1.25rem}
+.rpb-vat{font-size:.72rem;color:var(--dim);margin-top:.9rem;text-align:center}
+@media(max-width:600px){.rpb-dual{grid-template-columns:1fr;gap:.8rem}.rpb-divider{padding:.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}}
 
 /* ── 플랫폼 소개 ── */
 .plat-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
@@ -885,14 +904,60 @@ img{max-width:100%}
     </div>
 
     <div class="rental-price-banner rv">
-      <div class="rpb-left">
+      <div class="rpb-top">
         <h4>노트북 렌탈 요금</h4>
-        <p>교육용 노트북 · 기본 프로그램 세팅 완료 · 원격 지원 환경 구성 포함</p>
+        <p>교육용 노트북 · 기본 프로그램 세팅 완료 · 원격 지원 환경 구성 포함 · 대당 단가 (VAT 포함)</p>
       </div>
-      <div>
-        <div class="rpb-price">3.3만원<span>/대 · 월</span></div>
-        <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">VAT 포함</div>
+      <div class="rpb-dual">
+
+        <!-- 임대형 -->
+        <div class="rpb-type-card lease">
+          <div class="rpb-type-label">
+            <span class="badge lease">임대형</span>
+            계약 종료 후 <span style="color:var(--blue)">노트북 반납</span>
+          </div>
+          <div class="rpb-period-grid">
+            <div class="rpb-period-row">
+              <span class="period">3개월</span>
+              <span class="price">7.2만원<sub>/월</sub></span>
+            </div>
+            <div class="rpb-period-row">
+              <span class="period">6개월</span>
+              <span class="price">4.9만원<sub>/월</sub></span>
+            </div>
+            <div class="rpb-period-row best">
+              <span class="period">12개월 ★</span>
+              <span class="price">3.8만원<sub>/월</sub></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rpb-divider">또는</div>
+
+        <!-- 인수형 -->
+        <div class="rpb-type-card own">
+          <div class="rpb-type-label">
+            <span class="badge own">인수형</span>
+            12개월 후 <span style="color:var(--purple)">노트북 소유권 취득</span>
+          </div>
+          <div class="rpb-period-grid">
+            <div class="rpb-period-row">
+              <span class="period">3개월</span>
+              <span class="price">22만원<sub>/월</sub></span>
+            </div>
+            <div class="rpb-period-row">
+              <span class="period">6개월</span>
+              <span class="price">11.5만원<sub>/월</sub></span>
+            </div>
+            <div class="rpb-period-row best-own">
+              <span class="period">12개월 ★</span>
+              <span class="price">5.5만원<sub>/월</sub></span>
+            </div>
+          </div>
+        </div>
+
       </div>
+      <div class="rpb-vat">★ 권장 기간 · 10대 이상 계약 시 3% 추가 할인</div>
     </div>
 
     <div class="laptop-grid">
