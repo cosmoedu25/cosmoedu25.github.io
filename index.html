@@ -409,26 +409,26 @@ img{max-width:100%}
 
         <!-- ── 어노테이션 SVG 오버레이 ── -->
         <svg class="ann-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- 플랫폼: TV 좌측 노드 (33,31) → 좌상단 카드 연결점 (27,18) -->
-          <line x1="33" y1="31" x2="27" y2="18" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
-          <circle cx="33" cy="31" r="1.3" fill="#60A5FA"/>
-          <circle cx="33" cy="31" r="1.3" fill="none" stroke="#60A5FA" stroke-width=".7" opacity=".6">
+          <!-- 플랫폼: TV 좌측 노드 (27,33) → 좌상단 카드 연결점 (26,17) -->
+          <line x1="27" y1="33" x2="26" y2="17" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="27" cy="33" r="1.3" fill="#60A5FA"/>
+          <circle cx="27" cy="33" r="1.3" fill="none" stroke="#60A5FA" stroke-width=".7" opacity=".6">
             <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" repeatCount="indefinite"/>
             <animate attributeName="opacity" from=".6" to="0" dur="2.2s" repeatCount="indefinite"/>
           </circle>
 
-          <!-- 원격수업: TV 우측 노드 (63,31) → 우상단 카드 연결점 (73,18) -->
-          <line x1="63" y1="31" x2="73" y2="18" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
-          <circle cx="63" cy="31" r="1.3" fill="#22D3EE"/>
-          <circle cx="63" cy="31" r="1.3" fill="none" stroke="#22D3EE" stroke-width=".7" opacity=".6">
+          <!-- 원격수업: TV 우측 노드 (66,24) → 우상단 카드 연결점 (74,17) -->
+          <line x1="66" y1="24" x2="74" y2="17" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="66" cy="24" r="1.3" fill="#22D3EE"/>
+          <circle cx="66" cy="24" r="1.3" fill="none" stroke="#22D3EE" stroke-width=".7" opacity=".6">
             <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" begin=".7s" repeatCount="indefinite"/>
             <animate attributeName="opacity" from=".6" to="0" dur="2.2s" begin=".7s" repeatCount="indefinite"/>
           </circle>
 
-          <!-- 노트북 렌탈: 노트북 노드 (68,65) → 우하단 카드 연결점 (73,80) -->
-          <line x1="68" y1="65" x2="73" y2="80" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
-          <circle cx="68" cy="65" r="1.3" fill="#34D399"/>
-          <circle cx="68" cy="65" r="1.3" fill="none" stroke="#34D399" stroke-width=".7" opacity=".6">
+          <!-- 노트북 렌탈: 노트북 노드 (73,62) → 우하단 카드 연결점 (74,82) -->
+          <line x1="73" y1="62" x2="74" y2="82" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="73" cy="62" r="1.3" fill="#34D399"/>
+          <circle cx="73" cy="62" r="1.3" fill="none" stroke="#34D399" stroke-width=".7" opacity=".6">
             <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" begin="1.4s" repeatCount="indefinite"/>
             <animate attributeName="opacity" from=".6" to="0" dur="2.2s" begin="1.4s" repeatCount="indefinite"/>
           </circle>
@@ -463,231 +463,6 @@ img{max-width:100%}
             <div class="ac-sub">대당 / 월</div>
           </div>
         </div>
-        <!-- (SVG fallback hidden) <svg class="classroom-svg" viewBox="0 0 620 440" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="cBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#060A15"/><stop offset="100%" stop-color="#0A1020"/></linearGradient>
-            <linearGradient id="cWall" x1="310" y1="65" x2="310" y2="265" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#0C1526"/><stop offset="100%" stop-color="#101D35"/></linearGradient>
-            <linearGradient id="cFloor" x1="310" y1="265" x2="310" y2="440" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#0A1528"/><stop offset="100%" stop-color="#060A15"/></linearGradient>
-            <linearGradient id="cScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0A1F42"/><stop offset="100%" stop-color="#091530"/></linearGradient>
-            <linearGradient id="cDesk1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E3352"/><stop offset="100%" stop-color="#16263E"/></linearGradient>
-            <filter id="sg" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="8" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <filter id="mg" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="4" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <filter id="lg" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="14" result="b"/>
-              <feMerge><feMergeNode in="b"/></feMerge>
-            </filter>
-          </defs>
-
-          <!-- 배경 -->
-          <rect width="620" height="440" fill="url(#cBg)"/>
-
-          <!-- 스크린 뒤 글로우 -->
-          <ellipse cx="310" cy="150" rx="130" ry="85" fill="#1D4ED8" opacity="0.14" filter="url(#lg)"/>
-
-          <!-- 왼쪽 벽 -->
-          <polygon points="0,108 75,68 75,268 0,295" fill="#080D1A"/>
-          <line x1="0" y1="108" x2="75" y2="68" stroke="#1E3A5F" stroke-width="1"/>
-
-          <!-- 뒷 벽 -->
-          <polygon points="75,68 545,68 545,268 75,268" fill="url(#cWall)"/>
-          <line x1="75" y1="68" x2="545" y2="68" stroke="#1D3F6E" stroke-width="1.5"/>
-          <line x1="75" y1="264" x2="545" y2="264" stroke="#1A2E4A" stroke-width="1"/>
-
-          <!-- 뒷벽 창문들 -->
-          <rect x="92" y="90" width="62" height="46" rx="4" fill="#07111F" stroke="#1A2E4A" stroke-width="1"/>
-          <line x1="123" y1="90" x2="123" y2="136" stroke="#1A2E4A" stroke-width="0.8"/>
-          <line x1="92" y1="113" x2="154" y2="113" stroke="#1A2E4A" stroke-width="0.8"/>
-          <!-- 창문 빛 -->
-          <rect x="93" y="91" width="29" height="21" rx="2" fill="#0A1F38" opacity="0.6"/>
-          <rect x="93" y="114" width="29" height="21" rx="2" fill="#091729" opacity="0.5"/>
-
-          <rect x="462" y="90" width="62" height="46" rx="4" fill="#07111F" stroke="#1A2E4A" stroke-width="1"/>
-          <line x1="493" y1="90" x2="493" y2="136" stroke="#1A2E4A" stroke-width="0.8"/>
-          <line x1="462" y1="113" x2="524" y2="113" stroke="#1A2E4A" stroke-width="0.8"/>
-          <rect x="463" y="91" width="29" height="21" rx="2" fill="#0A1F38" opacity="0.6"/>
-          <rect x="463" y="114" width="29" height="21" rx="2" fill="#091729" opacity="0.5"/>
-
-          <!-- 메인 AI 스크린 (뒷 벽 중앙) -->
-          <!-- 스크린 글로우 후광 -->
-          <rect x="188" y="76" width="244" height="148" rx="8" fill="#2563EB" opacity="0.22" filter="url(#sg)"/>
-          <!-- 스크린 프레임 -->
-          <rect x="193" y="80" width="234" height="142" rx="6" fill="url(#cScreen)" stroke="#3B82F6" stroke-width="1.6"/>
-          <!-- 스크린 내용: 신경망 시각화 -->
-          <circle cx="240" cy="130" r="7" fill="#3B82F6" opacity="0.9" filter="url(#mg)"/>
-          <circle cx="280" cy="112" r="5.5" fill="#22D3EE" opacity="0.85" filter="url(#mg)"/>
-          <circle cx="280" cy="148" r="5.5" fill="#60A5FA" opacity="0.8"/>
-          <circle cx="310" cy="130" r="9" fill="#06B6D4" opacity="0.95" filter="url(#mg)"/>
-          <circle cx="340" cy="115" r="5.5" fill="#60A5FA" opacity="0.85"/>
-          <circle cx="340" cy="145" r="5.5" fill="#A78BFA" opacity="0.8"/>
-          <circle cx="380" cy="130" r="7" fill="#22D3EE" opacity="0.9" filter="url(#mg)"/>
-          <line x1="247" y1="130" x2="274.5" y2="115" stroke="#3B82F6" stroke-width="1.2" opacity="0.7"/>
-          <line x1="247" y1="130" x2="274.5" y2="145" stroke="#3B82F6" stroke-width="1.2" opacity="0.6"/>
-          <line x1="285.5" y1="112" x2="301" y2="127" stroke="#22D3EE" stroke-width="1.2" opacity="0.7"/>
-          <line x1="285.5" y1="148" x2="301" y2="133" stroke="#60A5FA" stroke-width="1.2" opacity="0.6"/>
-          <line x1="319" y1="130" x2="334.5" y2="118" stroke="#06B6D4" stroke-width="1.2" opacity="0.7"/>
-          <line x1="319" y1="130" x2="334.5" y2="142" stroke="#06B6D4" stroke-width="1.2" opacity="0.6"/>
-          <line x1="345.5" y1="115" x2="373" y2="128" stroke="#60A5FA" stroke-width="1.2" opacity="0.7"/>
-          <line x1="345.5" y1="145" x2="373" y2="132" stroke="#A78BFA" stroke-width="1.2" opacity="0.6"/>
-          <!-- 하단 코드라인 -->
-          <rect x="207" y="162" width="72" height="3.5" rx="1.8" fill="#3B82F6" opacity="0.5"/>
-          <rect x="207" y="169" width="54" height="3" rx="1.5" fill="#22D3EE" opacity="0.4"/>
-          <rect x="207" y="176" width="88" height="3" rx="1.5" fill="#A78BFA" opacity="0.35"/>
-          <rect x="293" y="162" width="78" height="3.5" rx="1.8" fill="#60A5FA" opacity="0.45"/>
-          <rect x="293" y="169" width="58" height="3" rx="1.5" fill="#34D399" opacity="0.4"/>
-          <rect x="293" y="176" width="66" height="3" rx="1.5" fill="#3B82F6" opacity="0.3"/>
-          <text x="310" y="208" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#3B82F6" opacity="0.75">AI Classroom Platform</text>
-
-          <!-- 스크린 받침 -->
-          <rect x="307" y="222" width="6" height="20" rx="2" fill="#1E3352"/>
-          <rect x="293" y="240" width="34" height="6" rx="2" fill="#1E3352"/>
-
-          <!-- 선생님 (스크린 앞) -->
-          <!-- 머리 -->
-          <circle cx="310" cy="248" r="10" fill="#92400E" stroke="#B45309" stroke-width="0.8"/>
-          <!-- 몸통 -->
-          <rect x="302" y="258" width="16" height="18" rx="5" fill="#1D4ED8"/>
-          <!-- 팔/포인터 -->
-          <line x1="318" y1="264" x2="330" y2="258" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round"/>
-          <!-- 레이저 포인터 점 -->
-          <circle cx="338" cy="255" r="2.5" fill="#EF4444" opacity="0.9" filter="url(#mg)"/>
-
-          <!-- 바닥 -->
-          <polygon points="0,268 620,268 620,440 0,440" fill="url(#cFloor)"/>
-          <!-- 바닥 그리드 (소실점 310,268) -->
-          <line x1="310" y1="268" x2="0" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="310" y1="268" x2="124" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="310" y1="268" x2="248" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="310" y1="268" x2="310" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="310" y1="268" x2="372" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="310" y1="268" x2="496" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="310" y1="268" x2="620" y2="440" stroke="#1A2840" stroke-width="0.7" opacity="0.55"/>
-          <line x1="0" y1="308" x2="620" y2="308" stroke="#1A2840" stroke-width="0.7" opacity="0.45"/>
-          <line x1="0" y1="348" x2="620" y2="348" stroke="#1A2840" stroke-width="0.7" opacity="0.45"/>
-          <line x1="0" y1="394" x2="620" y2="394" stroke="#1A2840" stroke-width="0.7" opacity="0.4"/>
-
-          <!-- 바닥-벽 경계 하이라이트 -->
-          <line x1="75" y1="268" x2="545" y2="268" stroke="#1E3A5F" stroke-width="1.5"/>
-
-          <!-- ── 뒷줄 책상 3개 ── -->
-          <!-- 뒷줄 1 (왼쪽) -->
-          <polygon points="104,271 168,271 172,280 108,280" fill="#1E3352"/>
-          <polygon points="108,280 172,280 172,296 108,296" fill="#162640"/>
-          <polygon points="104,271 108,280 108,296 104,286" fill="#0F1D30"/>
-          <rect x="118" y="266" width="34" height="20" rx="2" fill="#0C1625" stroke="#253E5E" stroke-width="0.7"/>
-          <rect x="120" y="268" width="30" height="16" rx="1.5" fill="#060F1E" stroke="#3B82F6" stroke-width="0.8" opacity="0.9"/>
-          <rect x="120" y="268" width="30" height="16" rx="1.5" fill="#3B82F6" opacity="0.04" filter="url(#mg)"/>
-          <!-- 학생 1 (뒷줄 왼쪽) -->
-          <circle cx="135" cy="262" r="9" fill="#92400E" stroke="#B45309" stroke-width="0.8"/>
-          <rect x="128" y="271" width="14" height="10" rx="3.5" fill="#7C3AED"/>
-
-          <!-- 뒷줄 2 (가운데) -->
-          <polygon points="278,271 342,271 346,280 282,280" fill="#1E3352"/>
-          <polygon points="282,280 346,280 346,296 282,296" fill="#162640"/>
-          <polygon points="278,271 282,280 282,296 278,286" fill="#0F1D30"/>
-          <rect x="292" y="266" width="34" height="20" rx="2" fill="#0C1625" stroke="#253E5E" stroke-width="0.7"/>
-          <rect x="294" y="268" width="30" height="16" rx="1.5" fill="#060F1E" stroke="#06B6D4" stroke-width="0.8" opacity="0.9"/>
-          <rect x="294" y="268" width="30" height="16" rx="1.5" fill="#06B6D4" opacity="0.04" filter="url(#mg)"/>
-          <!-- 학생 2 (뒷줄 가운데) -->
-          <circle cx="309" cy="262" r="9" fill="#78350F" stroke="#92400E" stroke-width="0.8"/>
-          <rect x="302" y="271" width="14" height="10" rx="3.5" fill="#065F46"/>
-
-          <!-- 뒷줄 3 (오른쪽) -->
-          <polygon points="452,271 516,271 520,280 456,280" fill="#1E3352"/>
-          <polygon points="456,280 520,280 520,296 456,296" fill="#162640"/>
-          <polygon points="452,271 456,280 456,296 452,286" fill="#0F1D30"/>
-          <rect x="466" y="266" width="34" height="20" rx="2" fill="#0C1625" stroke="#253E5E" stroke-width="0.7"/>
-          <rect x="468" y="268" width="30" height="16" rx="1.5" fill="#060F1E" stroke="#8B5CF6" stroke-width="0.8" opacity="0.9"/>
-          <rect x="468" y="268" width="30" height="16" rx="1.5" fill="#8B5CF6" opacity="0.04" filter="url(#mg)"/>
-          <!-- 학생 3 (뒷줄 오른쪽) -->
-          <circle cx="483" cy="262" r="9" fill="#3B1F14" stroke="#6B3A26" stroke-width="0.8"/>
-          <rect x="476" y="271" width="14" height="10" rx="3.5" fill="#B45309"/>
-
-          <!-- ── 앞줄 책상 3개 (더 크게) ── -->
-          <!-- 앞줄 1 (왼쪽) -->
-          <polygon points="70,347 156,347 164,366 78,366" fill="#1E3352"/>
-          <polygon points="78,366 164,366 164,392 78,392" fill="#152436"/>
-          <polygon points="70,347 78,366 78,392 70,373" fill="#0F1C2C"/>
-          <rect x="88" y="337" width="50" height="28" rx="2.5" fill="#0C1625" stroke="#253E5E" stroke-width="0.8"/>
-          <rect x="90" y="339" width="46" height="24" rx="2" fill="#060F1E" stroke="#3B82F6" stroke-width="1" opacity="0.9"/>
-          <rect x="90" y="339" width="46" height="24" rx="2" fill="#3B82F6" opacity="0.06" filter="url(#mg)"/>
-          <!-- 학생 4 (앞줄 왼쪽) -->
-          <circle cx="113" cy="325" r="12" fill="#92400E" stroke="#B45309" stroke-width="1"/>
-          <rect x="104" y="337" width="18" height="14" rx="4" fill="#2563EB"/>
-
-          <!-- 앞줄 2 (가운데) -->
-          <polygon points="262,345 354,345 362,365 270,365" fill="#1E3352"/>
-          <polygon points="270,365 362,365 362,392 270,392" fill="#152436"/>
-          <polygon points="262,345 270,365 270,392 262,372" fill="#0F1C2C"/>
-          <rect x="277" y="334" width="54" height="30" rx="2.5" fill="#0C1625" stroke="#253E5E" stroke-width="0.8"/>
-          <rect x="279" y="336" width="50" height="26" rx="2" fill="#060F1E" stroke="#06B6D4" stroke-width="1" opacity="0.9"/>
-          <rect x="279" y="336" width="50" height="26" rx="2" fill="#06B6D4" opacity="0.06" filter="url(#mg)"/>
-          <!-- 학생 5 (앞줄 가운데) -->
-          <circle cx="308" cy="322" r="12" fill="#78350F" stroke="#92400E" stroke-width="1"/>
-          <rect x="299" y="335" width="18" height="14" rx="4" fill="#065F46"/>
-
-          <!-- 앞줄 3 (오른쪽) -->
-          <polygon points="462,347 548,347 556,366 470,366" fill="#1E3352"/>
-          <polygon points="470,366 556,366 556,392 470,392" fill="#152436"/>
-          <polygon points="462,347 470,366 470,392 462,373" fill="#0F1C2C"/>
-          <rect x="477" y="337" width="50" height="28" rx="2.5" fill="#0C1625" stroke="#253E5E" stroke-width="0.8"/>
-          <rect x="479" y="339" width="46" height="24" rx="2" fill="#060F1E" stroke="#A78BFA" stroke-width="1" opacity="0.9"/>
-          <rect x="479" y="339" width="46" height="24" rx="2" fill="#8B5CF6" opacity="0.06" filter="url(#mg)"/>
-          <!-- 학생 6 (앞줄 오른쪽) -->
-          <circle cx="503" cy="325" r="12" fill="#3B1F14" stroke="#6B3A26" stroke-width="1"/>
-          <rect x="494" y="337" width="18" height="14" rx="4" fill="#7C3AED"/>
-
-          <!-- ── 플로팅 카드들 ── -->
-          <!-- 카드1: 상단 왼쪽 -->
-          <g opacity="0.93">
-            <rect x="8" y="14" width="118" height="46" rx="9" fill="#0D1828" stroke="#3B82F6" stroke-width="1"/>
-            <circle cx="28" cy="37" r="11" fill="#1D3F6E"/>
-            <text x="28" y="41.5" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#60A5FA">AI</text>
-            <text x="46" y="28" font-family="sans-serif" font-size="8.5" fill="#94A3B8">플랫폼 기본형</text>
-            <text x="46" y="40" font-family="sans-serif" font-size="10" font-weight="bold" fill="#E2E8F0">월 11만원</text>
-            <text x="46" y="52" font-family="sans-serif" font-size="8" fill="#60A5FA">교사교육 무료 제공</text>
-          </g>
-
-          <!-- 카드2: 상단 오른쪽 -->
-          <g opacity="0.93">
-            <rect x="492" y="14" width="120" height="46" rx="9" fill="#0D1828" stroke="#06B6D4" stroke-width="1"/>
-            <text x="504" y="28" font-family="sans-serif" font-size="8.5" fill="#94A3B8">전국 원격 도입</text>
-            <text x="504" y="42" font-family="sans-serif" font-size="17" font-weight="bold" fill="#22D3EE">17개</text>
-            <text x="538" y="40" font-family="sans-serif" font-size="9.5" fill="#94A3B8">시/도</text>
-            <text x="504" y="54" font-family="sans-serif" font-size="7.5" fill="#60A5FA">인터넷만 있으면 어디든 가능</text>
-          </g>
-
-          <!-- 카드3: 오른쪽 중간 -->
-          <g opacity="0.9">
-            <rect x="530" y="142" width="86" height="52" rx="9" fill="#0D1828" stroke="#8B5CF6" stroke-width="1"/>
-            <text x="542" y="160" font-family="sans-serif" font-size="8" fill="#A78BFA">원격수업</text>
-            <text x="542" y="175" font-family="sans-serif" font-size="14" font-weight="bold" fill="#E2E8F0">주 1회</text>
-            <text x="542" y="186" font-family="sans-serif" font-size="8" fill="#94A3B8">60분 · 전문강사</text>
-          </g>
-
-          <!-- 카드4: 왼쪽 중간 -->
-          <g opacity="0.9">
-            <rect x="4" y="152" width="88" height="52" rx="9" fill="#0D1828" stroke="#10B981" stroke-width="1"/>
-            <text x="16" y="170" font-family="sans-serif" font-size="8" fill="#34D399">노트북 렌탈</text>
-            <text x="16" y="185" font-family="sans-serif" font-size="14" font-weight="bold" fill="#E2E8F0">3.3만원</text>
-            <text x="16" y="196" font-family="sans-serif" font-size="8" fill="#94A3B8">대당/월 렌탈</text>
-          </g>
-
-          <!-- 앰비언트 파티클 -->
-          <circle cx="70" cy="160" r="2" fill="#3B82F6" opacity="0.55"/><circle cx="88" cy="190" r="1.5" fill="#06B6D4" opacity="0.45"/>
-          <circle cx="542" cy="108" r="2" fill="#8B5CF6" opacity="0.5"/><circle cx="558" cy="136" r="1.5" fill="#3B82F6" opacity="0.4"/>
-          <circle cx="520" cy="228" r="2" fill="#06B6D4" opacity="0.4"/><circle cx="102" cy="240" r="1.5" fill="#10B981" opacity="0.45"/>
-          <circle cx="480" cy="165" r="2" fill="#F59E0B" opacity="0.38"/><circle cx="65" cy="318" r="1.5" fill="#3B82F6" opacity="0.28"/>
-          <circle cx="556" cy="320" r="2" fill="#06B6D4" opacity="0.28"/>
-
-          <!-- 바닥 스크린 반사광 -->
-          <ellipse cx="310" cy="278" rx="72" ry="10" fill="#1D4ED8" opacity="0.07"/>
-        </svg> -->
       </div>
 
     </div>
