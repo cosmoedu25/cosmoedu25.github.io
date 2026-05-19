@@ -103,6 +103,19 @@ img{max-width:100%}
 .pk-features{display:flex;flex-direction:column;gap:.6rem;margin-top:.4rem}
 .pk-features li{display:flex;align-items:flex-start;gap:.55rem;font-size:.88rem;color:var(--muted)}
 .pk-features li i{color:var(--green);font-size:.8rem;margin-top:3px;flex-shrink:0}
+/* ALL-IN-ONE 임대/인수 토글 */
+.pk-type-toggle{display:flex;background:rgba(15,23,42,.05);border-radius:8px;padding:3px;gap:2px;margin-bottom:.9rem}
+.pk-type-btn{flex:1;padding:.38rem .5rem;border:none;background:transparent;border-radius:6px;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all var(--tr);white-space:nowrap}
+.pk-type-btn.on{background:#fff;color:var(--purple);box-shadow:0 1px 4px rgba(15,23,42,.1)}
+.pk-price-panel{display:none}.pk-price-panel.on{display:block}
+.pk-vol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.65rem 0 .3rem}
+.pk-vol-item{border:1.5px solid var(--border);border-radius:8px;padding:.5rem .4rem;text-align:center;cursor:pointer;transition:all var(--tr)}
+.pk-vol-item:hover{border-color:var(--purple)}
+.pk-vol-item.on{border-color:var(--purple);background:rgba(124,58,237,.05)}
+.pk-vol-item .pvi-n{font-size:.72rem;color:var(--muted);margin-bottom:.15rem}
+.pk-vol-item .pvi-p{font-size:.9rem;font-weight:800;color:var(--text);line-height:1}
+.pk-vol-item .pvi-u{font-size:.65rem;color:var(--muted)}
+.pk-vol-note{font-size:.72rem;color:var(--dim);line-height:1.5;word-break:keep-all;margin-top:.3rem}
 .pk-cta{margin-top:auto}
 .pk-cta a{display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;padding:.82rem;border-radius:9px;font-weight:700;font-size:.93rem;transition:all var(--tr)}
 .pk-cta-primary{background:var(--blue);color:#fff}
@@ -678,28 +691,68 @@ img{max-width:100%}
       </div>
 
       <!-- 패키지 3 -->
-      <div class="pkg-card rv d3">
+      <div class="pkg-card rv d3" id="pkgAll">
         <div class="pk-situation">
           <div class="pk-sit-label">이런 곳에 맞아요</div>
           <div class="pk-sit-title">컴퓨터도 강사도<br>아무것도 없어요</div>
         </div>
         <div class="pk-body">
           <div>
-            <div class="pk-name">ALL-IN-ONE (노트북 렌탈 포함)</div>
-            <div class="pk-price">50.6만<sub>원/월</sub></div>
-            <div class="pk-price-note" style="margin-top:.35rem">노트북 7대 기준 · 대당 추가 시 <strong style="color:var(--text)">+3.3만원</strong></div>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:.25rem">플랫폼 11만 + 원격수업 16.5만 + 노트북 7대 23.1만</div>
+            <div class="pk-name">ALL-IN-ONE (플랫폼 + 원격 + 노트북)</div>
+
+            <!-- 임대형 / 인수형 토글 -->
+            <div class="pk-type-toggle">
+              <button class="pk-type-btn on" data-ptype="lease">임대형 <span style="font-weight:400;opacity:.7">반납</span></button>
+              <button class="pk-type-btn" data-ptype="own">인수형 <span style="font-weight:400;opacity:.7">소유</span></button>
+            </div>
+
+            <!-- 임대형 가격 패널 -->
+            <div class="pk-price-panel on" id="pp-lease">
+              <div class="pk-price" id="pp-lease-price">54.1만<sub>원/월</sub></div>
+              <div class="pk-price-note">플랫폼 11 + 원격 16.5 + 노트북 <span id="lp-nb">7대 26.6</span>만 · VAT포함</div>
+              <div class="pk-vol-grid">
+                <div class="pk-vol-item" data-lease="46.5" data-nb="5대 19" data-per="3.8">
+                  <div class="pvi-n">5대</div><div class="pvi-p">46.5</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item on" data-lease="54.1" data-nb="7대 26.6" data-per="3.8">
+                  <div class="pvi-n">7대</div><div class="pvi-p">54.1</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item" data-lease="64.5" data-nb="10대 37" data-per="3.7">
+                  <div class="pvi-n">10대+</div><div class="pvi-p">64.5</div><div class="pvi-u">만원/월</div>
+                </div>
+              </div>
+              <div class="pk-vol-note">대당 3.8만원/월 · 계약 종료 후 노트북 반납<br><strong style="color:var(--text)">10대 이상: 3% 할인 + 보증금(2개월치)</strong></div>
+            </div>
+
+            <!-- 인수형 가격 패널 -->
+            <div class="pk-price-panel" id="pp-own">
+              <div class="pk-price" id="pp-own-price">66만<sub>원/월</sub></div>
+              <div class="pk-price-note">플랫폼 11 + 원격 16.5 + 노트북 <span id="op-nb">7대 38.5</span>만 · VAT포함</div>
+              <div class="pk-vol-grid">
+                <div class="pk-vol-item" data-own="55" data-nb="5대 27.5" data-per="5.5">
+                  <div class="pvi-n">5대</div><div class="pvi-p">55</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item on" data-own="66" data-nb="7대 38.5" data-per="5.5">
+                  <div class="pvi-n">7대</div><div class="pvi-p">66</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item" data-own="80.5" data-nb="10대 53" data-per="5.3">
+                  <div class="pvi-n">10대+</div><div class="pvi-p">80.5</div><div class="pvi-u">만원/월</div>
+                </div>
+              </div>
+              <div class="pk-vol-note">대당 5.5만원/월 · <strong style="color:var(--purple)">12개월 후 노트북 소유권 취득</strong><br><strong style="color:var(--text)">10대 이상: 3% 할인 + 보증금(1개월치)</strong></div>
+            </div>
           </div>
+
           <div class="pk-highlight" style="border-color:rgba(124,58,237,.25);color:#6D28D9;background:rgba(124,58,237,.06)">
             <i class="fas fa-box-open" style="color:var(--purple);margin-right:5px"></i>
             <strong>장비부터 수업까지</strong> — 노트북 배송·세팅·수업까지 한 번에 해결
           </div>
           <ul class="pk-features">
             <li><i class="fas fa-check"></i> 플랫폼 + 원격수업 패키지 포함</li>
-            <li><i class="fas fa-check"></i> 교육용 노트북 렌탈 (대당 3.3만원/월)</li>
+            <li><i class="fas fa-check"></i> 교육용 노트북 렌탈 (Windows / Ubuntu 선택)</li>
             <li><i class="fas fa-check"></i> 기본 프로그램 세팅 완료 상태 배송</li>
-            <li><i class="fas fa-check"></i> 원격 지원 환경 구성</li>
-            <li><i class="fas fa-check"></i> 초기 세팅비: <strong style="color:var(--text)">10~30만원</strong> (규모·지역에 따라 결정)</li>
+            <li><i class="fas fa-check"></i> 원격 지원 환경 구성 포함</li>
+            <li><i class="fas fa-check"></i> 초기 세팅비: <strong style="color:var(--text)">10~30만원</strong> (규모·지역 협의)</li>
           </ul>
           <div class="pk-cta">
             <a href="#contact" class="pk-cta-primary" style="background:linear-gradient(135deg,var(--purple),#6D28D9)">상담 신청하기 →</a>
@@ -1365,6 +1418,40 @@ img{max-width:100%}
   }
   window.addEventListener('scroll', updateNav, {passive:true});
   updateNav();
+
+  /* ALL-IN-ONE 임대형/인수형 토글 */
+  var pkgAll = document.getElementById('pkgAll');
+  if(pkgAll){
+    var curType = 'lease';
+    // 타입 토글
+    pkgAll.querySelectorAll('.pk-type-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        pkgAll.querySelectorAll('.pk-type-btn').forEach(function(b){ b.classList.remove('on'); });
+        btn.classList.add('on');
+        curType = btn.dataset.ptype;
+        document.getElementById('pp-lease').classList.toggle('on', curType==='lease');
+        document.getElementById('pp-own').classList.toggle('on', curType==='own');
+        // 기본 볼륨 선택 초기화 (7대)
+        pkgAll.querySelectorAll('.pk-vol-item').forEach(function(it){ it.classList.remove('on'); });
+        pkgAll.querySelectorAll('#pp-'+curType+' .pk-vol-item')[1].classList.add('on');
+      });
+    });
+    // 볼륨 선택
+    pkgAll.querySelectorAll('.pk-vol-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        var panel = item.closest('.pk-price-panel');
+        panel.querySelectorAll('.pk-vol-item').forEach(function(it){ it.classList.remove('on'); });
+        item.classList.add('on');
+        if(curType==='lease'){
+          document.getElementById('pp-lease-price').innerHTML = item.dataset.lease+'만<sub>원/월</sub>';
+          document.getElementById('lp-nb').textContent = item.dataset.nb;
+        } else {
+          document.getElementById('pp-own-price').innerHTML = item.dataset.own+'만<sub>원/월</sub>';
+          document.getElementById('op-nb').textContent = item.dataset.nb;
+        }
+      });
+    });
+  }
 
   /* 상담 폼 */
   var form = document.getElementById('cForm'), succ = document.getElementById('fSuccess');
