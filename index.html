@@ -132,6 +132,7 @@ img{max-width:100%}
 .pk-vol-item .pvi-p{font-size:.9rem;font-weight:800;color:var(--text);line-height:1}
 .pk-vol-item .pvi-u{font-size:.65rem;color:var(--muted)}
 .pk-vol-note{font-size:.72rem;color:var(--dim);line-height:1.5;word-break:keep-all;margin-top:.3rem}
+.pk-formula{display:inline-block;font-size:.75rem;font-weight:700;color:var(--blue);background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.18);border-radius:6px;padding:.22rem .65rem;margin:.35rem 0 .2rem}
 .pk-cta{margin-top:auto}
 .pk-cta a{display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;padding:.82rem;border-radius:9px;font-weight:700;font-size:.93rem;transition:all var(--tr)}
 .pk-cta-primary{background:var(--blue);color:#fff}
@@ -490,7 +491,7 @@ img{max-width:100%}
       <div class="pkg-card rv d1">
         <div class="pk-situation">
           <div class="pk-sit-label">이런 곳에 맞아요</div>
-          <div class="pk-sit-title">컴퓨터와 강사는 있는데,<br>수업 콘텐츠가 없어요</div>
+          <div class="pk-sit-title">컴퓨터와 강사는 있어요<br>수업 콘텐츠가 필요해요</div>
         </div>
         <div class="pk-body">
           <div>
@@ -520,7 +521,7 @@ img{max-width:100%}
         <div class="pk-tag">✦ 가장 인기 있는 선택</div>
         <div class="pk-situation" style="padding-top:2.2rem">
           <div class="pk-sit-label">이런 곳에 맞아요</div>
-          <div class="pk-sit-title">컴퓨터는 있는데<br>강사가 없어요</div>
+          <div class="pk-sit-title">컴퓨터는 있어요.<br>전문 강사가 필요해요.</div>
         </div>
         <div class="pk-body">
           <div>
@@ -549,7 +550,7 @@ img{max-width:100%}
       <div class="pkg-card rv d3" id="pkgAll">
         <div class="pk-situation">
           <div class="pk-sit-label">이런 곳에 맞아요</div>
-          <div class="pk-sit-title">컴퓨터도 강사도<br>아무것도 없어요</div>
+          <div class="pk-sit-title">컴퓨터, 강사, 콘텐츠<br>다 필요해요</div>
         </div>
         <div class="pk-body">
           <div>
@@ -576,7 +577,7 @@ img{max-width:100%}
                   <div class="pvi-n">10대+</div><div class="pvi-p">64.5</div><div class="pvi-u">만원/월</div>
                 </div>
               </div>
-              <div class="pk-vol-note">대당 3.8만원/월 · 계약 종료 후 노트북 반납<br><strong style="color:var(--text)">10대 이상: 3% 할인 + 보증금(2개월치)</strong></div>
+              <div class="pk-vol-note">대당 3.8만원/월 · 계약 종료 후 노트북 반납<br><span class="pk-formula" id="lp-formula">3.8만원 × 7대 = 26.6만원</span><br><strong style="color:var(--text)">10대 이상: 3% 할인 + 보증금(2개월치)</strong></div>
             </div>
 
             <!-- 인수형 가격 패널 -->
@@ -594,7 +595,7 @@ img{max-width:100%}
                   <div class="pvi-n">10대+</div><div class="pvi-p">80.5</div><div class="pvi-u">만원/월</div>
                 </div>
               </div>
-              <div class="pk-vol-note">대당 5.5만원/월 · <strong style="color:var(--purple)">12개월 후 노트북 소유권 취득</strong><br><strong style="color:var(--text)">10대 이상: 3% 할인 + 보증금(1개월치)</strong></div>
+              <div class="pk-vol-note">대당 5.5만원/월 · <strong style="color:var(--purple)">12개월 후 노트북 소유권 취득</strong><br><span class="pk-formula" id="op-formula">5.5만원 × 7대 = 38.5만원</span><br><strong style="color:var(--text)">10대 이상: 3% 할인 + 보증금(1개월치)</strong></div>
             </div>
           </div>
 
@@ -1288,7 +1289,21 @@ img{max-width:100%}
         document.getElementById('pp-own').classList.toggle('on', curType==='own');
         // 기본 볼륨 선택 초기화 (7대)
         pkgAll.querySelectorAll('.pk-vol-item').forEach(function(it){ it.classList.remove('on'); });
-        pkgAll.querySelectorAll('#pp-'+curType+' .pk-vol-item')[1].classList.add('on');
+        var defItem = pkgAll.querySelectorAll('#pp-'+curType+' .pk-vol-item')[1];
+        defItem.classList.add('on');
+        var defNb = defItem.dataset.nb;
+        var defQty = defNb.split('대')[0];
+        var defTotal = defNb.split(' ')[1];
+        var defPer = defItem.dataset.per;
+        if(curType==='lease'){
+          document.getElementById('pp-lease-price').innerHTML = defItem.dataset.lease+'만<sub>원/월</sub>';
+          document.getElementById('lp-nb').textContent = defNb;
+          document.getElementById('lp-formula').textContent = defPer+'만원 × '+defQty+'대 = '+defTotal+'만원';
+        } else {
+          document.getElementById('pp-own-price').innerHTML = defItem.dataset.own+'만<sub>원/월</sub>';
+          document.getElementById('op-nb').textContent = defNb;
+          document.getElementById('op-formula').textContent = defPer+'만원 × '+defQty+'대 = '+defTotal+'만원';
+        }
       });
     });
     // 볼륨 선택
@@ -1297,12 +1312,18 @@ img{max-width:100%}
         var panel = item.closest('.pk-price-panel');
         panel.querySelectorAll('.pk-vol-item').forEach(function(it){ it.classList.remove('on'); });
         item.classList.add('on');
+        var nb = item.dataset.nb; // e.g. "7대 26.6"
+        var qty = nb.split('대')[0];
+        var total = nb.split(' ')[1];
+        var per = item.dataset.per;
         if(curType==='lease'){
           document.getElementById('pp-lease-price').innerHTML = item.dataset.lease+'만<sub>원/월</sub>';
-          document.getElementById('lp-nb').textContent = item.dataset.nb;
+          document.getElementById('lp-nb').textContent = nb;
+          document.getElementById('lp-formula').textContent = per+'만원 × '+qty+'대 = '+total+'만원';
         } else {
           document.getElementById('pp-own-price').innerHTML = item.dataset.own+'만<sub>원/월</sub>';
-          document.getElementById('op-nb').textContent = item.dataset.nb;
+          document.getElementById('op-nb').textContent = nb;
+          document.getElementById('op-formula').textContent = per+'만원 × '+qty+'대 = '+total+'만원';
         }
       });
     });
