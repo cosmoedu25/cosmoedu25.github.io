@@ -82,6 +82,22 @@ img{max-width:100%}
 .classroom-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(15,23,42,.1);box-shadow:0 20px 60px rgba(15,23,42,.12),0 4px 16px rgba(37,99,235,.08)}
 .classroom-svg{width:100%;height:auto;display:block;object-fit:cover}
 
+/* 어노테이션 오버레이 */
+.ann-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:3}
+/* 어노테이션 카드 */
+.ann-card{position:absolute;background:rgba(10,18,34,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:10px;padding:.52rem .8rem;display:flex;align-items:center;gap:.55rem;box-shadow:0 4px 20px rgba(0,0,0,.4);pointer-events:none;z-index:4;white-space:nowrap}
+.ac-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.ac-label{font-size:.62rem;color:#94A3B8;margin-bottom:.05rem}
+.ac-value{font-size:.88rem;font-weight:800;color:#E2E8F0;line-height:1.1}
+.ac-sub{font-size:.6rem;color:#60A5FA;margin-top:.1rem}
+.ann-plat{top:5%;left:2%;border:1px solid rgba(59,130,246,.5)}
+.ann-plat .ac-icon{background:rgba(37,99,235,.25);color:#60A5FA}
+.ann-remote{top:5%;right:2%;border:1px solid rgba(6,182,212,.5)}
+.ann-remote .ac-icon{background:rgba(8,145,178,.25);color:#22D3EE}
+.ann-laptop{bottom:6%;right:2%;border:1px solid rgba(16,185,129,.5)}
+.ann-laptop .ac-icon{background:rgba(5,150,105,.25);color:#34D399}
+@media(max-width:768px){.ann-card,.ann-svg{display:none}}
+
 /* ══════════════════════════════
    PACKAGES
 ══════════════════════════════ */
@@ -390,6 +406,63 @@ img{max-width:100%}
       <!-- 메인 히어로 이미지 -->
       <div class="classroom-wrap">
         <img src="img/AI_CLASS.png" alt="AI 수업 클래스룸" class="classroom-svg" loading="eager">
+
+        <!-- ── 어노테이션 SVG 오버레이 ── -->
+        <svg class="ann-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- 플랫폼: TV 좌측 노드 (33,31) → 좌상단 카드 연결점 (27,18) -->
+          <line x1="33" y1="31" x2="27" y2="18" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="33" cy="31" r="1.3" fill="#60A5FA"/>
+          <circle cx="33" cy="31" r="1.3" fill="none" stroke="#60A5FA" stroke-width=".7" opacity=".6">
+            <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from=".6" to="0" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- 원격수업: TV 우측 노드 (63,31) → 우상단 카드 연결점 (73,18) -->
+          <line x1="63" y1="31" x2="73" y2="18" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="63" cy="31" r="1.3" fill="#22D3EE"/>
+          <circle cx="63" cy="31" r="1.3" fill="none" stroke="#22D3EE" stroke-width=".7" opacity=".6">
+            <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" begin=".7s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from=".6" to="0" dur="2.2s" begin=".7s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- 노트북 렌탈: 노트북 노드 (68,65) → 우하단 카드 연결점 (73,80) -->
+          <line x1="68" y1="65" x2="73" y2="80" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="68" cy="65" r="1.3" fill="#34D399"/>
+          <circle cx="68" cy="65" r="1.3" fill="none" stroke="#34D399" stroke-width=".7" opacity=".6">
+            <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" begin="1.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from=".6" to="0" dur="2.2s" begin="1.4s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+
+        <!-- 어노테이션 카드: 플랫폼 (좌상단) -->
+        <div class="ann-card ann-plat">
+          <div class="ac-icon"><i class="fas fa-layer-group"></i></div>
+          <div>
+            <div class="ac-label">플랫폼 기본형</div>
+            <div class="ac-value">월 11만원</div>
+            <div class="ac-sub">교사교육 무료 제공</div>
+          </div>
+        </div>
+
+        <!-- 어노테이션 카드: 원격수업 (우상단) -->
+        <div class="ann-card ann-remote">
+          <div class="ac-icon"><i class="fas fa-video"></i></div>
+          <div>
+            <div class="ac-label">원격수업</div>
+            <div class="ac-value">주 1회</div>
+            <div class="ac-sub">60분 · 전문강사</div>
+          </div>
+        </div>
+
+        <!-- 어노테이션 카드: 노트북 렌탈 (우하단) -->
+        <div class="ann-card ann-laptop">
+          <div class="ac-icon"><i class="fas fa-laptop"></i></div>
+          <div>
+            <div class="ac-label">노트북 렌탈</div>
+            <div class="ac-value">3.8만원</div>
+            <div class="ac-sub">대당 / 월</div>
+          </div>
+        </div>
         <!-- (SVG fallback hidden) <svg class="classroom-svg" viewBox="0 0 620 440" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="cBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#060A15"/><stop offset="100%" stop-color="#0A1020"/></linearGradient>
