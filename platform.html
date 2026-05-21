@@ -24,7 +24,7 @@ a{text-decoration:none;color:inherit}
 ul{list-style:none}
 img{max-width:100%}
 .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 1.5rem}
-.sec{padding:88px 0}
+.sec{padding:80px 0}
 .sec-alt{background:var(--bg2)}
 .sec-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);background:rgba(8,145,178,.08);border:1px solid rgba(8,145,178,.25);padding:.28rem .85rem;border-radius:100px;margin-bottom:.9rem}
 .sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-bottom:.8rem;color:var(--text)}
@@ -44,20 +44,14 @@ img{max-width:100%}
 .hd-cta{background:var(--blue);color:#fff!important;padding:.45rem 1rem;border-radius:8px;font-weight:600;font-size:.88rem;transition:all var(--tr)}
 .hd-cta:hover{background:var(--blue-d)}
 
-/* ── Hero ── */
-.plat-hero{padding:130px 0 90px;background:linear-gradient(160deg,#EBF4FF 0%,#F8FAFC 50%,#EFF6FF 100%);text-align:center;position:relative;overflow:hidden}
-.plat-hero::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(37,99,235,.06) 0%,transparent 70%);pointer-events:none}
-.plat-hero h1{font-size:clamp(2rem,4.8vw,3.2rem);font-weight:900;line-height:1.2;margin-bottom:1.1rem;word-break:keep-all}
-.plat-hero > .wrap > p{font-size:1.05rem;color:var(--muted);max-width:520px;margin:0 auto 2rem;word-break:keep-all}
-.hero-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
-.hero-stat{background:white;border:1px solid var(--border);border-radius:100px;padding:.4rem 1.1rem;font-size:.85rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:.5rem}
-.hero-stat i{color:var(--blue)}
-.ph-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.7rem;border-radius:var(--r);font-weight:700;font-size:.97rem;cursor:pointer;border:none;transition:all var(--tr)}
-.btn-p{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 4px 18px rgba(37,99,235,.25)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.38)}
-.btn-o{background:transparent;color:var(--text);border:1.5px solid var(--border)}
-.btn-o:hover{border-color:var(--blue);color:var(--blue);background:rgba(37,99,235,.04)}
+/* ── 솔루션 인트로 (히어로 대체) ── */
+.sol-intro{padding:100px 0 48px;background:linear-gradient(160deg,#EBF4FF 0%,#F8FAFC 60%,#EFF6FF 100%);border-bottom:1px solid var(--border)}
+.sol-intro h1{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:900;line-height:1.2;margin-bottom:.6rem;word-break:keep-all}
+.sol-intro h1 span{background:linear-gradient(130deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sol-intro p{font-size:.97rem;color:var(--muted);max-width:540px;margin-bottom:1.3rem;word-break:keep-all}
+.sol-chips{display:flex;gap:.6rem;flex-wrap:wrap}
+.sol-chip{display:inline-flex;align-items:center;gap:.4rem;background:white;border:1px solid var(--border);border-radius:100px;padding:.32rem .9rem;font-size:.82rem;font-weight:600;color:var(--text)}
+.sol-chip i{color:var(--blue);font-size:.75rem}
 
 /* ── Split layout ── */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
@@ -76,38 +70,21 @@ img{max-width:100%}
 .feat-item-text{font-size:.9rem;color:var(--muted);line-height:1.6}
 .feat-item-text strong{display:block;font-size:.93rem;color:var(--text);font-weight:700;margin-bottom:.1rem}
 
-/* ── Browser mockup ── */
-.browser-mock{background:white;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,42,.12),0 4px 16px rgba(15,23,42,.06);overflow:hidden;border:1px solid rgba(15,23,42,.07)}
-.browser-bar{background:#F1F5F9;padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid #E2E8F0}
-.bdot{width:10px;height:10px;border-radius:50%}
-.bdot.r{background:#FC5F5A}
-.bdot.y{background:#FDBC40}
-.bdot.g{background:#34C749}
-.burl{flex:1;background:white;border-radius:6px;padding:.2rem .75rem;font-size:.72rem;color:#64748B;font-family:monospace;margin-left:.4rem}
+/* ── 스크린샷 이미지 ── */
+.screen-wrap{position:relative}
+.screen-img{width:100%;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,42,.13),0 4px 16px rgba(15,23,42,.07);display:block;border:1px solid rgba(15,23,42,.06)}
 
-/* ── Subject grid ── */
-.subj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:.8rem}
-.subj-card{padding:.65rem .4rem;border-radius:10px;text-align:center;cursor:pointer;transition:all .2s}
-.subj-card:hover{background:#F8FAFC}
-.subj-card .si{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;margin:0 auto .35rem}
-.subj-card .sn{font-size:.65rem;font-weight:700;color:#334155;line-height:1.3}
-.subj-card .sc{font-size:.58rem;color:#94A3B8;margin-top:.1rem}
-
-/* ── Lesson list ── */
-.lesson-list{padding:.5rem .75rem .75rem;display:flex;flex-direction:column;gap:.35rem}
-.lesson-row{display:flex;align-items:center;gap:.55rem;padding:.4rem .55rem;border-radius:7px;background:#F8FAFC;border:1px solid #F1F5F9}
-.lesson-num{font-size:.62rem;font-weight:700;color:white;background:#2563EB;border-radius:4px;padding:.12rem .35rem;flex-shrink:0}
-.lesson-title{font-size:.7rem;font-weight:600;color:#1E293B;flex:1}
-.lesson-tag{font-size:.58rem;padding:.1rem .38rem;border-radius:4px;font-weight:700;flex-shrink:0}
-.lesson-tag.done{background:#DCFCE7;color:#15803D}
-.lesson-tag.now{background:#DBEAFE;color:#1D4ED8}
-.lesson-tag.lock{background:#F1F5F9;color:#94A3B8}
+/* 실제 스크린샷 없을 때 플레이스홀더 */
+.screen-ph{width:100%;aspect-ratio:16/10;background:#F1F5F9;border-radius:14px;border:2px dashed #CBD5E1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;color:#94A3B8}
+.screen-ph i{font-size:2rem;opacity:.4}
+.screen-ph span{font-size:.8rem;font-weight:600}
 
 /* ── 3-card grid ── */
 .tri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
 .tri-card{background:white;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;transition:all var(--tr)}
 .tri-card:hover{box-shadow:0 12px 40px rgba(15,23,42,.1);transform:translateY(-3px)}
-.tri-card-vis{height:170px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.tri-card-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.tri-card-img-ph{width:100%;aspect-ratio:16/9;background:#F1F5F9;display:flex;align-items:center;justify-content:center;color:#CBD5E1;font-size:1.5rem}
 .tri-card-body{padding:1.2rem 1.3rem}
 .tri-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.22rem .65rem;border-radius:100px;margin-bottom:.5rem}
 .badge-blue{background:rgba(37,99,235,.1);color:var(--blue)}
@@ -115,14 +92,6 @@ img{max-width:100%}
 .badge-purple{background:rgba(124,58,237,.1);color:var(--purple)}
 .tri-card-title{font-size:.98rem;font-weight:800;margin-bottom:.4rem;line-height:1.35}
 .tri-card-desc{font-size:.84rem;color:var(--muted);line-height:1.75}
-
-/* ── Portfolio cards ── */
-.pf-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
-.pf-card{background:white;border-radius:12px;box-shadow:0 4px 16px rgba(15,23,42,.07);overflow:hidden;border:1px solid var(--border)}
-.pf-card-img{height:100px;display:flex;align-items:center;justify-content:center;font-size:2rem}
-.pf-card-body{padding:.75rem}
-.pf-card-title{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:.3rem;line-height:1.3}
-.pf-card-meta{font-size:.65rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
 
 /* ── Cloud flow ── */
 .cloud-flow{display:flex;align-items:center;gap:0;margin:1.5rem 0;flex-wrap:wrap}
@@ -132,33 +101,23 @@ img{max-width:100%}
 .cf-sub{font-size:.62rem;color:var(--muted);text-align:center}
 .cf-arrow{color:var(--dim);font-size:.8rem;flex-shrink:0;margin:0 .1rem;padding-bottom:1rem}
 
-/* ── Gallery mockup ── */
-.gal-mock{background:white;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,42,.12);overflow:hidden;border:1px solid var(--border)}
-.gal-hdr{background:linear-gradient(135deg,#2563EB,#0891B2);padding:1rem 1.2rem;color:white}
-.gal-school{font-size:.72rem;opacity:.75;margin-bottom:.2rem}
-.gal-name{font-size:.97rem;font-weight:800}
-.gal-tabs{display:flex;gap:0;border-bottom:1px solid #F1F5F9;padding:0 .8rem}
-.gal-tab{padding:.5rem .75rem;font-size:.7rem;font-weight:600;color:#94A3B8;border-bottom:2px solid transparent;cursor:pointer}
-.gal-tab.active{color:#2563EB;border-bottom-color:#2563EB}
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:.75rem}
-.gal-item{border-radius:8px;overflow:hidden;aspect-ratio:4/3;position:relative;cursor:pointer}
-.gal-thumb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
-.gal-overlay{position:absolute;inset:0;background:rgba(15,23,42,.65);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:white;opacity:0;transition:.2s}
-.gal-item:hover .gal-overlay{opacity:1}
-.gal-footer{padding:.5rem .8rem;font-size:.63rem;color:#94A3B8;border-top:1px solid #F1F5F9}
-
 /* ── Coming soon ── */
 .cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
-.cs-card{background:white;border-radius:var(--r);border:2px dashed rgba(37,99,235,.2);padding:2.5rem 2rem;text-align:center;position:relative}
+.cs-card{background:white;border-radius:var(--r);border:2px dashed rgba(37,99,235,.2);padding:2.5rem 2rem;text-align:center}
 .cs-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.25rem .75rem;border-radius:100px;background:rgba(217,119,6,.1);color:var(--amber);margin-bottom:.9rem}
 .cs-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
 .cs-title{font-size:1.1rem;font-weight:800;margin-bottom:.5rem}
 .cs-desc{font-size:.86rem;color:var(--muted);line-height:1.75}
 
-/* ── CTA box ── */
+/* ── CTA ── */
 .cta-box{background:linear-gradient(135deg,#EBF4FF,#EFF6FF);border:1px solid rgba(37,99,235,.15);border-radius:16px;padding:3.5rem 2.5rem;text-align:center}
 .cta-box h3{font-size:1.5rem;font-weight:800;margin-bottom:.6rem}
 .cta-box p{color:var(--muted);margin-bottom:1.8rem;font-size:.97rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.7rem;border-radius:var(--r);font-weight:700;font-size:.97rem;cursor:pointer;border:none;transition:all var(--tr)}
+.btn-p{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 4px 18px rgba(37,99,235,.25)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.38)}
+.btn-o{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-o:hover{border-color:var(--blue);color:var(--blue);background:rgba(37,99,235,.04)}
 
 /* ── Animations ── */
 .jr .rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
@@ -181,13 +140,9 @@ img{max-width:100%}
   .cs-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .sec{padding:60px 0}
-  .plat-hero{padding:110px 0 70px}
-  .subj-grid{grid-template-columns:repeat(3,1fr)}
-  .gal-grid{grid-template-columns:repeat(2,1fr)}
-  .ph-btns{flex-direction:column;align-items:center}
-  .hero-stats{gap:.6rem}
-  .hero-stat{font-size:.78rem;padding:.35rem .85rem}
+  .sec{padding:56px 0}
+  .sol-intro{padding:88px 0 40px}
+  .sol-chips{gap:.4rem}
 }
 </style>
 </head>
@@ -209,21 +164,17 @@ img{max-width:100%}
 </header>
 
 
-<!-- ══ HERO ══ -->
-<div class="plat-hero">
+<!-- ══ 솔루션 인트로 ══ -->
+<div class="sol-intro">
   <div class="wrap">
     <div class="sec-label rv">코스모에듀 솔루션</div>
-    <h1 class="rv">AI 수업, 오늘부터<br><span style="background:linear-gradient(130deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">시작할 수 있습니다</span></h1>
-    <p class="rv d1">커리큘럼부터 수업 운영, 학생 이력 관리까지 — 학교에서 필요한 모든 것이 하나의 플랫폼에 담겨 있습니다.</p>
-    <div class="hero-stats rv d2">
-      <div class="hero-stat"><i class="fas fa-layer-group"></i> 7개 교육 과목</div>
-      <div class="hero-stat"><i class="fas fa-video"></i> 전문 강사 원격수업</div>
-      <div class="hero-stat"><i class="fas fa-cloud"></i> 자동 포트폴리오</div>
-      <div class="hero-stat"><i class="fas fa-images"></i> 기관 갤러리</div>
-    </div>
-    <div class="ph-btns rv d3">
-      <a href="index.html#contact" class="btn btn-p"><i class="fas fa-comments"></i> 도입 상담 신청</a>
-      <a href="index.html#packages" class="btn btn-o">패키지 보기</a>
+    <h1 class="rv">AI·코딩 <span>교육 플랫폼</span></h1>
+    <p class="rv d1">커리큘럼 · 원격수업 · 포트폴리오 · 기관 갤러리까지 — 수업 운영에 필요한 모든 것을 하나로 제공합니다.</p>
+    <div class="sol-chips rv d2">
+      <span class="sol-chip"><i class="fas fa-layer-group"></i> 7개 교육 과목</span>
+      <span class="sol-chip"><i class="fas fa-video"></i> 전문 강사 원격수업</span>
+      <span class="sol-chip"><i class="fas fa-cloud"></i> 자동 포트폴리오</span>
+      <span class="sol-chip"><i class="fas fa-images"></i> 기관 갤러리</span>
     </div>
   </div>
 </div>
@@ -263,31 +214,15 @@ img{max-width:100%}
         </div>
       </div>
 
-      <!-- Browser: Course list mockup -->
-      <div class="rv d2">
-        <div class="browser-mock">
-          <div class="browser-bar">
-            <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
-            <div class="burl">app.cosmoedu.co.kr/courses</div>
-          </div>
-          <div style="padding:.65rem .75rem .3rem;font-size:.7rem;font-weight:700;color:#1E293B;border-bottom:1px solid #F1F5F9">📚 과목 선택</div>
-          <div class="subj-grid">
-            <div class="subj-card"><div class="si" style="background:#DBEAFE">🧩</div><div class="sn">블록코딩</div><div class="sc">8개 수업</div></div>
-            <div class="subj-card"><div class="si" style="background:#EDE9FE">🐍</div><div class="sn">파이썬</div><div class="sc">12개 수업</div></div>
-            <div class="subj-card"><div class="si" style="background:#E0F2FE">🤖</div><div class="sn">AI·ML</div><div class="sc">10개 수업</div></div>
-            <div class="subj-card"><div class="si" style="background:#ECFDF5">🌐</div><div class="sn">HTML·웹</div><div class="sc">9개 수업</div></div>
-            <div class="subj-card"><div class="si" style="background:#FEF3C7">🎨</div><div class="sn">디지털아트</div><div class="sc">7개 수업</div></div>
-            <div class="subj-card"><div class="si" style="background:#FDF2F8">🎵</div><div class="sn">음악제작</div><div class="sc">6개 수업</div></div>
-            <div class="subj-card"><div class="si" style="background:#FFF7ED">📊</div><div class="sn">데이터분석</div><div class="sc">8개 수업</div></div>
-            <div class="subj-card" style="opacity:.35"><div class="si" style="background:#F1F5F9">➕</div><div class="sn">추가예정</div><div class="sc"></div></div>
-          </div>
-          <div style="padding:.3rem .75rem .3rem;font-size:.7rem;font-weight:700;color:#1E293B;background:#F8FAFC;border-top:1px solid #F1F5F9">🐍 파이썬 — 수업 목록</div>
-          <div class="lesson-list">
-            <div class="lesson-row"><span class="lesson-num">01</span><span class="lesson-title">변수와 자료형 이해하기</span><span class="lesson-tag done">완료</span></div>
-            <div class="lesson-row"><span class="lesson-num">02</span><span class="lesson-title">조건문으로 판단하기</span><span class="lesson-tag done">완료</span></div>
-            <div class="lesson-row"><span class="lesson-num">03</span><span class="lesson-title">반복문으로 패턴 만들기</span><span class="lesson-tag now">진행중</span></div>
-            <div class="lesson-row"><span class="lesson-num">04</span><span class="lesson-title">함수 만들어 재사용하기</span><span class="lesson-tag lock">잠김</span></div>
-          </div>
+      <!-- 스크린샷: app.cosmoedu.co.kr 과목 목록 / 수업 목록 화면 캡처 -->
+      <!-- 파일명: img/screen-courses.png (권장 비율 16:10) -->
+      <div class="screen-wrap rv d2">
+        <img src="img/screen-courses.png" alt="코스모에듀 과목 및 수업 목록 화면" class="screen-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-ph" style="display:none">
+          <i class="fas fa-desktop"></i>
+          <span>과목 선택 · 수업 목록 화면</span>
+          <span style="font-size:.7rem;font-weight:400">img/screen-courses.png</span>
         </div>
       </div>
 
@@ -307,20 +242,12 @@ img{max-width:100%}
 
     <div class="tri-grid">
 
-      <!-- Card 1: 교사 연수 -->
+      <!-- 스크린샷: 교사 대시보드 or 온보딩 화면 -->
+      <!-- 파일명: img/screen-teacher.png -->
       <div class="tri-card rv d1">
-        <div class="tri-card-vis" style="background:linear-gradient(135deg,#EBF4FF,#EDE9FE)">
-          <div style="background:white;border-radius:10px;padding:.9rem 1.1rem;box-shadow:0 4px 16px rgba(37,99,235,.14);min-width:175px">
-            <div style="font-size:.67rem;font-weight:700;color:#2563EB;margin-bottom:.6rem">📋 교사 온보딩 체크리스트</div>
-            <div style="display:flex;flex-direction:column;gap:.38rem">
-              <div style="display:flex;align-items:center;gap:.45rem;font-size:.64rem;color:#1E293B"><span style="color:#22C55E">✓</span> 플랫폼 로그인 &amp; 설정</div>
-              <div style="display:flex;align-items:center;gap:.45rem;font-size:.64rem;color:#1E293B"><span style="color:#22C55E">✓</span> 학생 계정 등록</div>
-              <div style="display:flex;align-items:center;gap:.45rem;font-size:.64rem;color:#2563EB"><span style="font-weight:900">→</span> 첫 수업 진행하기</div>
-              <div style="display:flex;align-items:center;gap:.45rem;font-size:.64rem;color:#94A3B8"><span>○</span> 과제 &amp; 진도 확인</div>
-            </div>
-            <div style="margin-top:.65rem;font-size:.6rem;color:#94A3B8;border-top:1px solid #F1F5F9;padding-top:.45rem">도움이 필요하면 언제든 문의하세요 💬</div>
-          </div>
-        </div>
+        <img src="img/screen-teacher.png" alt="교사 대시보드 화면" class="tri-card-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="tri-card-img-ph" style="display:none"><i class="fas fa-chalkboard-teacher"></i></div>
         <div class="tri-card-body">
           <div class="tri-badge badge-blue">교사 연수</div>
           <div class="tri-card-title">쉬운 온보딩으로<br>바로 시작</div>
@@ -328,23 +255,12 @@ img{max-width:100%}
         </div>
       </div>
 
-      <!-- Card 2: 원격수업 -->
+      <!-- 스크린샷: 원격수업(화상수업) 진행 화면 -->
+      <!-- 파일명: img/screen-remote.png -->
       <div class="tri-card rv d2">
-        <div class="tri-card-vis" style="background:#0F172A;padding:.6rem">
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:.35rem;width:100%;height:100%">
-            <div style="grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,#1e3a6e,#0e4a5e);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.3rem;position:relative">
-              <div style="font-size:2rem">🧑‍💻</div>
-              <div style="font-size:.55rem;color:rgba(255,255,255,.6)">전문 강사</div>
-              <div style="position:absolute;bottom:.4rem;left:.4rem;background:rgba(239,68,68,.92);border-radius:4px;padding:.1rem .38rem;font-size:.54rem;color:white;display:flex;align-items:center;gap:.3rem">
-                <span style="width:5px;height:5px;background:white;border-radius:50%;display:inline-block"></span>LIVE
-              </div>
-            </div>
-            <div style="background:#1E293B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem">👧</div>
-            <div style="background:#1E293B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem">👦</div>
-            <div style="background:#1E293B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem">🧑</div>
-            <div style="background:#1E293B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem">👧</div>
-          </div>
-        </div>
+        <img src="img/screen-remote.png" alt="원격수업 화면" class="tri-card-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="tri-card-img-ph" style="display:none"><i class="fas fa-video"></i></div>
         <div class="tri-card-body">
           <div class="tri-badge badge-cyan">전문 강사 원격수업</div>
           <div class="tri-card-title">전국 어디서나<br>전문가 수업</div>
@@ -352,32 +268,12 @@ img{max-width:100%}
         </div>
       </div>
 
-      <!-- Card 3: 동영상 강의 -->
+      <!-- 스크린샷: 동영상 강의 플레이어 화면 -->
+      <!-- 파일명: img/screen-video.png -->
       <div class="tri-card rv d3">
-        <div class="tri-card-vis" style="background:linear-gradient(135deg,#EDE9FE,#FDF2F8);padding:.8rem">
-          <div style="position:relative;width:175px">
-            <div style="background:#1E293B;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.2)">
-              <div style="height:88px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:flex;align-items:center;justify-content:center">
-                <div style="width:34px;height:34px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;padding-left:2px">▶</div>
-              </div>
-              <div style="padding:.55rem .75rem">
-                <div style="font-size:.63rem;font-weight:700;color:white;margin-bottom:.25rem">반복문으로 패턴 만들기</div>
-                <div style="height:3px;background:#334155;border-radius:2px;margin-bottom:.2rem">
-                  <div style="width:42%;height:100%;background:#7C3AED;border-radius:2px"></div>
-                </div>
-                <div style="font-size:.57rem;color:#64748B">12:34 / 28:00</div>
-              </div>
-            </div>
-            <div style="margin-top:.35rem;display:flex;flex-direction:column;gap:.2rem">
-              <div style="background:white;border-radius:6px;padding:.28rem .48rem;font-size:.59rem;color:#475569;display:flex;gap:.35rem;align-items:center">
-                <span style="color:#7C3AED">▶</span> 3강 — 패턴 만들기 <span style="margin-left:auto;color:#7C3AED;font-weight:700">진행중</span>
-              </div>
-              <div style="background:#F1F5F9;border-radius:6px;padding:.28rem .48rem;font-size:.59rem;color:#94A3B8;display:flex;gap:.35rem;align-items:center">
-                🔒 4강 — 함수 기초
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="img/screen-video.png" alt="동영상 강의 화면" class="tri-card-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="tri-card-img-ph" style="display:none"><i class="fas fa-play-circle"></i></div>
         <div class="tri-card-body">
           <div class="tri-badge badge-purple">녹화 동영상</div>
           <div class="tri-card-title">언제든 반복해서<br>볼 수 있는 강의</div>
@@ -390,44 +286,23 @@ img{max-width:100%}
 </section>
 
 
-<!-- ══ S3: 클라우드 이력관리 ══ -->
+<!-- ══ S3: 클라우드 이력 ══ -->
 <section class="sec" id="portfolio">
   <div class="wrap">
     <div class="split rev">
 
-      <!-- Visual -->
-      <div class="rv">
-        <div style="position:relative">
-          <div class="pf-stack">
-            <div class="pf-card">
-              <div class="pf-card-img" style="background:linear-gradient(135deg,#667eea,#764ba2)">🎮</div>
-              <div class="pf-card-body">
-                <div class="pf-card-title">숫자 맞추기 게임</div>
-                <div class="pf-card-meta"><span>🐍 파이썬</span><span>03.12</span></div>
-              </div>
-            </div>
-            <div class="pf-card">
-              <div class="pf-card-img" style="background:linear-gradient(135deg,#f093fb,#f5576c)">🎨</div>
-              <div class="pf-card-body">
-                <div class="pf-card-title">나만의 포스터</div>
-                <div class="pf-card-meta"><span>🎨 디지털아트</span><span>04.05</span></div>
-              </div>
-            </div>
-            <div class="pf-card">
-              <div class="pf-card-img" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">🌐</div>
-              <div class="pf-card-body">
-                <div class="pf-card-title">내 소개 웹사이트</div>
-                <div class="pf-card-meta"><span>🌐 HTML·웹</span><span>05.18</span></div>
-              </div>
-            </div>
-          </div>
-          <div style="position:absolute;top:-12px;right:-8px;background:linear-gradient(135deg,#10B981,#059669);color:white;border-radius:100px;padding:.28rem .8rem;font-size:.7rem;font-weight:700;box-shadow:0 4px 12px rgba(5,150,105,.3);display:flex;align-items:center;gap:.35rem">
-            <i class="fas fa-cloud-upload-alt"></i> 자동 저장됨
-          </div>
+      <!-- 스크린샷: 학생 포트폴리오 / 작품 목록 화면 -->
+      <!-- 파일명: img/screen-portfolio.png (권장 비율 16:10) -->
+      <div class="screen-wrap rv">
+        <img src="img/screen-portfolio.png" alt="학생 포트폴리오 화면" class="screen-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-ph" style="display:none">
+          <i class="fas fa-folder-open"></i>
+          <span>학생 포트폴리오 화면</span>
+          <span style="font-size:.7rem;font-weight:400">img/screen-portfolio.png</span>
         </div>
       </div>
 
-      <!-- Text -->
       <div class="rv d2">
         <div class="sec-label">03 · 클라우드 이력</div>
         <h2 class="sec-title">모든 결과물이 <span class="hl">자동으로<br>포트폴리오</span>가 됩니다</h2>
@@ -487,7 +362,6 @@ img{max-width:100%}
   <div class="wrap">
     <div class="split">
 
-      <!-- Text -->
       <div class="rv">
         <div class="sec-label">04 · 기관 갤러리</div>
         <h2 class="sec-title">우리 학교만의 <span class="hl">전시 공간</span>을<br>갖게 됩니다</h2>
@@ -497,7 +371,7 @@ img{max-width:100%}
             <div class="feat-icon amber"><i class="fas fa-link"></i></div>
             <div class="feat-item-text">
               <strong>기관 전용 URL</strong>
-              <code style="font-size:.78rem;background:#F1F5F9;padding:.1rem .38rem;border-radius:4px">gallery.cosmoedu.co.kr/기관명</code> 으로 학부모와 바로 공유할 수 있습니다.
+              <code style="font-size:.78rem;background:#F1F5F9;padding:.1rem .38rem;border-radius:4px">gallery.cosmoedu.co.kr/기관명</code>으로 학부모와 바로 공유할 수 있습니다.
             </div>
           </div>
           <div class="feat-item">
@@ -517,28 +391,15 @@ img{max-width:100%}
         </div>
       </div>
 
-      <!-- Gallery mockup -->
-      <div class="rv d2">
-        <div class="gal-mock">
-          <div class="gal-hdr">
-            <div class="gal-school">코스모에듀 갤러리</div>
-            <div class="gal-name">🏫 미래초등학교 작품 전시관</div>
-          </div>
-          <div class="gal-tabs">
-            <div class="gal-tab active">전체</div>
-            <div class="gal-tab">파이썬</div>
-            <div class="gal-tab">디지털아트</div>
-            <div class="gal-tab">HTML</div>
-          </div>
-          <div class="gal-grid">
-            <div class="gal-item"><div class="gal-thumb" style="background:linear-gradient(135deg,#667eea,#764ba2)">🎮</div><div class="gal-overlay">숫자 게임</div></div>
-            <div class="gal-item"><div class="gal-thumb" style="background:linear-gradient(135deg,#f093fb,#f5576c)">🎨</div><div class="gal-overlay">디지털 포스터</div></div>
-            <div class="gal-item"><div class="gal-thumb" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">🌐</div><div class="gal-overlay">소개 웹페이지</div></div>
-            <div class="gal-item"><div class="gal-thumb" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">🤖</div><div class="gal-overlay">AI 분류기</div></div>
-            <div class="gal-item"><div class="gal-thumb" style="background:linear-gradient(135deg,#fa709a,#fee140)">🎵</div><div class="gal-overlay">나만의 비트</div></div>
-            <div class="gal-item"><div class="gal-thumb" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">📊</div><div class="gal-overlay">날씨 분석</div></div>
-          </div>
-          <div class="gal-footer">총 24개 작품 · 12명 학생</div>
+      <!-- 스크린샷: 기관 갤러리 페이지 전체 화면 -->
+      <!-- 파일명: img/screen-gallery.png (권장 비율 16:10) -->
+      <div class="screen-wrap rv d2">
+        <img src="img/screen-gallery.png" alt="기관 갤러리 화면" class="screen-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-ph" style="display:none">
+          <i class="fas fa-images"></i>
+          <span>기관 갤러리 화면</span>
+          <span style="font-size:.7rem;font-weight:400">img/screen-gallery.png</span>
         </div>
       </div>
 
@@ -547,7 +408,7 @@ img{max-width:100%}
 </section>
 
 
-<!-- ══ S5-6: Coming soon ══ -->
+<!-- ══ S5-6: 준비 중 ══ -->
 <section class="sec" id="coming-soon">
   <div class="wrap">
     <div class="center rv">
