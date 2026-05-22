@@ -12,7 +12,12 @@
       "Bash(dir 'C:\\\\Users\\\\User\\\\Documents\\\\pioneer\\\\cosmoedu25_web\\\\img\" 2>nul || echo 폴더' '없음 *)",
       "Bash(findstr -i \"AI_CLASS\\\\|png\\\\|img\")",
       "Bash(find \"C:\\\\Users\\\\User\\\\Documents\\\\pioneer\" -name \"AI_CLASS*\" 2>/dev/null)",
-      "Bash(cp \"C:\\\\Users\\\\User\\\\Documents\\\\pioneer\\\\cosmoedu25_web\\\\img\\\\AI_CLASS.png\" \"C:\\\\Users\\\\User\\\\Documents\\\\pioneer\\\\cosmoedu25_web\\\\.claude\\\\worktrees\\\\goofy-noyce-8886b5\\\\img\\\\AI_CLASS.png\" && echo \"복사 완료\")"
+      "Bash(cp \"C:\\\\Users\\\\User\\\\Documents\\\\pioneer\\\\cosmoedu25_web\\\\img\\\\AI_CLASS.png\" \"C:\\\\Users\\\\User\\\\Documents\\\\pioneer\\\\cosmoedu25_web\\\\.claude\\\\worktrees\\\\goofy-noyce-8886b5\\\\img\\\\AI_CLASS.png\" && echo \"복사 완료\")",
+      "Bash(git remote *)",
+      "Bash(git ls-remote *)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://api.github.com/repos/cosmoedu25/cosmoedu-school\" -UseBasicParsing)",
+      "Bash(git config *)",
+      "Bash(rm .github/workflows/deplay.yml)"
     ]
   }
 }
