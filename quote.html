@@ -667,11 +667,16 @@ document.querySelectorAll('.tier-card').forEach(function(card){
 /* ── 상담 신청 이동 ── */
 window.goConsult = function(){
   var r = calc();
-  var msg = '견적 구성: 노트북 '+state.qty+'대 · '+
+  /* 패키지 자동 매핑 */
+  var pkg = (state.laptopType === 'none')
+    ? (state.remote > 0 ? '플랫폼+원격수업' : '플랫폼 기본형')
+    : 'ALL-IN-ONE';
+  var msg = '[견적 구성]\n노트북 '+state.qty+'대 · '+
     (state.laptopType==='none'?'노트북 제외':state.laptopType==='lease'?'임대형':'인수형(소유)')+
     ' · 원격수업 주'+state.remote+'회 · '+state.os.toUpperCase()+' · '+state.period+'개월'+
     '\n월 합계: 약 '+fmt(r.monthly)+'만원';
   sessionStorage.setItem('quoteMsg', msg);
+  sessionStorage.setItem('quotePkg', pkg);
   window.location.href = 'index.html#contact';
 };
 
