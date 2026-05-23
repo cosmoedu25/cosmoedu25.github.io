@@ -159,6 +159,14 @@ img{max-width:100%}
 .cr-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.35)}
 .cr-note{font-size:.72rem;color:var(--dim);text-align:center;margin-top:.6rem;line-height:1.5}
 
+/* 티어 카드 일러스트 */
+.tc-illust{display:flex;justify-content:center;margin-bottom:.6rem}
+.tc-illust svg{filter:drop-shadow(0 4px 10px rgba(0,0,0,.13))}
+
+/* 연납 할인 강조 */
+.price-original{font-size:.88rem;color:var(--dim);text-decoration:line-through;line-height:1;margin-bottom:.22rem}
+.save-badge{display:inline-flex;align-items:center;gap:.35rem;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:.9rem;font-weight:800;padding:.4rem .9rem;border-radius:10px;letter-spacing:-.01em;box-shadow:0 3px 10px rgba(5,150,105,.35)}
+
 /* 연납 토글 */
 .pay-toggle{display:flex;gap:.4rem;margin-bottom:1.1rem}
 .pt-btn{flex:1;padding:.45rem;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-size:.82rem;font-weight:600;cursor:pointer;transition:all var(--tr);font-family:inherit;color:var(--muted)}
@@ -234,6 +242,9 @@ img{max-width:100%}
       <!-- 티어 1: 최저가 -->
       <div class="tier-card tier-1" data-tier="1">
         <div class="tc-check"><i class="fas fa-check"></i></div>
+        <div class="tc-illust">
+          <svg width="60" height="52" viewBox="0 0 60 52" fill="none"><defs><linearGradient id="sol-g1" x1="0" y1="0" x2="60" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#93C5FD"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient><linearGradient id="sol-g2" x1="0" y1="0" x2="60" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#2563EB"/></linearGradient><filter id="sol-f"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1E40AF" flood-opacity=".28"/></filter></defs><ellipse cx="30" cy="49" rx="16" ry="2.5" fill="#93C5FD" opacity=".25"/><rect x="18" y="13" width="34" height="22" rx="4" fill="#BFDBFE" opacity=".45" transform="rotate(6 35 24)"/><rect x="14" y="11" width="34" height="22" rx="4" fill="#93C5FD" opacity=".55" transform="rotate(3 31 22)"/><rect x="8" y="7" width="36" height="26" rx="5" fill="url(#sol-g2)" filter="url(#sol-f)"/><rect x="8" y="7" width="36" height="9" rx="5" fill="url(#sol-g1)"/><rect x="8" y="11" width="36" height="5" fill="url(#sol-g1)"/><circle cx="13.5" cy="11.5" r="1.8" fill="#FF5F57"/><circle cx="18.5" cy="11.5" r="1.8" fill="#FEBC2E"/><circle cx="23.5" cy="11.5" r="1.8" fill="#28C840"/><rect x="12" y="20" width="12" height="2.5" rx="1.2" fill="white" opacity=".85"/><rect x="12" y="25" width="22" height="2" rx="1" fill="white" opacity=".5"/><rect x="12" y="29" width="16" height="2" rx="1" fill="white" opacity=".4"/></svg>
+        </div>
         <div class="tc-badge">최저가</div>
         <div class="tc-name">플랫폼만</div>
         <div class="tc-price">11<sub>만원/월</sub></div>
@@ -243,6 +254,9 @@ img{max-width:100%}
       <!-- 티어 2: 가성비형 -->
       <div class="tier-card tier-2" data-tier="2">
         <div class="tc-check"><i class="fas fa-check"></i></div>
+        <div class="tc-illust">
+          <svg width="60" height="52" viewBox="0 0 60 52" fill="none"><defs><linearGradient id="tch-g1" x1="0" y1="0" x2="60" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0E7490"/></linearGradient><linearGradient id="tch-g2" x1="15" y1="10" x2="45" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#CFFAFE"/><stop offset="100%" stop-color="#0891B2"/></linearGradient><filter id="tch-f"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0E4358" flood-opacity=".28"/></filter></defs><ellipse cx="30" cy="49" rx="16" ry="2.5" fill="#22D3EE" opacity=".2"/><rect x="8" y="6" width="44" height="30" rx="5" fill="url(#tch-g1)" filter="url(#tch-f)"/><rect x="11" y="9" width="38" height="24" rx="3" fill="#0E7490"/><circle cx="30" cy="18" r="7.5" fill="#FDDCB5"/><path d="M23 17 Q23 11 30 11 Q37 11 37 17" fill="#92400E"/><path d="M22 29 Q22 25 30 25 Q38 25 38 29" fill="url(#tch-g2)"/><rect x="27" y="36" width="6" height="5" rx="1" fill="#0891B2" opacity=".6"/><rect x="21" y="41" width="18" height="3" rx="1.5" fill="#0891B2" opacity=".45"/><circle cx="46" cy="12" r="3.5" fill="#EF4444"/><circle cx="46" cy="12" r="6" fill="#EF4444" opacity=".2"/></svg>
+        </div>
         <div class="tc-badge">가성비형</div>
         <div class="tc-name">플랫폼 + 원격수업</div>
         <div class="tc-price">27.5<sub>만원/월</sub></div>
@@ -252,6 +266,9 @@ img{max-width:100%}
       <!-- 티어 3: 올인원 -->
       <div class="tier-card tier-3 on" data-tier="3">
         <div class="tc-check"><i class="fas fa-check"></i></div>
+        <div class="tc-illust">
+          <svg width="60" height="52" viewBox="0 0 60 52" fill="none"><defs><linearGradient id="lap-g1" x1="0" y1="0" x2="60" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#A78BFA"/><stop offset="100%" stop-color="#5B21B6"/></linearGradient><linearGradient id="lap-g2" x1="0" y1="32" x2="60" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#4C1D95"/></linearGradient><linearGradient id="lap-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C4B5FD"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient><filter id="lap-f"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#3B0764" flood-opacity=".28"/></filter></defs><ellipse cx="30" cy="49" rx="22" ry="3" fill="#5B21B6" opacity=".18"/><rect x="8" y="3" width="44" height="30" rx="5" fill="url(#lap-g1)" filter="url(#lap-f)"/><rect x="11" y="6" width="38" height="24" rx="3" fill="#4C1D95"/><rect x="14" y="10" width="14" height="3" rx="1.5" fill="#C4B5FD" opacity=".8"/><rect x="14" y="15" width="28" height="2" rx="1" fill="#A78BFA" opacity=".5"/><rect x="14" y="19" width="22" height="2" rx="1" fill="#A78BFA" opacity=".4"/><rect x="14" y="23" width="18" height="2" rx="1" fill="#A78BFA" opacity=".3"/><path d="M4 33 L8 33 L52 33 L56 33 L54 44 L6 44 Z" fill="url(#lap-g2)"/><rect x="10" y="36" width="5" height="3" rx="1" fill="#7C3AED" opacity=".5"/><rect x="17" y="36" width="5" height="3" rx="1" fill="#7C3AED" opacity=".5"/><rect x="24" y="36" width="5" height="3" rx="1" fill="#7C3AED" opacity=".5"/><rect x="31" y="36" width="5" height="3" rx="1" fill="#7C3AED" opacity=".5"/><rect x="38" y="36" width="5" height="3" rx="1" fill="#7C3AED" opacity=".5"/><rect x="14" y="41" width="32" height="2" rx="1" fill="#7C3AED" opacity=".4"/><rect x="8" y="32" width="44" height="2.5" rx="1.25" fill="url(#lap-g3)"/></svg>
+        </div>
         <div class="tc-badge">올인원</div>
         <div class="tc-name">ALL-IN-ONE</div>
         <div class="tc-price"><span class="from">from </span>46.5<sub>만원/월</sub></div>
@@ -281,16 +298,16 @@ img{max-width:100%}
                 <div class="qty-unit">대</div>
               </div>
             </div>
-            <input type="range" class="qty-slider" id="qtySlider" min="1" max="20" value="5" step="1">
+            <input type="range" class="qty-slider" id="qtySlider" min="5" max="10" value="5" step="1">
             <div class="qty-btns">
               <button class="qty-btn" id="qtyUp"><i class="fas fa-plus"></i></button>
               <button class="qty-btn" id="qtyDown"><i class="fas fa-minus"></i></button>
             </div>
           </div>
           <div class="qty-marks">
-            <span>1대</span><span>5대</span><span>10대</span><span>15대</span><span>20대</span>
+            <span>5대</span><span>6대</span><span>7대</span><span>8대</span><span>9대</span><span>10대</span>
           </div>
-          <div style="margin-top:.5rem;font-size:.73rem;color:var(--dim)">10대 이상 대량 계약은 별도 상담으로 협의합니다</div>
+          <div style="margin-top:.5rem;font-size:.73rem;color:var(--muted)"><i class="fas fa-info-circle" style="color:var(--blue)"></i> 10대 이상은 <a href="index.html#contact" style="color:var(--blue);font-weight:600">개별 상담</a>으로 협의합니다</div>
         </div>
 
         <!-- ② 노트북 구성 (ALL-IN-ONE 선택 시만 표시) -->
@@ -308,16 +325,6 @@ img{max-width:100%}
               <div class="ltc-desc">납부 완료 후 소유권 취득.<br>자산으로 남음.</div>
             </div>
           </div>
-        </div>
-
-        <!-- ③ OS 선택 -->
-        <div class="opt-group" id="osGroup">
-          <div class="opt-group-title"><i class="fas fa-desktop"></i> 운영체제 (노트북)</div>
-          <div class="opt-chips">
-            <button class="chip chip-lg on" data-os="windows">Windows 11</button>
-            <button class="chip chip-lg" data-os="ubuntu">Ubuntu (코딩 전용)</button>
-          </div>
-          <p style="font-size:.75rem;color:var(--dim);margin-top:.6rem;line-height:1.5">Ubuntu는 Windows 대비 대당 약 5천원 저렴합니다. Python·코딩 수업에 적합.</p>
         </div>
 
         <!-- ④ 계약 기간 -->
@@ -421,14 +428,8 @@ img{max-width:100%}
 var PLATFORM = 11;
 var REMOTE_PRICE = {0:0, 1:16.5, 2:33, 3:49.5};
 var LAPTOP = {
-  windows: {
-    lease: {6:4.9, 12:3.8},  /* 임대형: 6·12개월 */
-    own:   {12:5.9}           /* 인수형: 12개월 전용 */
-  },
-  ubuntu: {
-    lease: {6:4.4, 12:3.4},
-    own:   {12:5.3}
-  }
+  lease: {6:4.9, 12:3.8},  /* 임대형: 6·12개월, Windows 11 */
+  own:   {12:5.9}           /* 인수형: 12개월 전용, 신품 */
 };
 var TIER_CONFIG = {
   1: {laptopType:'none',  remote:0, period:12, os:'windows'},
@@ -439,7 +440,6 @@ var TIER_CONFIG = {
 /* ── 상태 ── */
 var state = {
   qty: 5,
-  os: 'windows',
   period: 12,
   laptopType: 'lease',  /* 'none' | 'lease' | 'own' */
   remote: 1,
@@ -458,7 +458,7 @@ function canAnnual(){
 /* ── 섹션 표시/숨김 ── */
 function updateSections(){
   var hasLaptop = state.laptopType !== 'none';
-  ['qtyGroup','laptopConfigGroup','osGroup','periodGroup'].forEach(function(id){
+  ['qtyGroup','laptopConfigGroup','periodGroup'].forEach(function(id){
     document.getElementById(id).style.display = hasLaptop ? '' : 'none';
   });
 }
@@ -470,7 +470,7 @@ function calc(){
   var remote   = REMOTE_PRICE[state.remote];
   var laptopUnit = 0;
   if(state.laptopType !== 'none'){
-    laptopUnit = LAPTOP[state.os][state.laptopType][state.period];
+    laptopUnit = LAPTOP[state.laptopType][state.period];
   }
   var laptopTotal = laptopUnit * qty;
   var monthly     = platform + remote + laptopTotal;
@@ -496,8 +496,7 @@ function render(){
 
   if(r.laptopType !== 'none'){
     var typeLabel = r.laptopType==='lease' ? '임대형' : '인수형';
-    var osLabel   = state.os==='windows' ? 'Win' : 'Ubuntu';
-    items.push({icon:'fa-laptop', label:'노트북 '+r.qty+'대 ('+osLabel+' · '+typeLabel+')', val:fmtK(r.laptopTotal)+'/월', active:true, color:'var(--purple)'});
+    items.push({icon:'fa-laptop', label:'노트북 '+r.qty+'대 (Win11 · '+typeLabel+')', val:fmtK(r.laptopTotal)+'/월', active:true, color:'var(--purple)'});
   } else {
     items.push({icon:'fa-laptop', label:'노트북', val:'제외', active:false});
   }
@@ -536,18 +535,23 @@ function render(){
   var labelEl = document.getElementById('crTotalLabel');
 
   if(state.annual && available){
+    var origAnnual = r.monthly * 12;
+    var saved = Math.round((origAnnual - r.annualTotal) * 10) / 10;
     labelEl.textContent = '연납 합계';
-    mEl.innerHTML = fmt(r.annualTotal)+'<sub>만원/년</sub>';
-    document.getElementById('crTotal').textContent = '월 환산 '+fmt(Math.round(r.annualTotal/12*10)/10)+'만원';
-    document.getElementById('crPeriodLabel').textContent = '연납 일시불';
-    noteEl.innerHTML = '<span style="color:var(--green)"><i class="fas fa-tag"></i> 10% 할인 적용 — 월납 대비 '+fmtK(Math.round((r.monthly*12-r.annualTotal)*10)/10)+' 절감</span>';
+    mEl.innerHTML =
+      '<div class="price-original">'+fmtK(origAnnual)+'/년</div>'+
+      fmt(r.annualTotal)+'<sub>만원/년</sub>';
+    document.getElementById('crTotal').innerHTML =
+      '<span class="save-badge"><i class="fas fa-bolt"></i> '+fmtK(saved)+' 절감!</span>';
+    document.getElementById('crPeriodLabel').textContent = '10% 할인';
+    noteEl.innerHTML = '<span style="color:var(--muted);font-size:.75rem">월 환산 약 '+fmt(Math.round(r.annualTotal/12*10)/10)+'만원</span>';
   } else {
     labelEl.textContent = '월 합계';
     mEl.innerHTML = '<span style="font-size:1rem;color:var(--muted)">월 </span>'+fmt(r.monthly)+'<sub>만원</sub>';
     document.getElementById('crTotal').textContent = fmtK(r.contractTotal);
     document.getElementById('crPeriodLabel').textContent = state.period+'개월';
     noteEl.innerHTML = available
-      ? '<span style="color:var(--dim)">연납 선택 시 '+fmtK(r.annualTotal)+'/년 ('+fmtK(Math.round((r.monthly*12-r.annualTotal)*10)/10)+' 절감)</span>'
+      ? '<span style="color:var(--dim);font-size:.75rem">연납 선택 시 '+fmtK(r.annualTotal)+'/년 — '+fmtK(Math.round((r.monthly*12-r.annualTotal)*10)/10)+' 절감</span>'
       : '';
   }
 
@@ -560,7 +564,7 @@ function render(){
 
   /* 슬라이더 배경 */
   var s = document.getElementById('qtySlider');
-  var pct = ((state.qty-1)/19*100).toFixed(1);
+  var pct = ((state.qty-5)/5*100).toFixed(1);
   s.style.background = 'linear-gradient(to right, var(--blue) 0%, var(--blue) '+pct+'%, rgba(15,23,42,.12) '+pct+'%)';
 }
 
@@ -590,20 +594,10 @@ slider.addEventListener('input', function(){
   render();
 });
 document.getElementById('qtyUp').addEventListener('click', function(){
-  if(state.qty < 20){ state.qty++; slider.value = state.qty; document.getElementById('qtyNum').textContent = state.qty; render(); }
+  if(state.qty < 10){ state.qty++; slider.value = state.qty; document.getElementById('qtyNum').textContent = state.qty; render(); }
 });
 document.getElementById('qtyDown').addEventListener('click', function(){
-  if(state.qty > 1){ state.qty--; slider.value = state.qty; document.getElementById('qtyNum').textContent = state.qty; render(); }
-});
-
-/* ── 이벤트: OS ── */
-document.querySelectorAll('[data-os]').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    state.os = this.dataset.os;
-    document.querySelectorAll('[data-os]').forEach(function(b){ b.classList.remove('on'); });
-    this.classList.add('on');
-    render();
-  });
+  if(state.qty > 5){ state.qty--; slider.value = state.qty; document.getElementById('qtyNum').textContent = state.qty; render(); }
 });
 
 /* ── 이벤트: 기간 ── */
@@ -669,9 +663,6 @@ document.querySelectorAll('.tier-card').forEach(function(card){
     document.querySelectorAll('[data-remote]').forEach(function(b){
       b.classList.toggle('on', parseInt(b.dataset.remote) === cfg.remote);
     });
-    document.querySelectorAll('[data-os]').forEach(function(b){
-      b.classList.toggle('on', b.dataset.os === cfg.os);
-    });
     document.querySelectorAll('.laptop-type-card').forEach(function(c){
       c.classList.toggle('on', c.dataset.ltype === cfg.laptopType);
     });
@@ -703,7 +694,7 @@ window.goConsult = function(){
     (state.laptopType==='lease' ? '임대형('+state.period+'개월)' : '인수형(12개월)');
   var payDesc = (state.annual && canAnnual()) ? '연납(10%할인)' : '월납';
   var msg = '[견적 구성]\n노트북 '+state.qty+'대 · '+laptopDesc+
-    ' · 원격수업 주'+state.remote+'회 · '+state.os.toUpperCase()+' · '+payDesc+
+    ' · 원격수업 주'+state.remote+'회 · Windows 11 · '+payDesc+
     '\n월 합계: 약 '+fmt(r.monthly)+'만원';
   if(state.annual && canAnnual()){
     msg += '\n연납 합계: 약 '+fmt(r.annualTotal)+'만원 (10% 할인 적용)';
