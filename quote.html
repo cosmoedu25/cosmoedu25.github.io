@@ -159,8 +159,13 @@ img{max-width:100%}
 .cr-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.35)}
 .cr-note{font-size:.72rem;color:var(--dim);text-align:center;margin-top:.6rem;line-height:1.5}
 
-/* 배지 */
-.vol-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;background:rgba(5,150,105,.1);color:var(--green);margin-top:.4rem}
+/* 연납 토글 */
+.pay-toggle{display:flex;gap:.4rem;margin-bottom:1.1rem}
+.pt-btn{flex:1;padding:.45rem;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-size:.82rem;font-weight:600;cursor:pointer;transition:all var(--tr);font-family:inherit;color:var(--muted)}
+.pt-btn.on{border-color:var(--blue);background:var(--blue);color:#fff}
+.pt-btn:disabled{cursor:not-allowed}
+.pt-discount{font-size:.7rem;background:rgba(5,150,105,.15);color:var(--green);border-radius:4px;padding:.1rem .35rem;margin-left:.2rem}
+.pt-btn.on .pt-discount{background:rgba(255,255,255,.2);color:#fff}
 
 /* ── 푸터 ── */
 .footer{background:#0F172A;border-top:1px solid rgba(255,255,255,.06);padding:2rem 0;margin-top:0}
@@ -258,8 +263,8 @@ img{max-width:100%}
         <div class="tc-check"><i class="fas fa-check"></i></div>
         <div class="tc-badge">올인원</div>
         <div class="tc-name">ALL-IN-ONE 인수형</div>
-        <div class="tc-price"><span class="from">from </span>55<sub>만원/월</sub></div>
-        <div class="tc-desc">플랫폼 + 원격 + 노트북<br>12개월 후 소유권 취득</div>
+        <div class="tc-price"><span class="from">from </span>57<sub>만원/월</sub></div>
+        <div class="tc-desc">플랫폼 + 원격 + 노트북<br>12개월 전용 · 소유권 취득</div>
       </div>
 
     </div>
@@ -294,7 +299,7 @@ img{max-width:100%}
           <div class="qty-marks">
             <span>1대</span><span>5대</span><span>10대</span><span>15대</span><span>20대</span>
           </div>
-          <div id="volBadge" style="margin-top:.5rem"></div>
+          <div style="margin-top:.5rem;font-size:.73rem;color:var(--dim)">10대 이상 대량 계약은 별도 상담으로 협의합니다</div>
         </div>
 
         <!-- ② 노트북 선택 -->
@@ -329,11 +334,10 @@ img{max-width:100%}
         <div class="opt-group" id="periodGroup">
           <div class="opt-group-title"><i class="fas fa-calendar-alt"></i> 계약 기간</div>
           <div class="opt-chips">
-            <button class="chip" data-period="3">3개월</button>
             <button class="chip" data-period="6">6개월</button>
             <button class="chip on" data-period="12">12개월 <span style="font-size:.7rem;opacity:.8">(권장)</span></button>
           </div>
-          <p style="font-size:.75rem;color:var(--dim);margin-top:.6rem;line-height:1.5">기간이 길수록 대당 월 단가가 낮아집니다. 12개월이 가장 경제적입니다.</p>
+          <p style="font-size:.75rem;color:var(--dim);margin-top:.6rem;line-height:1.5" id="periodNote">기간이 길수록 대당 월 단가가 낮아집니다. 12개월이 가장 경제적입니다.</p>
         </div>
 
         <!-- ⑤ 원격수업 횟수 -->
@@ -370,6 +374,12 @@ img{max-width:100%}
       <div class="calc-result" id="calcResult">
         <div class="cr-title"><i class="fas fa-receipt" style="margin-right:.4rem"></i>견적 내역</div>
 
+        <!-- 납부 방식 토글 -->
+        <div class="pay-toggle" id="payToggle">
+          <button class="pt-btn on" id="ptMonthly">월납</button>
+          <button class="pt-btn" id="ptAnnual">연납 <span class="pt-discount">-10%</span></button>
+        </div>
+
         <div class="cr-items" id="crItems">
           <!-- JS로 채워짐 -->
         </div>
@@ -377,13 +387,14 @@ img{max-width:100%}
         <hr class="cr-divider">
 
         <div class="cr-total-row">
-          <span class="cr-total-label">월 합계</span>
+          <span class="cr-total-label" id="crTotalLabel">월 합계</span>
           <span class="cr-total-price" id="crMonthly">—</span>
         </div>
         <div class="cr-period-row">
           <span>계약기간 총액 (<span id="crPeriodLabel">12개월</span>)</span>
           <span class="cr-period-val" id="crTotal">—</span>
         </div>
+        <div style="font-size:.75rem;min-height:1.2rem;margin-bottom:.6rem;line-height:1.5" id="crAnnualNote"></div>
 
         <div class="cr-extras" id="crExtras"></div>
 
@@ -421,17 +432,17 @@ var PLATFORM = 11;
 var REMOTE_PRICE = {0:0, 1:16.5, 2:33, 3:49.5};
 var LAPTOP = {
   windows: {
-    lease: {3:7.2, 6:4.9, 12:3.8},
-    own:   {3:24,  6:12,   12:5.9}
+    lease: {6:4.9, 12:3.8},  /* 임대형: 6·12개월 */
+    own:   {12:5.9}           /* 인수형: 12개월 전용 */
   },
   ubuntu: {
-    lease: {3:6.5, 6:4.4, 12:3.4},
-    own:   {3:21,  6:10.5, 12:5.3}
+    lease: {6:4.4, 12:3.4},
+    own:   {12:5.3}
   }
 };
 var TIER_CONFIG = {
-  1: {laptopType:'none', remote:0, period:12, os:'windows'},
-  2: {laptopType:'none', remote:1, period:12, os:'windows'},
+  1: {laptopType:'none',  remote:0, period:12, os:'windows'},
+  2: {laptopType:'none',  remote:1, period:12, os:'windows'},
   3: {laptopType:'lease', remote:1, period:12, os:'windows'},
   4: {laptopType:'own',   remote:1, period:12, os:'windows'}
 };
@@ -441,40 +452,35 @@ var state = {
   qty: 5,
   os: 'windows',
   period: 12,
-  laptopType: 'lease',   /* 'none', 'lease', 'own' */
-  remote: 1
+  laptopType: 'lease',  /* 'none' | 'lease' | 'own' */
+  remote: 1,
+  annual: false
 };
 
 /* ── 유틸 ── */
 function fmt(n){ return (Math.round(n*10)/10).toString().replace(/\.0$/,''); }
 function fmtK(n){ return fmt(n)+'만원'; }
 
+/* ── 연납 가용 여부 ── */
+function canAnnual(){
+  return state.period === 12 || state.laptopType === 'none';
+}
+
 /* ── 계산 ── */
 function calc(){
   var qty = state.qty;
-  var discountRate = 0;
-  if(qty >= 15) discountRate = 0.05;
-  else if(qty >= 10) discountRate = 0.03;
-
   var platform = PLATFORM;
   var remote   = REMOTE_PRICE[state.remote];
   var laptopUnit = 0;
   if(state.laptopType !== 'none'){
     laptopUnit = LAPTOP[state.os][state.laptopType][state.period];
   }
-  var laptopRaw = laptopUnit * qty;
-  var discount  = laptopRaw * discountRate;
-  var laptopTotal = laptopRaw - discount;
-  var monthly  = platform + remote + laptopTotal;
-  var total    = monthly * state.period;
+  var laptopTotal = laptopUnit * qty;
+  var monthly     = platform + remote + laptopTotal;
+  var contractTotal = monthly * state.period;
+  var annualTotal   = Math.round(monthly * 12 * 0.9 * 10) / 10;
 
-  var deposit = 0;
-  if(qty >= 10 && state.laptopType !== 'none'){
-    var depMonths = (state.laptopType==='lease') ? 2 : 1;
-    deposit = laptopUnit * qty * (1-discountRate) * depMonths;
-  }
-
-  return {platform, remote, laptopUnit, laptopRaw, discount, discountRate, laptopTotal, monthly, total, deposit, qty, laptopType:state.laptopType};
+  return {platform, remote, laptopUnit, laptopTotal, monthly, contractTotal, annualTotal, qty, laptopType:state.laptopType};
 }
 
 /* ── 렌더 ── */
@@ -482,69 +488,100 @@ function render(){
   var r = calc();
   var items = [];
 
-  // 플랫폼
-  items.push({icon:'fa-layer-group',label:'코스모에듀 플랫폼',val:fmtK(r.platform),active:true,color:'var(--blue)'});
+  items.push({icon:'fa-layer-group', label:'코스모에듀 플랫폼', val:fmtK(r.platform), active:true, color:'var(--blue)'});
 
-  // 원격수업
-  if(r.remote>0){
-    items.push({icon:'fa-video',label:'원격수업 주'+state.remote+'회',val:fmtK(r.remote)+'/월',active:true,color:'var(--cyan)'});
+  if(r.remote > 0){
+    items.push({icon:'fa-video', label:'원격수업 주'+state.remote+'회', val:fmtK(r.remote)+'/월', active:true, color:'var(--cyan)'});
   } else {
-    items.push({icon:'fa-video',label:'원격수업',val:'포함 안됨',active:false});
+    items.push({icon:'fa-video', label:'원격수업', val:'포함 안됨', active:false});
   }
 
-  // 노트북
   if(r.laptopType !== 'none'){
     var typeLabel = r.laptopType==='lease' ? '임대형' : '인수형';
-    var osLabel = state.os==='windows' ? 'Win' : 'Ubuntu';
-    items.push({icon:'fa-laptop',label:'노트북 '+r.qty+'대 ('+osLabel+' · '+typeLabel+')',val:fmtK(r.laptopRaw)+'/월',active:true,color:'var(--purple)'});
-    if(r.discount > 0){
-      items.push({icon:'fa-tag',label:'볼륨 할인 ('+Math.round(r.discountRate*100)+'%)',val:'−'+fmtK(r.discount),active:true,discount:true});
-    }
+    var osLabel   = state.os==='windows' ? 'Win' : 'Ubuntu';
+    items.push({icon:'fa-laptop', label:'노트북 '+r.qty+'대 ('+osLabel+' · '+typeLabel+')', val:fmtK(r.laptopTotal)+'/월', active:true, color:'var(--purple)'});
   } else {
-    items.push({icon:'fa-laptop',label:'노트북',val:'제외',active:false});
+    items.push({icon:'fa-laptop', label:'노트북', val:'제외', active:false});
   }
 
-  // 렌더
   var html = '';
   items.forEach(function(it){
     var col = it.color ? 'style="color:'+it.color+'"' : '';
-    var valCls = it.active ? (it.discount?'ci-val' + ' dim':'ci-val') : 'ci-val dim';
-    if(it.discount) valCls = 'ci-val';
-    html += '<div class="cr-item'+(it.active?' active':'')+(it.discount?' discount':'')+'">'+
+    var valCls = it.active ? 'ci-val' : 'ci-val dim';
+    html += '<div class="cr-item'+(it.active?' active':'')+'">'+
       '<span class="ci-label"><i class="fas '+it.icon+'" '+col+'></i>'+it.label+'</span>'+
       '<span class="'+valCls+'">'+it.val+'</span>'+
       '</div>';
   });
   document.getElementById('crItems').innerHTML = html;
 
-  // 합계
-  var mEl = document.getElementById('crMonthly');
-  mEl.innerHTML = '<span style="font-size:1rem;color:var(--muted)">월 </span>'+fmt(r.monthly)+'<sub>만원</sub>';
-  document.getElementById('crTotal').textContent = fmtK(r.total);
-  document.getElementById('crPeriodLabel').textContent = state.period+'개월';
-
-  // 추가 안내
-  var extras = '<strong>초기 세팅비</strong>: 10~30만원 (규모·지역 협의, 별도)';
-  if(r.deposit > 0){
-    extras += '<br><span class="cr-deposit"><strong>보증금 ('+r.qty+'대 이상)</strong>: 약 '+fmtK(Math.round(r.deposit*10)/10)+' — 계약 종료 후 정상 반납 시 전액 환불</span>';
+  /* 연납 토글 가용 여부 */
+  var ptAnnual   = document.getElementById('ptAnnual');
+  var payToggle  = document.getElementById('payToggle');
+  var available  = canAnnual();
+  if(!available){
+    state.annual = false;
+    ptAnnual.disabled = true;
+    ptAnnual.classList.remove('on');
+    document.getElementById('ptMonthly').classList.add('on');
+    payToggle.style.opacity = '.4';
+    payToggle.title = '6개월 임대형은 연납 할인이 적용되지 않습니다';
+  } else {
+    ptAnnual.disabled = false;
+    payToggle.style.opacity = '1';
+    payToggle.title = '';
   }
-  if(r.laptopType==='own'){
-    extras += '<br><strong style="color:var(--purple)">'+state.period+'개월 납부 완료 후 노트북 소유권 취득</strong>';
+
+  /* 합계 표시 */
+  var mEl = document.getElementById('crMonthly');
+  var noteEl = document.getElementById('crAnnualNote');
+  var labelEl = document.getElementById('crTotalLabel');
+
+  if(state.annual && available){
+    labelEl.textContent = '연납 합계';
+    mEl.innerHTML = fmt(r.annualTotal)+'<sub>만원/년</sub>';
+    document.getElementById('crTotal').textContent = '월 환산 '+fmt(Math.round(r.annualTotal/12*10)/10)+'만원';
+    document.getElementById('crPeriodLabel').textContent = '연납 일시불';
+    noteEl.innerHTML = '<span style="color:var(--green)"><i class="fas fa-tag"></i> 10% 할인 적용 — 월납 대비 '+fmtK(Math.round((r.monthly*12-r.annualTotal)*10)/10)+' 절감</span>';
+  } else {
+    labelEl.textContent = '월 합계';
+    mEl.innerHTML = '<span style="font-size:1rem;color:var(--muted)">월 </span>'+fmt(r.monthly)+'<sub>만원</sub>';
+    document.getElementById('crTotal').textContent = fmtK(r.contractTotal);
+    document.getElementById('crPeriodLabel').textContent = state.period+'개월';
+    noteEl.innerHTML = available
+      ? '<span style="color:var(--dim)">연납 선택 시 '+fmtK(r.annualTotal)+'/년 ('+fmtK(Math.round((r.monthly*12-r.annualTotal)*10)/10)+' 절감)</span>'
+      : '';
+  }
+
+  /* 추가 안내 */
+  var extras = '<strong>초기 세팅비</strong>: 수도권·경기 10만원 / 그 외 지방 20만원 (별도)';
+  if(r.laptopType === 'own'){
+    extras += '<br><strong style="color:var(--purple)">12개월 납부 완료 후 노트북 소유권 취득</strong>';
   }
   document.getElementById('crExtras').innerHTML = extras;
 
-  // 볼륨 배지
-  var vb = document.getElementById('volBadge');
-  if(r.discountRate > 0){
-    vb.innerHTML = '<span class="vol-badge"><i class="fas fa-tag"></i>'+r.qty+'대 이상 노트북 '+Math.round(r.discountRate*100)+'% 할인 적용</span>';
-  } else {
-    vb.innerHTML = '<span style="font-size:.73rem;color:var(--dim)">10대 이상 시 3% · 15대 이상 시 5% 할인</span>';
-  }
-
-  // 슬라이더 배경
+  /* 슬라이더 배경 */
   var s = document.getElementById('qtySlider');
   var pct = ((state.qty-1)/19*100).toFixed(1);
   s.style.background = 'linear-gradient(to right, var(--blue) 0%, var(--blue) '+pct+'%, rgba(15,23,42,.12) '+pct+'%)';
+}
+
+/* ── 인수형: 기간 12개월 강제 ── */
+function forceOwnPeriod(){
+  state.period = 12;
+  document.querySelectorAll('[data-period]').forEach(function(b){
+    b.classList.toggle('on', parseInt(b.dataset.period) === 12);
+    if(parseInt(b.dataset.period) === 6){
+      b.disabled = true; b.style.opacity = '.35'; b.style.cursor = 'not-allowed';
+    }
+  });
+  document.getElementById('periodNote').textContent = '인수형은 12개월 계약 전용입니다.';
+}
+function resetPeriodUI(){
+  document.querySelectorAll('[data-period]').forEach(function(b){
+    b.disabled = false; b.style.opacity = '1'; b.style.cursor = '';
+  });
+  document.getElementById('periodNote').textContent = '기간이 길수록 대당 월 단가가 낮아집니다. 12개월이 가장 경제적입니다.';
 }
 
 /* ── 이벤트: 슬라이더 ── */
@@ -574,6 +611,7 @@ document.querySelectorAll('[data-os]').forEach(function(btn){
 /* ── 이벤트: 기간 ── */
 document.querySelectorAll('[data-period]').forEach(function(btn){
   btn.addEventListener('click', function(){
+    if(this.disabled) return;
     state.period = parseInt(this.dataset.period);
     document.querySelectorAll('[data-period]').forEach(function(b){ b.classList.remove('on'); });
     this.classList.add('on');
@@ -589,6 +627,7 @@ noLaptopBtn.addEventListener('click', function(){
   document.querySelectorAll('.laptop-type-card').forEach(function(c){ c.classList.remove('on'); });
   document.getElementById('osGroup').style.opacity = '.45';
   document.getElementById('periodGroup').style.opacity = '.45';
+  resetPeriodUI();
   render();
 });
 document.querySelectorAll('.laptop-type-card').forEach(function(card){
@@ -599,6 +638,7 @@ document.querySelectorAll('.laptop-type-card').forEach(function(card){
     this.classList.add('on');
     document.getElementById('osGroup').style.opacity = '1';
     document.getElementById('periodGroup').style.opacity = '1';
+    if(state.laptopType === 'own'){ forceOwnPeriod(); } else { resetPeriodUI(); }
     render();
   });
 });
@@ -613,53 +653,62 @@ document.querySelectorAll('[data-remote]').forEach(function(btn){
   });
 });
 
+/* ── 이벤트: 연납 토글 ── */
+document.getElementById('ptMonthly').addEventListener('click', function(){
+  state.annual = false;
+  this.classList.add('on');
+  document.getElementById('ptAnnual').classList.remove('on');
+  render();
+});
+document.getElementById('ptAnnual').addEventListener('click', function(){
+  if(this.disabled) return;
+  state.annual = true;
+  this.classList.add('on');
+  document.getElementById('ptMonthly').classList.remove('on');
+  render();
+});
+
 /* ── 이벤트: 티어 카드 ── */
 document.querySelectorAll('.tier-card').forEach(function(card){
   card.addEventListener('click', function(){
     var tier = parseInt(this.dataset.tier);
-    var cfg = TIER_CONFIG[tier];
-
-    // 상태 업데이트
+    var cfg  = TIER_CONFIG[tier];
     state.laptopType = cfg.laptopType;
     state.remote     = cfg.remote;
     state.period     = cfg.period;
     state.os         = cfg.os;
 
-    // 티어 카드 on
     document.querySelectorAll('.tier-card').forEach(function(c){ c.classList.remove('on'); });
     this.classList.add('on');
 
-    // UI 동기화: 원격수업
     document.querySelectorAll('[data-remote]').forEach(function(b){
-      b.classList.toggle('on', parseInt(b.dataset.remote)===cfg.remote);
+      b.classList.toggle('on', parseInt(b.dataset.remote) === cfg.remote);
     });
-    // UI 동기화: 기간
-    document.querySelectorAll('[data-period]').forEach(function(b){
-      b.classList.toggle('on', parseInt(b.dataset.period)===cfg.period);
-    });
-    // UI 동기화: OS
     document.querySelectorAll('[data-os]').forEach(function(b){
-      b.classList.toggle('on', b.dataset.os===cfg.os);
+      b.classList.toggle('on', b.dataset.os === cfg.os);
     });
-    // UI 동기화: 노트북 타입
-    noLaptopBtn.classList.toggle('on', cfg.laptopType==='none');
+    noLaptopBtn.classList.toggle('on', cfg.laptopType === 'none');
     document.querySelectorAll('.laptop-type-card').forEach(function(c){
-      c.classList.toggle('on', c.dataset.ltype===cfg.laptopType);
+      c.classList.toggle('on', c.dataset.ltype === cfg.laptopType);
     });
     var hasLaptop = cfg.laptopType !== 'none';
-    document.getElementById('osGroup').style.opacity = hasLaptop ? '1' : '.45';
+    document.getElementById('osGroup').style.opacity   = hasLaptop ? '1' : '.45';
     document.getElementById('periodGroup').style.opacity = hasLaptop ? '1' : '.45';
 
+    if(cfg.laptopType === 'own'){ forceOwnPeriod(); } else {
+      resetPeriodUI();
+      document.querySelectorAll('[data-period]').forEach(function(b){
+        b.classList.toggle('on', parseInt(b.dataset.period) === cfg.period);
+      });
+    }
     render();
   });
 });
 
-/* ── 초기 상태 설정 (티어 3 기본) ── */
-(function initTier3(){
-  state.laptopType = 'lease';
-  // 임대형 카드 on
+/* ── 초기 상태 (티어 3 기본) ── */
+(function init(){
   document.querySelectorAll('.laptop-type-card').forEach(function(c){
-    c.classList.toggle('on', c.dataset.ltype==='lease');
+    c.classList.toggle('on', c.dataset.ltype === 'lease');
   });
   noLaptopBtn.classList.remove('on');
 })();
@@ -667,14 +716,18 @@ document.querySelectorAll('.tier-card').forEach(function(card){
 /* ── 상담 신청 이동 ── */
 window.goConsult = function(){
   var r = calc();
-  /* 패키지 자동 매핑 */
   var pkg = (state.laptopType === 'none')
     ? (state.remote > 0 ? '플랫폼+원격수업' : '플랫폼 기본형')
     : 'ALL-IN-ONE';
-  var msg = '[견적 구성]\n노트북 '+state.qty+'대 · '+
-    (state.laptopType==='none'?'노트북 제외':state.laptopType==='lease'?'임대형':'인수형(소유)')+
-    ' · 원격수업 주'+state.remote+'회 · '+state.os.toUpperCase()+' · '+state.period+'개월'+
+  var laptopDesc = state.laptopType==='none' ? '노트북 제외' :
+    (state.laptopType==='lease' ? '임대형('+state.period+'개월)' : '인수형(12개월)');
+  var payDesc = (state.annual && canAnnual()) ? '연납(10%할인)' : '월납';
+  var msg = '[견적 구성]\n노트북 '+state.qty+'대 · '+laptopDesc+
+    ' · 원격수업 주'+state.remote+'회 · '+state.os.toUpperCase()+' · '+payDesc+
     '\n월 합계: 약 '+fmt(r.monthly)+'만원';
+  if(state.annual && canAnnual()){
+    msg += '\n연납 합계: 약 '+fmt(r.annualTotal)+'만원 (10% 할인 적용)';
+  }
   sessionStorage.setItem('quoteMsg', msg);
   sessionStorage.setItem('quotePkg', pkg);
   window.location.href = 'index.html#contact';
