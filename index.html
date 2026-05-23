@@ -1162,10 +1162,10 @@ img{max-width:100%}
       <div class="form-card rv d1">
         <form id="cForm" novalidate>
           <div class="form-grid">
-            <div class="fg"><label>학교(기관)명 <span>*</span></label><input type="text" class="fi" placeholder="○○학교 / ○○학원" required></div>
+            <div class="fg"><label>학교(기관)명 <span>*</span></label><input id="f-school" type="text" class="fi" placeholder="○○학교 / ○○학원" required></div>
             <div class="fg">
               <label>지역 <span>*</span></label>
-              <select class="fs" required>
+              <select id="f-region" class="fs" required>
                 <option value="" disabled selected>시/도 선택</option>
                 <option>서울</option><option>경기</option><option>인천</option><option>부산</option>
                 <option>대구</option><option>광주</option><option>대전</option><option>울산</option>
@@ -1173,29 +1173,29 @@ img{max-width:100%}
                 <option>전북</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option>
               </select>
             </div>
-            <div class="fg"><label>담당자 이름 <span>*</span></label><input type="text" class="fi" placeholder="홍길동" required></div>
-            <div class="fg"><label>연락처 <span>*</span></label><input type="tel" class="fi" placeholder="010-0000-0000" required></div>
-            <div class="fg"><label>이메일</label><input type="email" class="fi" placeholder="example@school.kr"></div>
+            <div class="fg"><label>담당자 이름 <span>*</span></label><input id="f-contact" type="text" class="fi" placeholder="홍길동" required></div>
+            <div class="fg"><label>연락처 <span>*</span></label><input id="f-phone" type="tel" class="fi" placeholder="010-0000-0000" required></div>
+            <div class="fg"><label>이메일</label><input id="f-email" type="email" class="fi" placeholder="example@school.kr"></div>
             <div class="fg">
               <label>학생 수 (예상)</label>
-              <select class="fs">
+              <select id="f-students" class="fs">
                 <option value="" disabled selected>선택</option>
                 <option>5명 미만</option><option>5~10명</option><option>11~20명</option><option>21명 이상</option>
               </select>
             </div>
             <div class="fg full">
               <label>관심 패키지</label>
-              <select class="fs">
+              <select id="f-package" class="fs">
                 <option value="" disabled selected>선택 (선택사항)</option>
-                <option>플랫폼 기본형 (월 11만원)</option>
-                <option>플랫폼 + 원격수업 (월 27.5만원)</option>
-                <option>ALL-IN-ONE (노트북 렌탈 포함)</option>
-                <option>아직 잘 모르겠어요 / 상담 후 결정</option>
+                <option value="플랫폼 기본형">플랫폼 기본형 (월 11만원)</option>
+                <option value="플랫폼+원격수업">플랫폼 + 원격수업 (월 27.5만원~)</option>
+                <option value="ALL-IN-ONE">ALL-IN-ONE (노트북 렌탈 포함)</option>
+                <option value="상담 후 결정">아직 잘 모르겠어요 / 상담 후 결정</option>
               </select>
             </div>
-            <div class="fg full"><label>문의 내용</label><textarea class="ft" placeholder="현재 학교 상황, 궁금한 점, 원하는 수업 방향 등을 자유롭게 적어주세요."></textarea></div>
+            <div class="fg full"><label>문의 내용</label><textarea id="f-message" class="ft" placeholder="현재 학교 상황, 궁금한 점, 원하는 수업 방향 등을 자유롭게 적어주세요."></textarea></div>
           </div>
-          <div class="form-submit"><button type="submit"><i class="fas fa-paper-plane"></i> 무료 상담 신청하기</button></div>
+          <div class="form-submit"><button type="submit" id="f-submit"><i class="fas fa-paper-plane"></i> 무료 상담 신청하기</button></div>
           <p class="form-note">입력하신 정보는 상담 목적으로만 사용되며, 제3자에게 제공되지 않습니다.</p>
         </form>
         <div class="form-success" id="fSuccess">
@@ -1376,6 +1376,15 @@ img{max-width:100%}
 
   /* 상담 폼 */
   var form = document.getElementById('cForm'), succ = document.getElementById('fSuccess');
+
+  /* 견적 계산기에서 넘어온 데이터 자동 채우기 */
+  (function(){
+    var qMsg = sessionStorage.getItem('quoteMsg');
+    var qPkg = sessionStorage.getItem('quotePkg');
+    if(qMsg){ document.getElementById('f-message').value = qMsg; sessionStorage.removeItem('quoteMsg'); }
+    if(qPkg){ document.getElementById('f-package').value = qPkg; sessionStorage.removeItem('quotePkg'); }
+  })();
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var ok = true;
@@ -1383,8 +1392,45 @@ img{max-width:100%}
       if(!f.value.trim()){ ok = false; f.style.borderColor = '#EF4444'; f.addEventListener('input', function(){ f.style.borderColor = ''; }, {once:true}); }
     });
     if(!ok) return;
-    form.style.display = 'none';
-    succ.classList.add('show');
+
+    var btn = document.getElementById('f-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 전송 중...';
+
+    var payload = {
+      school_name:      document.getElementById('f-school').value.trim(),
+      region:           document.getElementById('f-region').value,
+      contact_name:     document.getElementById('f-contact').value.trim(),
+      phone:            document.getElementById('f-phone').value.trim(),
+      email:            document.getElementById('f-email').value.trim(),
+      student_count:    document.getElementById('f-students').value,
+      package_interest: document.getElementById('f-package').value,
+      message:          document.getElementById('f-message').value.trim()
+    };
+    /* 선택사항 — 빈 값 제거 */
+    ['email','student_count','package_interest','message'].forEach(function(k){ if(!payload[k]) delete payload[k]; });
+
+    fetch('https://app.cosmoedu.co.kr/api/consultation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.success){
+        form.style.display = 'none';
+        succ.classList.add('show');
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> 무료 상담 신청하기';
+        alert(data.message || '전송에 실패했습니다. 다시 시도해 주세요.');
+      }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> 무료 상담 신청하기';
+      alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    });
   });
 
 })();
