@@ -1,0 +1,1880 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교육기관 AI 수업 구축 | 코스모에듀</title>
+<meta name="description" content="학교·학원·대안학교를 위한 AI·코딩 수업 구축 패키지. 강사 걱정 없이 시작하세요.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ── 변수 (라이트 모드) ── */
+:root{
+  --bg:#F8FAFC;--bg2:#EFF6FF;--bg3:#FFFFFF;
+  --blue:#2563EB;--blue-d:#1D4ED8;--blue-l:#3B82F6;
+  --cyan:#0891B2;--cyan-l:#06B6D4;
+  --purple:#7C3AED;--green:#059669;--amber:#D97706;
+  --text:#0F172A;--muted:#64748B;--dim:#94A3B8;
+  --border:rgba(15,23,42,.1);
+  --r:12px;--tr:.28s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Malgun Gothic',sans-serif;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%}
+
+/* ── 컨테이너 ── */
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 1.5rem}
+
+/* ── 섹션 기본 ── */
+.sec{padding:80px 0}
+.sec-alt{background:var(--bg2)}
+.sec-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);background:rgba(8,145,178,.08);border:1px solid rgba(8,145,178,.25);padding:.28rem .85rem;border-radius:100px;margin-bottom:.9rem}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;line-height:1.2;margin-bottom:.8rem;color:var(--text)}
+.sec-title .hl{background:linear-gradient(130deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{font-size:1rem;color:var(--muted);max-width:600px;word-break:keep-all}
+.center{text-align:center}.center .sec-sub{margin:0 auto}
+
+/* ── 헤더 ── */
+.hd{position:fixed;top:0;left:0;width:100%;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:all var(--tr);padding:.85rem 0}
+.hd.scrolled{padding:.5rem 0;background:rgba(255,255,255,.98);box-shadow:0 2px 12px rgba(15,23,42,.08)}
+.hd-inner{display:flex;justify-content:space-between;align-items:center}
+.hd-logo{display:flex;align-items:center;transition:opacity var(--tr)}
+.hd-logo img{height:26px;width:auto;object-fit:contain}
+.hd-logo:hover{opacity:.7}
+.hd-nav{display:flex;align-items:center;gap:.2rem}
+.hd-link{padding:.4rem .85rem;font-size:.88rem;font-weight:500;color:var(--muted);border-radius:8px;transition:all var(--tr)}
+.hd-link:hover{color:var(--text);background:rgba(15,23,42,.05)}
+.hd-cta{background:var(--blue);color:#fff!important;padding:.45rem 1rem;border-radius:8px;font-weight:600;font-size:.88rem}
+.hd-cta:hover{background:var(--blue-d);box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.hd-mobile{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:3px}
+.hd-mobile span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all var(--tr)}
+
+/* ── 버튼 ── */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.7rem;border-radius:var(--r);font-weight:700;font-size:.97rem;cursor:pointer;border:none;transition:all var(--tr)}
+.btn-p{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 4px 18px rgba(37,99,235,.25)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.38)}
+.btn-o{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-o:hover{border-color:var(--blue);color:var(--blue);background:rgba(37,99,235,.04)}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:75px;background:linear-gradient(160deg,#F0F7FF 0%,#F8FAFC 55%,#EFF6FF 100%)}
+.hero::before{content:'';position:absolute;top:-20%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.07) 0,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+
+.hero-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:3.5rem;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;font-weight:700;color:var(--blue);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:.35rem .9rem;border-radius:100px;margin-bottom:1.2rem}
+.hero-badge .dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pdot 2s infinite}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.5)}}
+.hero-h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.13;margin-bottom:1.1rem;word-break:keep-all}
+.hero-h1 .g{background:linear-gradient(130deg,var(--blue),var(--cyan) 50%,var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-p{font-size:1.05rem;color:var(--muted);max-width:450px;margin-bottom:2rem;word-break:keep-all}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:1.8rem;border-top:1px solid var(--border)}
+.hs-num{font-size:1.8rem;font-weight:800;color:var(--blue);line-height:1}
+.hs-lbl{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+
+/* 히어로 이미지 wrapper */
+.classroom-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(15,23,42,.1);box-shadow:0 20px 60px rgba(15,23,42,.12),0 4px 16px rgba(37,99,235,.08)}
+.classroom-svg{width:100%;height:auto;display:block;object-fit:cover}
+
+/* 어노테이션 오버레이 */
+.ann-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:3}
+/* 어노테이션 카드 */
+.ann-card{position:absolute;background:rgba(10,18,34,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:10px;padding:.52rem .8rem;display:flex;align-items:center;gap:.55rem;box-shadow:0 4px 20px rgba(0,0,0,.4);pointer-events:none;z-index:4;white-space:nowrap}
+.ac-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.ac-label{font-size:.62rem;color:#94A3B8;margin-bottom:.05rem}
+.ac-value{font-size:.88rem;font-weight:800;color:#E2E8F0;line-height:1.1}
+.ac-sub{font-size:.6rem;color:#60A5FA;margin-top:.1rem}
+.ann-plat{top:5%;left:2%;border:1px solid rgba(59,130,246,.5)}
+.ann-plat .ac-icon{background:rgba(37,99,235,.25);color:#60A5FA}
+.ann-remote{top:5%;right:2%;border:1px solid rgba(6,182,212,.5)}
+.ann-remote .ac-icon{background:rgba(8,145,178,.25);color:#22D3EE}
+.ann-laptop{bottom:6%;right:2%;border:1px solid rgba(16,185,129,.5)}
+.ann-laptop .ac-icon{background:rgba(5,150,105,.25);color:#34D399}
+@media(max-width:768px){.ann-card,.ann-svg{display:none}}
+
+/* ══════════════════════════════
+   PACKAGES
+══════════════════════════════ */
+.pkg-intro{text-align:center;margin-bottom:3rem}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.oneday-product-card{display:grid;grid-template-columns:1.25fr .75fr;min-height:250px;margin:2.2rem 0 1.5rem;background:#fff;border:1px solid rgba(37,99,235,.22);border-radius:var(--r);overflow:hidden;box-shadow:0 10px 34px rgba(15,23,42,.08);transition:all var(--tr)}
+.oneday-product-card:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 18px 45px rgba(37,99,235,.14)}
+.od-card-copy{padding:2rem 2.2rem;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.od-card-label{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:800;color:var(--blue);background:rgba(37,99,235,.08);border-radius:100px;padding:.3rem .75rem;margin-bottom:.8rem}
+.od-card-title{font-size:clamp(1.45rem,2.5vw,2rem);font-weight:900;line-height:1.2;margin-bottom:.7rem;color:var(--text)}
+.od-card-desc{font-size:.94rem;color:var(--muted);word-break:keep-all;max-width:610px}
+.od-card-points{display:flex;gap:.55rem;flex-wrap:wrap;margin:1rem 0 1.15rem}
+.od-card-point{font-size:.75rem;font-weight:700;color:#334155;border:1px solid var(--border);border-radius:100px;padding:.3rem .7rem;background:#fff}
+.od-card-link{display:inline-flex;align-items:center;gap:.45rem;color:var(--blue);font-size:.9rem;font-weight:800}
+.od-card-visual{position:relative;min-height:250px;background:#dbeafe;overflow:hidden}
+.od-card-visual img{width:100%;height:100%;object-fit:cover}
+.od-result-badge{position:absolute;left:1rem;bottom:1rem;background:rgba(15,23,42,.88);color:#fff;border-radius:7px;padding:.55rem .8rem;font-size:.78rem;font-weight:800;backdrop-filter:blur(8px)}
+.pkg-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all var(--tr);display:flex;flex-direction:column;position:relative;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+.pkg-card:hover{transform:translateY(-6px);border-color:rgba(37,99,235,.3);box-shadow:0 16px 48px rgba(15,23,42,.12)}
+.pkg-card.pk-hot{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 8px 32px rgba(37,99,235,.12)}
+.pk-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;font-size:.7rem;font-weight:700;padding:.28rem .9rem;border-radius:0 0 8px 8px;white-space:nowrap}
+.pk-situation{padding:1.6rem 1.6rem .8rem;border-bottom:1px solid var(--border)}
+.pk-sit-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.pk-sit-title{font-size:1.05rem;font-weight:800;color:var(--text);word-break:keep-all}
+.pk-body{padding:1.4rem 1.6rem 1.6rem;display:flex;flex-direction:column;gap:1rem;flex:1}
+.pk-name{font-size:.88rem;font-weight:600;color:var(--muted)}
+.pk-price{font-size:1.9rem;font-weight:900;color:var(--blue);line-height:1}
+.pk-price sub{font-size:.75rem;font-weight:500;color:var(--muted);vertical-align:baseline}
+.pk-price-note{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+.pk-highlight{background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.18);border-radius:8px;padding:.7rem 1rem;font-size:.85rem;color:var(--blue);font-weight:500;word-break:keep-all}
+.pk-features{display:flex;flex-direction:column;gap:.6rem;margin-top:.4rem}
+.pk-features li{display:flex;align-items:flex-start;gap:.55rem;font-size:.88rem;color:var(--muted)}
+.pk-features li i{color:var(--green);font-size:.8rem;margin-top:3px;flex-shrink:0}
+/* ALL-IN-ONE 임대/인수 토글 */
+.pk-type-toggle{display:flex;background:rgba(15,23,42,.05);border-radius:8px;padding:3px;gap:2px;margin-bottom:.9rem}
+.pk-type-btn{flex:1;padding:.38rem .5rem;border:none;background:transparent;border-radius:6px;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all var(--tr);white-space:nowrap}
+.pk-type-btn.on{background:#fff;color:var(--purple);box-shadow:0 1px 4px rgba(15,23,42,.1)}
+.pk-price-panel{display:none}.pk-price-panel.on{display:block}
+.pk-vol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.65rem 0 .3rem}
+.pk-vol-item{border:1.5px solid var(--border);border-radius:8px;padding:.5rem .4rem;text-align:center;cursor:pointer;transition:all var(--tr)}
+.pk-vol-item:hover{border-color:var(--purple)}
+.pk-vol-item.on{border-color:var(--purple);background:rgba(124,58,237,.05)}
+.pk-vol-item .pvi-n{font-size:.72rem;color:var(--muted);margin-bottom:.15rem}
+.pk-vol-item .pvi-p{font-size:.9rem;font-weight:800;color:var(--text);line-height:1}
+.pk-vol-item .pvi-u{font-size:.65rem;color:var(--muted)}
+.pk-vol-note{font-size:.72rem;color:var(--dim);line-height:1.5;word-break:keep-all;margin-top:.3rem}
+.pk-formula{display:inline-block;font-size:.75rem;font-weight:700;color:var(--blue);background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.18);border-radius:6px;padding:.22rem .65rem;margin:.35rem 0 .2rem}
+.pk-cta{margin-top:auto}
+.pk-cta a{display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;padding:.82rem;border-radius:9px;font-weight:700;font-size:.93rem;transition:all var(--tr)}
+.pk-cta-primary{background:var(--blue);color:#fff}
+.pk-cta-primary:hover{background:var(--blue-d)}
+.pk-cta-outline{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.pk-cta-outline:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ══════════════════════════════
+   DETAIL SECTIONS (RIGHT NAV)
+══════════════════════════════ */
+.detail-layout{display:grid;grid-template-columns:1fr 200px;gap:5rem;align-items:start;padding-right:0}
+
+/* ── 커리큘럼 ── */
+.curr-tabs{display:flex;gap:.5rem;margin:1.5rem 0 2rem;flex-wrap:wrap}
+.curr-tab{padding:.45rem 1.1rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.88rem;font-weight:500;cursor:pointer;transition:all var(--tr)}
+.curr-tab.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.curr-tab:hover:not(.on){color:var(--text);border-color:rgba(15,23,42,.2)}
+.curr-panel{display:none}
+.curr-panel.on{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.curr-month{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;transition:all var(--tr);box-shadow:0 1px 4px rgba(15,23,42,.04);display:flex;flex-direction:column;align-items:flex-start}
+.curr-month:hover{border-color:rgba(37,99,235,.3);box-shadow:0 4px 16px rgba(37,99,235,.08)}
+.cm-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:.9rem;flex-shrink:0}
+.cm-month{font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.35rem}
+.cm-title{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:.4rem;line-height:1.35;word-break:keep-all}
+.cm-desc{font-size:.8rem;color:var(--muted);line-height:1.6;word-break:keep-all;flex:1}
+.cm-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.7rem}
+.cm-tag{font-size:.72rem;padding:.18rem .55rem;border-radius:100px;font-weight:600}
+.t-b{background:rgba(37,99,235,.1);color:#1D4ED8}
+.t-c{background:rgba(8,145,178,.1);color:#0E7490}
+.t-p{background:rgba(124,58,237,.1);color:#6D28D9}
+.t-g{background:rgba(5,150,105,.1);color:#047857}
+.t-a{background:rgba(217,119,6,.1);color:#B45309}
+
+/* ── 노트북 렌탈 ── */
+.laptop-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;margin-top:2rem}
+.laptop-spec-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;box-shadow:0 1px 4px rgba(15,23,42,.04)}
+.laptop-spec-card h4{font-size:.97rem;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.laptop-spec-card h4 i{color:var(--blue)}
+.spec-list{display:flex;flex-direction:column;gap:.65rem}
+.spec-item{display:flex;align-items:center;gap:.7rem;font-size:.88rem}
+.spec-item .spec-k{color:var(--muted);flex-shrink:0;min-width:90px;font-size:.82rem}
+.spec-item .spec-v{color:var(--text);font-weight:600}
+.rental-process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2rem;position:relative}
+.rental-process::before{content:'';position:absolute;top:22px;left:calc(12.5% + 22px);right:calc(12.5% + 22px);height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:0}
+.rp-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 .5rem}
+.rp-step .rp-icon{width:44px;height:44px;border-radius:50%;margin:0 auto .9rem;display:flex;align-items:center;justify-content:center;font-size:1.05rem;border:2px solid var(--blue);background:var(--bg3);transition:all var(--tr)}
+.rp-step:hover .rp-icon{background:var(--blue);color:#fff!important;box-shadow:0 0 16px rgba(37,99,235,.25)}
+.rp-step h5{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.rp-step p{font-size:.78rem;color:var(--muted);line-height:1.5;word-break:keep-all}
+.rental-price-banner{margin-top:1.8rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem 1.8rem;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+.rpb-top{margin-bottom:1.1rem}
+.rpb-top h4{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.rpb-top p{font-size:.85rem;color:var(--muted);word-break:keep-all}
+.rpb-dual{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch}
+.rpb-divider{display:flex;align-items:center;justify-content:center;padding:0 1.2rem;color:var(--dim);font-size:.78rem;font-weight:600}
+.rpb-type-card{border-radius:10px;padding:1rem 1.2rem}
+.rpb-type-card.lease{background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.18)}
+.rpb-type-card.own{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.2)}
+.rpb-type-label{display:flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:700;margin-bottom:.85rem}
+.rpb-type-label .badge{padding:.18rem .65rem;border-radius:100px;font-size:.68rem;font-weight:700}
+.rpb-type-label .badge.lease{background:rgba(37,99,235,.12);color:var(--blue)}
+.rpb-type-label .badge.own{background:rgba(124,58,237,.12);color:var(--purple)}
+.rpb-period-grid{display:flex;flex-direction:column;gap:.5rem}
+.rpb-period-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.rpb-period-row .period{font-size:.76rem;color:var(--muted);white-space:nowrap;min-width:46px}
+.rpb-period-row .price{font-size:1.05rem;font-weight:800;color:var(--text);white-space:nowrap}
+.rpb-period-row .price sub{font-size:.65rem;font-weight:400;color:var(--muted)}
+.rpb-period-row.best .period{color:var(--blue);font-weight:700}
+.rpb-period-row.best .price{color:var(--blue);font-size:1.25rem}
+.rpb-period-row.best-own .period{color:var(--purple);font-weight:700}
+.rpb-period-row.best-own .price{color:var(--purple);font-size:1.25rem}
+.rpb-vat{font-size:.72rem;color:var(--dim);margin-top:.9rem;text-align:center}
+@media(max-width:600px){.rpb-dual{grid-template-columns:1fr;gap:.8rem}.rpb-divider{padding:.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}}
+
+/* ── 플랫폼 소개 ── */
+.plat-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.plat-features{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem}
+.plat-feat{display:flex;align-items:flex-start;gap:1rem}
+.pf-icon{width:40px;height:40px;border-radius:10px;background:rgba(37,99,235,.09);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.plat-feat strong{font-size:.92rem;font-weight:700;color:var(--text);display:block;margin-bottom:.2rem}
+.plat-feat p{font-size:.83rem;color:var(--muted);line-height:1.6;word-break:keep-all;margin:0}
+/* 플랫폼 UI 목업 */
+.plat-mockup{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(15,23,42,.12),0 4px 16px rgba(37,99,235,.07)}
+.pm-bar{background:#F1F5F9;padding:.5rem .85rem;display:flex;align-items:center;gap:.4rem;border-bottom:1px solid var(--border)}
+.pm-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.pm-body{display:flex;height:260px}
+.pm-sidebar{width:46px;background:#0F172A;display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.8rem 0}
+.pm-menu-item{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.78rem;color:#475569;transition:all .2s}
+.pm-menu-item.on{background:var(--blue);color:#fff}
+.pm-content{flex:1;padding:1rem;display:flex;flex-direction:column;gap:.75rem;overflow:hidden}
+.pm-header-bar{display:flex;align-items:center;justify-content:space-between}
+.pm-title-line{height:9px;background:rgba(15,23,42,.1);border-radius:5px;width:38%}
+.pm-avatar{width:22px;height:22px;border-radius:50%;background:var(--blue);opacity:.35}
+.pm-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+.pm-card{background:rgba(15,23,42,.03);border:1px solid var(--border);border-radius:8px;padding:.65rem;border-top:2px solid var(--c,var(--blue))}
+.pm-card-icon{font-size:.78rem;color:var(--c,var(--blue));margin-bottom:.38rem}
+.pm-card-lines div{height:5px;background:rgba(15,23,42,.09);border-radius:3px;margin-bottom:.28rem}
+.pm-card-lines div:last-child{width:55%}
+.pm-progress-section{display:flex;flex-direction:column;gap:.38rem}
+.pm-prog-label{height:7px;background:rgba(15,23,42,.09);border-radius:4px;width:32%}
+.pm-prog-bar{height:5px;background:rgba(15,23,42,.06);border-radius:3px;overflow:hidden}
+.pm-prog-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .8s ease}
+
+/* ── 교육 사례 ── */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.case-card{display:block;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all var(--tr);box-shadow:0 2px 8px rgba(15,23,42,.05);color:inherit;text-decoration:none}
+.case-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(15,23,42,.1)}
+.case-photo{position:relative;height:200px;background:rgba(15,23,42,.04);overflow:hidden}
+.case-img{width:100%;height:100%;object-fit:cover}
+.case-img[src=""]{display:none}
+.case-photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--dim)}
+.case-photo-placeholder i{font-size:2.2rem;opacity:.35}
+.case-photo-placeholder span{font-size:.75rem}
+.case-body{padding:1.4rem}
+.case-tag{display:inline-block;font-size:.7rem;font-weight:700;padding:.22rem .65rem;border-radius:100px;background:rgba(37,99,235,.08);color:var(--blue);margin-bottom:.7rem;letter-spacing:.04em}
+.case-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.case-desc{font-size:.83rem;color:var(--muted);line-height:1.65;word-break:keep-all}
+.cases-note{margin-top:2rem;text-align:center;font-size:.85rem;color:var(--muted)}
+
+/* ── 원격수업 ── */
+.remote-how{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.remote-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;box-shadow:0 1px 4px rgba(15,23,42,.04)}
+.remote-card h4{font-size:.97rem;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.remote-card h4 i{color:var(--cyan)}
+.remote-list{display:flex;flex-direction:column;gap:.7rem}
+.remote-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.88rem;color:var(--muted);word-break:keep-all}
+.remote-list li i{color:var(--blue);flex-shrink:0;margin-top:3px;font-size:.82rem}
+.remote-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem;position:relative}
+.remote-flow::before{content:'';position:absolute;top:22px;left:calc(12.5% + 22px);right:calc(12.5% + 22px);height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:0}
+.rf-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
+.rf-icon{width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.7rem;transition:all var(--tr);color:var(--blue)}
+.rf-step:hover .rf-icon{background:var(--blue);color:#fff;box-shadow:0 0 16px rgba(37,99,235,.3)}
+.rf-title{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.rf-desc{font-size:.75rem;color:var(--muted);line-height:1.5;word-break:keep-all}
+
+/* ══════════════════════════════
+   CONTACT FORM
+══════════════════════════════ */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;margin-top:3rem}
+.contact-info h3{font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:.8rem;line-height:1.4;word-break:keep-all}
+.contact-info p{font-size:.92rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem;word-break:keep-all}
+.ci-list{display:flex;flex-direction:column;gap:.85rem}
+.ci-item{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:var(--muted)}
+.ci-item .ci-icon{width:34px;height:34px;border-radius:9px;background:rgba(37,99,235,.08);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.88rem}
+.form-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:2.2rem;box-shadow:0 4px 24px rgba(15,23,42,.07)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:.78rem;font-weight:600;color:var(--muted);letter-spacing:.03em}
+.fg label span{color:#EF4444;margin-left:2px}
+.fi,.fs,.ft{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:.7rem .95rem;font-size:.9rem;color:var(--text);outline:none;font-family:inherit;transition:border-color var(--tr),box-shadow var(--tr)}
+.fi::placeholder,.ft::placeholder{color:var(--dim)}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.fs{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.2rem;background-color:#fff}
+.fs option{background:#fff}
+.ft{resize:vertical;min-height:100px}
+.form-submit{margin-top:1.2rem}
+.form-submit button{width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border:none;border-radius:9px;font-size:.97rem;font-weight:700;cursor:pointer;transition:all var(--tr)}
+.form-submit button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.35)}
+.form-note{font-size:.75rem;color:var(--dim);text-align:center;margin-top:.7rem;line-height:1.5}
+.form-success{display:none;text-align:center;padding:2.5rem 1rem;flex-direction:column;align-items:center;gap:.9rem}
+.form-success.show{display:flex}
+.fs-icon{width:64px;height:64px;border-radius:50%;background:rgba(5,150,105,.1);color:var(--green);font-size:1.8rem;display:flex;align-items:center;justify-content:center}
+.form-success h3{font-size:1.2rem;font-weight:700;color:var(--text)}
+.form-success p{font-size:.88rem;color:var(--muted)}
+
+/* ══════════════════════════════
+   RIGHT SIDE NAV
+══════════════════════════════ */
+.side-nav{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:10px}
+.sn-item{display:flex;align-items:center;justify-content:flex-end;gap:8px;cursor:pointer;text-decoration:none}
+.sn-label{font-size:.72rem;font-weight:600;color:var(--text);opacity:0;transform:translateX(6px);transition:all var(--tr);white-space:nowrap;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border:1px solid var(--border);padding:.2rem .6rem;border-radius:6px;box-shadow:0 2px 8px rgba(15,23,42,.1)}
+.sn-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--dim);flex-shrink:0;transition:all var(--tr)}
+.sn-item:hover .sn-label,.sn-item.on .sn-label{opacity:1;transform:translateX(0)}
+.sn-item.on .sn-dot{background:var(--blue);border-color:var(--blue);box-shadow:0 0 8px rgba(37,99,235,.4)}
+.sn-item:hover .sn-dot{border-color:var(--blue)}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+.footer{background:#0F172A;border-top:1px solid rgba(255,255,255,.06);padding:2.5rem 0 2rem}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.footer-brand p{font-size:.82rem;color:#64748B;max-width:260px;line-height:1.6;margin-top:.6rem}
+.footer-logo{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1rem;color:#F1F5F9}
+.footer-logo img{width:26px;height:26px;object-fit:contain}
+.footer-links{display:flex;gap:3rem}
+.fl-col h4{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#475569;margin-bottom:.9rem}
+.fl-col ul{display:flex;flex-direction:column;gap:.5rem}
+.fl-col a{font-size:.82rem;color:#475569;transition:color var(--tr)}
+.fl-col a:hover{color:#60A5FA}
+.footer-bottom{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+.footer-copy{font-size:.78rem;color:#475569}
+.footer-social{display:flex;gap:.6rem}
+.footer-social a{width:32px;height:32px;border-radius:7px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#475569;font-size:.85rem;transition:all var(--tr)}
+.footer-social a:hover{border-color:#3B82F6;color:#60A5FA}
+
+/* ══════════════════════════════
+   REVEAL ANIMATION (JS-driven)
+══════════════════════════════ */
+.jr .rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.jr .rv.in{opacity:1;transform:translateY(0)}
+.jr .rv.d1{transition-delay:.1s}.jr .rv.d2{transition-delay:.2s}.jr .rv.d3{transition-delay:.3s}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width:1100px){
+  .side-nav{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-h1{font-size:2.3rem}
+  .pkg-grid{grid-template-columns:1fr}
+  .plat-inner{grid-template-columns:1fr;gap:2.5rem}
+  .laptop-grid{grid-template-columns:1fr}
+  .remote-how{grid-template-columns:1fr}
+  .cases-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-wrap{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .sec{padding:56px 0}
+  .oneday-product-card{grid-template-columns:1fr}.od-card-copy{padding:1.55rem}.od-card-visual{min-height:210px}
+  .hd-nav{display:none}
+  .hd-mobile{display:flex}
+  .hd-nav.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(255,255,255,.98);z-index:999;justify-content:center;align-items:center;gap:.5rem}
+  .hd-nav.open .hd-link{font-size:1.15rem;padding:.7rem 1.5rem;color:var(--text)}
+  .curr-panel.on{grid-template-columns:repeat(2,1fr)}
+  .cm-icon{width:40px;height:40px;font-size:1rem}
+  .rental-process{grid-template-columns:repeat(2,1fr)}
+  .rental-process::before{display:none}
+  .remote-flow{grid-template-columns:repeat(2,1fr)}
+  .remote-flow::before{display:none}
+  .footer-links{gap:1.5rem;flex-wrap:wrap}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .form-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+  .hero-btns{flex-direction:column}
+}
+@media(max-width:768px){
+  .cases-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .rental-process,.remote-flow{grid-template-columns:1fr}
+  .laptop-grid{grid-template-columns:1fr}
+  .curr-panel.on{grid-template-columns:1fr}
+}
+
+/* ── 플로팅 위젯 (무료상담 + 카카오 채널) ── */
+.float-stack{position:fixed;bottom:2rem;right:2rem;z-index:150;display:flex;flex-direction:column;align-items:center;gap:.7rem}
+.float-consult{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-decoration:none}
+.float-consult-btn{width:54px;height:54px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,99,235,.38);transition:transform .22s ease,box-shadow .22s ease;color:#fff;font-size:1.3rem}
+.float-consult:hover .float-consult-btn{transform:scale(1.1);box-shadow:0 7px 26px rgba(37,99,235,.5)}
+.float-consult-label{font-size:.67rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.kakao-float{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.kakao-float-btn{width:54px;height:54px;background:#FEE500;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18);border:none;transition:transform .22s ease,box-shadow .22s ease;color:#3B1F1F;text-decoration:none}
+.kakao-float-btn:hover{transform:scale(1.1);box-shadow:0 7px 26px rgba(0,0,0,.26)}
+.kakao-float-label{font-size:.67rem;font-weight:700;color:var(--muted);white-space:nowrap}
+@media(max-width:768px){.float-stack{bottom:1.2rem;right:1rem}.kakao-float-btn{width:48px;height:48px}.float-consult-btn{width:48px;height:48px;font-size:1.15rem}}
+
+/* ── 선택 옵션 카드 ── */
+.option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.option-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;box-shadow:0 2px 10px rgba(15,23,42,.05);display:flex;flex-direction:column;min-height:330px;transition:all var(--tr);position:relative;overflow:hidden}
+.option-card:hover{transform:translateY(-5px);border-color:rgba(37,99,235,.28);box-shadow:0 14px 36px rgba(15,23,42,.1)}
+.option-card.featured{border-color:rgba(124,58,237,.22);background:linear-gradient(180deg,#fff,rgba(124,58,237,.035))}
+.option-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem;background:rgba(37,99,235,.08);color:var(--blue)}
+.option-card.featured .option-icon{background:rgba(124,58,237,.1);color:var(--purple)}
+.option-card.remote .option-icon{background:rgba(8,145,178,.1);color:var(--cyan)}
+.option-kicker{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.option-title{font-size:1.2rem;font-weight:850;color:var(--text);line-height:1.35;margin-bottom:.75rem;word-break:keep-all}
+.option-price{display:flex;align-items:baseline;gap:.25rem;margin-bottom:.85rem;color:var(--blue)}
+.option-card.featured .option-price{color:var(--purple)}
+.option-card.remote .option-price{color:var(--cyan)}
+.option-price strong{font-size:1.8rem;font-weight:900;line-height:1}
+.option-price span{font-size:.8rem;color:var(--muted);font-weight:600}
+.option-desc{font-size:.9rem;color:var(--muted);line-height:1.65;word-break:keep-all;margin-bottom:1rem}
+.option-list{display:flex;flex-direction:column;gap:.55rem;margin-top:auto}
+.option-list li{display:flex;align-items:flex-start;gap:.5rem;font-size:.84rem;color:var(--muted);line-height:1.55;word-break:keep-all}
+.option-list i{color:var(--blue);font-size:.75rem;margin-top:.28rem;flex-shrink:0}
+.option-card.featured .option-list i{color:var(--purple)}
+.option-card.remote .option-list i{color:var(--cyan)}
+.option-actions{display:flex;gap:.55rem;margin-top:1.15rem;flex-wrap:wrap}
+.option-actions .btn{font-size:.82rem;padding:.55rem 1rem;border-radius:9px}
+@media(max-width:1000px){.option-grid{grid-template-columns:1fr}.option-card{min-height:auto}}
+
+/* ── 견적 모달 ── */
+.qmodal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.qmodal-overlay.open{opacity:1;visibility:visible}
+.qmodal{background:var(--bg);border-radius:16px;width:100%;max-width:1060px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.28);transform:translateY(14px);transition:transform .28s ease;margin:auto}
+.qmodal-overlay.open .qmodal{transform:translateY(0)}
+.qm-hd{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.6rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(248,250,252,.97);backdrop-filter:blur(8px);z-index:10;border-radius:16px 16px 0 0}
+.qm-hd-title{font-size:.97rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.45rem}
+.qm-close{width:30px;height:30px;border-radius:7px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all var(--tr);font-size:.85rem}
+.qm-close:hover{background:rgba(15,23,42,.07);color:var(--text)}
+.qm-body{padding:1.5rem 1.6rem 2.2rem}
+/* 티어 카드 */
+.tier-label{text-align:center;font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-bottom:1.6rem}
+.tier-card{border:2px solid var(--border);border-radius:var(--r);padding:1.1rem 1rem;cursor:pointer;transition:all var(--tr);background:var(--bg3);position:relative;user-select:none}
+.tier-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.1)}
+.tier-card.on{border-color:var(--blue);background:#F0F6FF;box-shadow:0 0 0 1px var(--blue),0 6px 20px rgba(37,99,235,.1)}
+.tier-card.on .tc-check{opacity:1}
+.tc-check{position:absolute;top:.55rem;right:.55rem;width:18px;height:18px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.6rem;opacity:0;transition:opacity var(--tr)}
+.tc-badge{display:inline-block;font-size:.66rem;font-weight:700;padding:.16rem .5rem;border-radius:100px;margin-bottom:.45rem}
+.tc-name{font-size:.92rem;font-weight:800;color:var(--text);margin-bottom:.25rem;word-break:keep-all}
+.tc-price{font-size:1.35rem;font-weight:900;color:var(--blue);line-height:1}
+.tc-price sub{font-size:.68rem;font-weight:400;color:var(--muted);vertical-align:baseline}
+.tc-price .from{font-size:.7rem;color:var(--muted);font-weight:400;margin-right:.12rem}
+.tc-desc{font-size:.73rem;color:var(--muted);line-height:1.5;margin-top:.4rem;word-break:keep-all}
+.tier-1 .tc-badge{background:rgba(5,150,105,.1);color:#047857}
+.tier-1.on{border-color:var(--green)!important;background:#F0FDF4!important;box-shadow:0 0 0 1px var(--green),0 6px 20px rgba(5,150,105,.1)!important}
+.tier-1.on .tc-price{color:var(--green)}
+.tier-1.on .tc-check{background:var(--green)}
+.tier-2 .tc-badge{background:rgba(8,145,178,.1);color:#0E7490}
+.tier-2.on{border-color:var(--cyan)!important;background:#F0FDFF!important;box-shadow:0 0 0 1px var(--cyan),0 6px 20px rgba(8,145,178,.1)!important}
+.tier-2.on .tc-price{color:var(--cyan)}
+.tier-2.on .tc-check{background:var(--cyan)}
+.tier-3 .tc-badge{background:rgba(37,99,235,.1);color:#1D4ED8}
+.tier-4 .tc-badge{background:rgba(124,58,237,.1);color:#6D28D9}
+.tier-4.on{border-color:var(--purple)!important;background:#FAF5FF!important;box-shadow:0 0 0 1px var(--purple),0 6px 20px rgba(124,58,237,.1)!important}
+.tier-4.on .tc-price{color:var(--purple)}
+.tier-4.on .tc-check{background:var(--purple)}
+/* 계산기 레이아웃 */
+.calc-layout{display:grid;grid-template-columns:1fr 310px;gap:1.5rem;align-items:start}
+.calc-options{display:flex;flex-direction:column;gap:1.2rem}
+.opt-group{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem}
+.opt-group-title{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.85rem;display:flex;align-items:center;gap:.45rem}
+.opt-group-title i{color:var(--blue);font-size:.82rem}
+.opt-chips{display:flex;gap:.45rem;flex-wrap:wrap}
+.q-chip{padding:.42rem .9rem;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-size:.83rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all var(--tr);font-family:inherit}
+.q-chip:hover{border-color:rgba(37,99,235,.3);color:var(--text)}
+.q-chip.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+.class-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.class-chip{padding:.5rem .35rem;border-radius:8px;border:1.5px solid var(--border);background:transparent;cursor:pointer;transition:all var(--tr);text-align:center;font-family:inherit}
+.class-chip .cc-n{font-size:.95rem;font-weight:800;color:var(--text);line-height:1}
+.class-chip .cc-lbl{font-size:.68rem;color:var(--muted);margin-top:.15rem}
+.class-chip .cc-price{font-size:.7rem;color:var(--blue);font-weight:600;margin-top:.2rem}
+.class-chip:hover{border-color:rgba(37,99,235,.3)}
+.class-chip.on{border-color:var(--blue);background:rgba(37,99,235,.06)}
+.class-chip.on .cc-n,.class-chip.on .cc-lbl{color:var(--blue)}
+.qty-row{display:flex;align-items:center;gap:1rem}
+.qty-slider{flex:1;-webkit-appearance:none;appearance:none;height:5px;border-radius:3px;background:linear-gradient(to right, var(--blue) 0%, var(--blue) 0%, rgba(15,23,42,.12) 0%);outline:none;cursor:pointer}
+.qty-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--blue);box-shadow:0 2px 8px rgba(37,99,235,.35);cursor:pointer}
+.qty-display{min-width:60px;text-align:center}
+.qty-num{font-size:1.7rem;font-weight:900;color:var(--blue);line-height:1}
+.qty-unit{font-size:.76rem;color:var(--muted)}
+.qty-btns{display:flex;flex-direction:column;gap:3px}
+.qty-btn{width:24px;height:20px;border:1px solid var(--border);border-radius:4px;background:var(--bg3);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all var(--tr)}
+.qty-btn:hover{border-color:var(--blue);color:var(--blue)}
+.qty-marks{display:flex;justify-content:space-between;margin-top:.3rem;padding:0 2px}
+.qty-marks span{font-size:.66rem;color:var(--dim)}
+.no-laptop-chip{width:100%;padding:.5rem;border-radius:8px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-size:.83rem;font-weight:500;color:var(--muted);transition:all var(--tr);text-align:center;font-family:inherit;margin-bottom:.45rem}
+.no-laptop-chip:hover{border-color:rgba(15,23,42,.2);color:var(--text)}
+.no-laptop-chip.on{border-color:var(--muted);background:rgba(15,23,42,.04);color:var(--text)}
+.laptop-options{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.laptop-type-card{border:1.5px solid var(--border);border-radius:9px;padding:.75rem .9rem;cursor:pointer;transition:all var(--tr);background:transparent}
+.laptop-type-card:hover{border-color:rgba(37,99,235,.3)}
+.laptop-type-card.on{border-color:var(--blue);background:rgba(37,99,235,.05)}
+.ltc-type{font-size:.7rem;font-weight:700;color:var(--blue);margin-bottom:.22rem}
+.ltc-name{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.18rem}
+.ltc-desc{font-size:.71rem;color:var(--muted);line-height:1.4;word-break:keep-all}
+/* 견적 결과 패널 */
+.calc-result{position:sticky;top:72px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r);padding:1.4rem;box-shadow:0 4px 24px rgba(15,23,42,.09)}
+.cr-title{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.cr-items{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.9rem}
+.cr-item{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted)}
+.cr-item.active{color:var(--text)}
+.cr-item .ci-label{display:flex;align-items:center;gap:.4rem}
+.cr-item .ci-label i{width:14px;text-align:center;font-size:.78rem;color:var(--blue)}
+.cr-item .ci-val{font-weight:600;color:var(--text)}
+.cr-item .ci-val.dim{color:var(--dim);font-weight:400}
+.cr-item.discount .ci-val{color:var(--green)}
+.cr-divider{border:none;border-top:1.5px solid var(--border);margin:.7rem 0}
+.cr-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
+.cr-total-label{font-size:.88rem;font-weight:700;color:var(--text)}
+.cr-total-price{font-size:1.85rem;font-weight:900;color:var(--blue);line-height:1}
+.cr-total-price sub{font-size:.73rem;font-weight:400;color:var(--muted);vertical-align:baseline}
+.cr-period-row{display:flex;justify-content:space-between;align-items:center;font-size:.81rem;color:var(--muted);margin-bottom:1.1rem}
+.cr-period-val{font-weight:700;color:var(--text)}
+.cr-extras{background:rgba(15,23,42,.03);border-radius:7px;padding:.7rem .9rem;font-size:.76rem;color:var(--muted);line-height:1.7;margin-bottom:1.1rem}
+.cr-extras strong{color:var(--text)}
+.cr-cta{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;transition:all var(--tr);display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:inherit}
+.cr-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.35)}
+.cr-note{font-size:.7rem;color:var(--dim);text-align:center;margin-top:.55rem;line-height:1.5}
+.price-original{font-size:.86rem;color:var(--dim);text-decoration:line-through;line-height:1;margin-bottom:.2rem}
+.save-badge{display:inline-flex;align-items:center;gap:.3rem;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:.88rem;font-weight:800;padding:.38rem .85rem;border-radius:9px;letter-spacing:-.01em;box-shadow:0 3px 10px rgba(5,150,105,.35)}
+.pay-toggle{display:flex;gap:.35rem;margin-bottom:1rem}
+.pt-btn{flex:1;padding:.42rem;border-radius:7px;border:1.5px solid var(--border);background:transparent;font-size:.8rem;font-weight:600;cursor:pointer;transition:all var(--tr);font-family:inherit;color:var(--muted)}
+.pt-btn.on{border-color:var(--blue);background:var(--blue);color:#fff}
+.pt-btn:disabled{cursor:not-allowed}
+.pt-discount{font-size:.68rem;background:rgba(5,150,105,.15);color:var(--green);border-radius:4px;padding:.08rem .3rem;margin-left:.18rem}
+.pt-btn.on .pt-discount{background:rgba(255,255,255,.2);color:#fff}
+@media(max-width:820px){.calc-layout{grid-template-columns:1fr}.calc-result{position:static;order:-1}.tier-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.tier-grid{grid-template-columns:1fr 1fr}.class-chips{grid-template-columns:repeat(2,1fr)}.laptop-options{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="hd" id="hd">
+  <div class="wrap">
+    <div class="hd-inner">
+      <a href="index.html" class="hd-logo">
+        <img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(white)_1024x180.png" alt="코스모에듀" loading="lazy">
+      </a>
+      <nav class="hd-nav" id="hdNav">
+        <a href="#packages" class="hd-link">패키지</a>
+        <a href="#" class="hd-link" onclick="openQuoteModal();return false;" style="color:var(--blue)"><i class="fas fa-calculator" style="font-size:.78rem"></i> 견적계산</a>
+        <a href="#platform" class="hd-link">플랫폼</a>
+        <a href="#curriculum" class="hd-link">커리큘럼</a>
+        <a href="#remote" class="hd-link">원격·노트북</a>
+        <a href="oneday.html" class="hd-link" style="color:var(--blue)">1DAY 출강</a>
+        <a href="#contact" class="hd-link hd-cta">무료 상담</a>
+      </nav>
+      <button class="hd-mobile" id="hdMob" aria-label="메뉴"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+
+      <!-- 텍스트 -->
+      <div class="hero-text">
+        <div class="hero-badge"><span class="dot"></span>AI·코딩 수업 구축 전문</div>
+        <h1 class="hero-h1">우리 기관에도<br><span class="g">AI 수업이<br>시작됩니다.</span></h1>
+        <p class="hero-p">강사 없이도, 장비 없이도, 커리큘럼 걱정 없이도.<br>우리 기관 상황에 맞는 패키지로 시작하세요.</p>
+        <div class="hero-btns">
+          <a href="#packages" class="btn btn-p"><i class="fas fa-th-large"></i> 패키지 선택하기</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hs-num">17</div><div class="hs-lbl">전국 시/도 가능</div></div>
+          <div><div class="hs-num">4주</div><div class="hs-lbl">도입 완료 기간</div></div>
+          <div><div class="hs-num">100%</div><div class="hs-lbl">원격 지원</div></div>
+        </div>
+      </div>
+
+      <!-- 메인 히어로 이미지 -->
+      <div class="classroom-wrap">
+        <img src="img/AI_CLASS.png" alt="AI 수업 클래스룸" class="classroom-svg" loading="eager">
+
+        <!-- ── 어노테이션 SVG 오버레이 ── -->
+        <svg class="ann-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- 플랫폼: TV 좌측 노드 (27,33) → 좌상단 카드 연결점 (26,17) -->
+          <line x1="27" y1="33" x2="26" y2="17" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="27" cy="33" r="1.3" fill="#60A5FA"/>
+          <circle cx="27" cy="33" r="1.3" fill="none" stroke="#60A5FA" stroke-width=".7" opacity=".6">
+            <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from=".6" to="0" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- 원격수업: TV 우측 노드 (66,24) → 우상단 카드 연결점 (74,17) -->
+          <line x1="66" y1="24" x2="74" y2="17" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="66" cy="24" r="1.3" fill="#22D3EE"/>
+          <circle cx="66" cy="24" r="1.3" fill="none" stroke="#22D3EE" stroke-width=".7" opacity=".6">
+            <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" begin=".7s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from=".6" to="0" dur="2.2s" begin=".7s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- 노트북 렌탈: 노트북 노드 (73,62) → 우하단 카드 연결점 (74,82) -->
+          <line x1="73" y1="62" x2="74" y2="82" stroke="rgba(148,163,184,.65)" stroke-width=".45" stroke-dasharray="2.2 1.6"/>
+          <circle cx="73" cy="62" r="1.3" fill="#34D399"/>
+          <circle cx="73" cy="62" r="1.3" fill="none" stroke="#34D399" stroke-width=".7" opacity=".6">
+            <animate attributeName="r" from="1.3" to="4.5" dur="2.2s" begin="1.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from=".6" to="0" dur="2.2s" begin="1.4s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+
+        <!-- 어노테이션 카드: 플랫폼 (좌상단) -->
+        <div class="ann-card ann-plat">
+          <div class="ac-icon"><i class="fas fa-layer-group"></i></div>
+          <div>
+            <div class="ac-label">플랫폼 기본형</div>
+            <div class="ac-value">월 11만원</div>
+            <div class="ac-sub">교사교육 무료 제공</div>
+          </div>
+        </div>
+
+        <!-- 어노테이션 카드: 원격수업 (우상단) -->
+        <div class="ann-card ann-remote">
+          <div class="ac-icon"><i class="fas fa-video"></i></div>
+          <div>
+            <div class="ac-label">원격수업</div>
+            <div class="ac-value">주 1회</div>
+            <div class="ac-sub">60분 · 전문강사</div>
+          </div>
+        </div>
+
+        <!-- 어노테이션 카드: 노트북 렌탈 (우하단) -->
+        <div class="ann-card ann-laptop">
+          <div class="ac-icon"><i class="fas fa-laptop"></i></div>
+          <div>
+            <div class="ac-label">노트북 렌탈</div>
+            <div class="ac-value">4.5만원</div>
+            <div class="ac-sub">대당 / 월</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PACKAGES ══ -->
+<section class="sec sec-alt" id="packages">
+  <div class="wrap">
+    <div class="pkg-intro rv">
+      <div class="sec-label">상황별 패키지</div>
+      <h2 class="sec-title">우리 기관 상황에 맞게<br><span class="hl">딱 맞는 패키지를 선택하세요</span></h2>
+      <p class="sec-sub" style="margin:0 auto">없는 것부터 채워드립니다. 콘텐츠만 필요한 곳부터 장비·수업·플랫폼 모두 처음인 곳까지.</p>
+      <div style="margin-top:1.2rem">
+        <a href="#" class="btn btn-o rv" onclick="openQuoteModal();return false;" style="display:inline-flex;font-size:.9rem;padding:.65rem 1.3rem">
+          <i class="fas fa-calculator"></i> 온라인 견적 직접 계산해보기
+        </a>
+      </div>
+    </div>
+
+    <a href="oneday.html" class="oneday-product-card rv" aria-label="1DAY AI 코딩 프로젝트 출강 자세히 보기">
+      <div class="od-card-copy">
+        <div class="od-card-label"><i class="fas fa-bolt"></i> 정기 도입 전에 먼저 경험하는 수업</div>
+        <h3 class="od-card-title">1DAY AI·코딩 프로젝트 출강</h3>
+        <p class="od-card-desc">전문 강사가 학교로 찾아가 AI와 교과를 연결한 프로젝트 수업을 진행합니다. 하루 수업이 끝나면 학생마다 실행하고 공유할 수 있는 웹앱 또는 디지털 작품이 남습니다.</p>
+        <div class="od-card-points">
+          <span class="od-card-point">전문 강사 학교 방문</span>
+          <span class="od-card-point">2~4차시 맞춤 구성</span>
+          <span class="od-card-point">학생별 실제 결과물</span>
+          <span class="od-card-point">온라인 작품 전시</span>
+        </div>
+        <span class="od-card-link">출강 콘텐츠와 실제 사례 보기 <i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="od-card-visual">
+        <img src="https://onag54aw13447.edge.naverncp.com/pong/thumbnails/92f9fcf7-800a-41a4-88a4-550a5d55c16e.png" alt="1DAY AI 운동 성장 앱 실제 학생 결과물" loading="lazy">
+        <span class="od-result-badge">실제 프로젝트 결과물</span>
+      </div>
+    </a>
+
+    <div class="pkg-grid">
+
+      <!-- 패키지 1 -->
+      <div class="pkg-card rv d1">
+        <div class="pk-situation">
+          <div class="pk-sit-label">이런 곳에 맞아요</div>
+          <div class="pk-sit-title">컴퓨터와 강사는 있어요<br>수업 콘텐츠가 필요해요</div>
+        </div>
+        <div class="pk-body">
+          <div>
+            <div class="pk-name">플랫폼 기본형</div>
+            <div class="pk-price">11만원<sub>/월</sub></div>
+            <div class="pk-price-note">VAT 포함 · 학교당</div>
+          </div>
+          <div class="pk-highlight">
+            <i class="fas fa-star" style="color:var(--amber);margin-right:5px"></i>
+            <strong>교사교육 무료 제공</strong> — 선생님이 직접 가르칠 수 있도록 교육해 드립니다
+          </div>
+          <ul class="pk-features">
+            <li><i class="fas fa-check"></i> AI·코딩 교육 플랫폼 이용</li>
+            <li><i class="fas fa-check"></i> 프로젝트 과제·콘텐츠 제공</li>
+            <li><i class="fas fa-check"></i> 교사용 학생 관리 기능</li>
+            <li><i class="fas fa-check"></i> 교사교육 무료 제공 (배워서 직접 진행 가능)</li>
+            <li><i class="fas fa-check"></i> 이메일·채팅 기술 지원</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 패키지 2 (추천) -->
+      <div class="pkg-card pk-hot rv d2" style="position:relative">
+        <div class="pk-tag">✦ 가장 인기 있는 선택</div>
+        <div class="pk-situation" style="padding-top:2.2rem">
+          <div class="pk-sit-label">이런 곳에 맞아요</div>
+          <div class="pk-sit-title">컴퓨터는 있어요.<br>전문 강사가 필요해요.</div>
+        </div>
+        <div class="pk-body">
+          <div>
+            <div class="pk-name">플랫폼 + 원격수업</div>
+            <div class="pk-price">27.5만원<sub>/월</sub></div>
+            <div class="pk-price-note">플랫폼 11만원 + 원격수업 16.5만원 · VAT 포함</div>
+          </div>
+          <div class="pk-highlight" style="border-color:rgba(6,182,212,.3);color:var(--cyan-l);background:rgba(6,182,212,.07)">
+            <i class="fas fa-video" style="color:var(--cyan);margin-right:5px"></i>
+            <strong>주 1회 60분</strong> 실시간 원격수업 — 전문 AI 강사가 직접 진행
+          </div>
+          <ul class="pk-features">
+            <li><i class="fas fa-check"></i> 플랫폼 기본형 전체 포함</li>
+            <li><i class="fas fa-check"></i> 주 1회 실시간 원격수업 (60분)</li>
+            <li><i class="fas fa-check"></i> 전문 AI·코딩 강사 진행</li>
+            <li><i class="fas fa-check"></i> 수업 녹화본 제공 (복습 가능)</li>
+            <li><i class="fas fa-check"></i> 학생 과제 피드백</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 패키지 3 -->
+      <div class="pkg-card rv d3" id="pkgAll">
+        <div class="pk-situation">
+          <div class="pk-sit-label">이런 곳에 맞아요</div>
+          <div class="pk-sit-title">컴퓨터, 강사, 콘텐츠<br>다 필요해요</div>
+        </div>
+        <div class="pk-body">
+          <div>
+            <div class="pk-name">ALL-IN-ONE (플랫폼 + 원격 + 노트북)</div>
+
+            <!-- 임대형 / 인수형 토글 -->
+            <div class="pk-type-toggle">
+              <button class="pk-type-btn on" data-ptype="lease">임대형 <span style="font-weight:400;opacity:.7">반납</span></button>
+              <button class="pk-type-btn" data-ptype="own">인수형 <span style="font-weight:400;opacity:.7">소유</span></button>
+            </div>
+
+            <!-- 임대형 가격 패널 -->
+            <div class="pk-price-panel on" id="pp-lease">
+              <div class="pk-price" id="pp-lease-price">59만<sub>원/월</sub></div>
+              <div class="pk-price-note">플랫폼 11 + 원격 16.5 + 노트북 <span id="lp-nb">7대 31.5</span>만 · VAT포함</div>
+              <div class="pk-vol-grid">
+                <div class="pk-vol-item" data-lease="50" data-nb="5대 22.5" data-per="4.5">
+                  <div class="pvi-n">5대</div><div class="pvi-p">50</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item on" data-lease="59" data-nb="7대 31.5" data-per="4.5">
+                  <div class="pvi-n">7대</div><div class="pvi-p">59</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item" data-lease="72.5" data-nb="10대 45" data-per="4.5">
+                  <div class="pvi-n">10대+</div><div class="pvi-p">72.5</div><div class="pvi-u">만원/월</div>
+                </div>
+              </div>
+              <div class="pk-vol-note">대당 4.5만원/월 · 계약 종료 후 노트북 반납<br><span class="pk-formula" id="lp-formula">4.5만원 × 7대 = 31.5만원</span><br><strong style="color:var(--text)">10대 이상: 개별 상담 + 보증금(2개월치)</strong></div>
+            </div>
+
+            <!-- 인수형 가격 패널 -->
+            <div class="pk-price-panel" id="pp-own">
+              <div class="pk-price" id="pp-own-price">75.1만<sub>원/월</sub></div>
+              <div class="pk-price-note">플랫폼 11 + 원격 16.5 + 노트북 <span id="op-nb">7대 47.6</span>만 · VAT포함</div>
+              <div class="pk-vol-grid">
+                <div class="pk-vol-item" data-own="61.5" data-nb="5대 34" data-per="6.8">
+                  <div class="pvi-n">5대</div><div class="pvi-p">61.5</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item on" data-own="75.1" data-nb="7대 47.6" data-per="6.8">
+                  <div class="pvi-n">7대</div><div class="pvi-p">75.1</div><div class="pvi-u">만원/월</div>
+                </div>
+                <div class="pk-vol-item" data-own="95.5" data-nb="10대 68" data-per="6.8">
+                  <div class="pvi-n">10대+</div><div class="pvi-p">95.5</div><div class="pvi-u">만원/월</div>
+                </div>
+              </div>
+              <div class="pk-vol-note">대당 6.8만원/월 · <strong style="color:var(--purple)">12개월 후 노트북 소유권 취득</strong><br><span class="pk-formula" id="op-formula">6.8만원 × 7대 = 47.6만원</span><br><strong style="color:var(--text)">10대 이상: 개별 상담 + 보증금(1개월치)</strong></div>
+            </div>
+          </div>
+
+          <div class="pk-highlight" style="border-color:rgba(124,58,237,.25);color:#6D28D9;background:rgba(124,58,237,.06)">
+            <i class="fas fa-box-open" style="color:var(--purple);margin-right:5px"></i>
+            <strong>장비부터 수업까지</strong> — 노트북 배송·세팅·수업까지 한 번에 해결
+          </div>
+          <ul class="pk-features">
+            <li><i class="fas fa-check"></i> 플랫폼 + 원격수업 패키지 포함</li>
+            <li><i class="fas fa-check"></i> 교육용 노트북 렌탈 (Windows / Ubuntu 선택)</li>
+            <li><i class="fas fa-check"></i> 기본 프로그램 세팅 완료 상태 배송</li>
+            <li><i class="fas fa-check"></i> 원격 지원 환경 구성 포함</li>
+            <li><i class="fas fa-check"></i> 초기 세팅비: <strong style="color:var(--text)">10~30만원</strong> (규모·지역 협의)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PLATFORM ══ -->
+<section class="sec sec-alt" id="platform">
+  <div class="wrap">
+    <div class="plat-inner">
+
+      <!-- 텍스트 영역 -->
+      <div class="plat-text">
+        <div class="sec-label rv">코스모에듀 플랫폼</div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem">
+          <h2 class="sec-title rv" style="margin-bottom:0">수업이 쉬워지는<br><span class="hl">올인원 교육 플랫폼</span></h2>
+          <a href="platform.html" class="btn btn-p" style="font-size:.83rem;padding:.45rem 1.1rem;white-space:nowrap;flex-shrink:0;align-self:flex-end;margin-bottom:.15rem"><i class="fas fa-arrow-right"></i> 자세히 보기</a>
+        </div>
+        <p class="sec-sub rv">강사도, 교재도, 과제 관리도 — 하나의 플랫폼에서 모두 해결됩니다.<br>별도 설치 없이 브라우저에서 바로 사용합니다.</p>
+
+        <div class="plat-features">
+          <div class="plat-feat rv d1">
+            <div class="pf-icon"><i class="fas fa-play-circle"></i></div>
+            <div>
+              <strong>즉시 사용 가능한 AI·코딩 커리큘럼</strong>
+              <p>AI, 코딩 전 과정이 한 곳에서, 체계적으로 단계별로 제공됩니다.</p>
+            </div>
+          </div>
+          <div class="plat-feat rv d2">
+            <div class="pf-icon"><i class="fas fa-chart-line"></i></div>
+            <div>
+              <strong>학생 성장이 데이터로 남는 포트폴리오</strong>
+              <p>반별 학생별 과제·결과물·진도가 자동으로 기록되어 학부모에게 보여줄 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="plat-feat rv d3">
+            <div class="pf-icon"><i class="fas fa-headset"></i></div>
+            <div>
+              <strong>도입부터 운영까지 원스톱</strong>
+              <p>플랫폼 도입으로 콘텐츠·수업·운영 지원까지 모두 해결됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- UI 목업 -->
+      <div class="rv d2">
+        <div class="plat-mockup">
+          <div class="pm-bar">
+            <span class="pm-dot" style="background:#EF4444"></span>
+            <span class="pm-dot" style="background:#F59E0B"></span>
+            <span class="pm-dot" style="background:#10B981"></span>
+            <span style="flex:1;text-align:center;font-size:.7rem;color:var(--dim)">app.cosmoedu.co.kr</span>
+          </div>
+          <div class="pm-body">
+            <div class="pm-sidebar">
+              <div class="pm-menu-item on"><i class="fas fa-home"></i></div>
+              <div class="pm-menu-item"><i class="fas fa-book-open"></i></div>
+              <div class="pm-menu-item"><i class="fas fa-tasks"></i></div>
+              <div class="pm-menu-item"><i class="fas fa-chart-bar"></i></div>
+              <div class="pm-menu-item"><i class="fas fa-cog"></i></div>
+            </div>
+            <div class="pm-content">
+              <div class="pm-header-bar">
+                <div class="pm-title-line"></div>
+                <div class="pm-avatar"></div>
+              </div>
+              <div class="pm-cards">
+                <div class="pm-card" style="--c:#3B82F6">
+                  <div class="pm-card-icon"><i class="fas fa-brain"></i></div>
+                  <div class="pm-card-lines"><div></div><div></div></div>
+                </div>
+                <div class="pm-card" style="--c:#06B6D4">
+                  <div class="pm-card-icon"><i class="fas fa-code"></i></div>
+                  <div class="pm-card-lines"><div></div><div></div></div>
+                </div>
+                <div class="pm-card" style="--c:#8B5CF6">
+                  <div class="pm-card-icon"><i class="fas fa-palette"></i></div>
+                  <div class="pm-card-lines"><div></div><div></div></div>
+                </div>
+              </div>
+              <div class="pm-progress-section">
+                <div class="pm-prog-label"></div>
+                <div class="pm-prog-bar"><div class="pm-prog-fill" style="width:68%"></div></div>
+                <div class="pm-prog-label" style="width:50%"></div>
+                <div class="pm-prog-bar"><div class="pm-prog-fill" style="width:42%;background:var(--cyan)"></div></div>
+                <div class="pm-prog-label" style="width:28%"></div>
+                <div class="pm-prog-bar"><div class="pm-prog-fill" style="width:85%;background:var(--green)"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CURRICULUM ══ -->
+<section class="sec" id="curriculum">
+  <div class="wrap">
+    <div class="rv">
+      <div class="sec-label">커리큘럼</div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem">
+        <h2 class="sec-title" style="margin-bottom:0">어떤 수업을 하나요?<br><span class="hl">월별 학습 로드맵</span></h2>
+        <a href="curriculum.html" class="btn btn-p" style="font-size:.83rem;padding:.45rem 1.1rem;white-space:nowrap;flex-shrink:0;align-self:flex-end;margin-bottom:.15rem"><i class="fas fa-book-open"></i> 자세히 보기</a>
+      </div>
+      <p class="sec-sub">기관 특성과 학생 수준에 맞게 조정 가능합니다. 아래는 기본 커리큘럼입니다.</p>
+    </div>
+
+    <div class="curr-tabs rv">
+      <button class="curr-tab on" data-tab="t-creative">크리에이티브</button>
+      <button class="curr-tab" data-tab="t-literacy">디지털 리터러시</button>
+      <button class="curr-tab" data-tab="t-ai">인공지능 데이터</button>
+      <button class="curr-tab" data-tab="t-eng">엔지니어링</button>
+    </div>
+
+    <!-- 크리에이티브 -->
+    <div class="curr-panel on" id="t-creative">
+      <div class="curr-month rv">
+        <div class="cm-icon" style="background:rgba(124,58,237,.1);color:#7C3AED"><i class="fas fa-vr-cardboard"></i></div>
+        <div class="cm-month">메타버스</div>
+        <div class="cm-title">나만의 메타버스 공간 만들기</div>
+        <div class="cm-desc">Roblox·Zepeto 등 메타버스 플랫폼에서 나만의 공간을 기획하고 직접 만들어봅니다. 아바타 설정, 맵 디자인, 이벤트 구성.</div>
+        <div class="cm-tags"><span class="cm-tag t-p">Roblox</span><span class="cm-tag t-c">Zepeto</span><span class="cm-tag t-g">공간디자인</span></div>
+      </div>
+      <div class="curr-month rv d1">
+        <div class="cm-icon" style="background:rgba(217,119,6,.1);color:#D97706"><i class="fas fa-wand-magic-sparkles"></i></div>
+        <div class="cm-month">바이브코딩</div>
+        <div class="cm-title">AI와 함께 앱·게임 만들기</div>
+        <div class="cm-desc">ChatGPT·Cursor 등 AI 코딩 도구로 아이디어를 바로 코드로 구현합니다. 직접 만든 게임이나 앱을 친구들과 공유.</div>
+        <div class="cm-tags"><span class="cm-tag t-a">바이브코딩</span><span class="cm-tag t-b">Cursor</span><span class="cm-tag t-g">앱개발</span></div>
+      </div>
+      <div class="curr-month rv d2">
+        <div class="cm-icon" style="background:rgba(8,145,178,.1);color:#0891B2"><i class="fas fa-palette"></i></div>
+        <div class="cm-month">생성형 AI</div>
+        <div class="cm-title">이미지·영상·음악 AI 창작</div>
+        <div class="cm-desc">Midjourney·Sora·Suno 등 생성형 AI 툴로 나만의 그림, 짧은 영상, 음악을 만들어봅니다. 창작 포트폴리오 구성.</div>
+        <div class="cm-tags"><span class="cm-tag t-a">생성형AI</span><span class="cm-tag t-p">Midjourney</span><span class="cm-tag t-c">디지털창작</span></div>
+      </div>
+      <div class="curr-month rv d3">
+        <div class="cm-icon" style="background:rgba(5,150,105,.1);color:#059669"><i class="fas fa-trophy"></i></div>
+        <div class="cm-month">크리에이터 프로젝트</div>
+        <div class="cm-title">AI 크리에이터 작품 발표회</div>
+        <div class="cm-desc">3개 영역을 합쳐 나만의 AI 크리에이티브 작품(게임·영상·메타버스 전시)을 완성하고 학교 내 발표.</div>
+        <div class="cm-tags"><span class="cm-tag t-g">PBL</span><span class="cm-tag t-b">포트폴리오</span><span class="cm-tag t-a">발표</span></div>
+      </div>
+    </div>
+
+    <!-- 디지털 리터러시 -->
+    <div class="curr-panel" id="t-literacy">
+      <div class="curr-month rv">
+        <div class="cm-icon" style="background:rgba(37,99,235,.1);color:#2563EB"><i class="fas fa-keyboard"></i></div>
+        <div class="cm-month">컴퓨터 기초</div>
+        <div class="cm-title">마우스·키보드·파일 관리</div>
+        <div class="cm-desc">컴퓨터를 처음 배우는 학생을 위한 기초. 마우스 조작, 키보드 타이핑, 폴더/파일 정리, 프린트·저장 등 실생활 활용.</div>
+        <div class="cm-tags"><span class="cm-tag t-g">키보드</span><span class="cm-tag t-b">파일관리</span><span class="cm-tag t-a">기초조작</span></div>
+      </div>
+      <div class="curr-month rv d1">
+        <div class="cm-icon" style="background:rgba(37,99,235,.1);color:#2563EB"><i class="fas fa-file-alt"></i></div>
+        <div class="cm-month">문서 작성</div>
+        <div class="cm-title">한글·워드로 문서 만들기</div>
+        <div class="cm-desc">보고서, 편지, 일지 등 일상 문서를 한글·Word로 작성합니다. 글꼴·단락·표 삽입 등 기본 서식 완전 습득.</div>
+        <div class="cm-tags"><span class="cm-tag t-b">한글</span><span class="cm-tag t-c">Word</span><span class="cm-tag t-p">문서작성</span></div>
+      </div>
+      <div class="curr-month rv d2">
+        <div class="cm-icon" style="background:rgba(5,150,105,.1);color:#059669"><i class="fas fa-table"></i></div>
+        <div class="cm-month">스프레드시트</div>
+        <div class="cm-title">엑셀·구글 시트로 데이터 정리</div>
+        <div class="cm-desc">용돈 기입장, 설문 집계, 성적 관리 등 실생활 데이터를 표·차트로 정리합니다. 기본 수식과 자동 정렬 활용.</div>
+        <div class="cm-tags"><span class="cm-tag t-g">Excel</span><span class="cm-tag t-a">구글시트</span><span class="cm-tag t-b">차트</span></div>
+      </div>
+      <div class="curr-month rv d3">
+        <div class="cm-icon" style="background:rgba(124,58,237,.1);color:#7C3AED"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="cm-month">발표 & 인터넷 안전</div>
+        <div class="cm-title">PT 제작 + 디지털 시민교육</div>
+        <div class="cm-desc">PowerPoint·Canva로 발표 자료를 만들고 발표합니다. 개인정보 보호, 저작권, 사이버 예절 등 디지털 안전 교육 포함.</div>
+        <div class="cm-tags"><span class="cm-tag t-p">Canva</span><span class="cm-tag t-c">발표</span><span class="cm-tag t-g">디지털안전</span></div>
+      </div>
+    </div>
+
+    <!-- 인공지능 데이터 -->
+    <div class="curr-panel" id="t-ai">
+      <div class="curr-month rv">
+        <div class="cm-icon" style="background:rgba(217,119,6,.1);color:#D97706"><i class="fas fa-brain"></i></div>
+        <div class="cm-month">인공지능 개념</div>
+        <div class="cm-title">AI는 어떻게 생각할까?</div>
+        <div class="cm-desc">AI가 학습하는 원리(학습·추론·예측)를 일상 사례로 이해합니다. 얼굴 인식, 번역, 추천 알고리즘의 작동 방식 체험.</div>
+        <div class="cm-tags"><span class="cm-tag t-a">AI개념</span><span class="cm-tag t-b">머신러닝</span><span class="cm-tag t-c">AI체험</span></div>
+      </div>
+      <div class="curr-month rv d1">
+        <div class="cm-icon" style="background:rgba(8,145,178,.1);color:#0891B2"><i class="fas fa-chart-bar"></i></div>
+        <div class="cm-month">데이터 분석</div>
+        <div class="cm-title">데이터로 세상 읽기</div>
+        <div class="cm-desc">실제 공공 데이터(날씨·인구·소비)를 pandas·구글 시트로 분석하고 시각화합니다. 데이터가 말하는 것 읽는 법.</div>
+        <div class="cm-tags"><span class="cm-tag t-b">pandas</span><span class="cm-tag t-g">시각화</span><span class="cm-tag t-a">데이터분석</span></div>
+      </div>
+      <div class="curr-month rv d2">
+        <div class="cm-icon" style="background:rgba(37,99,235,.1);color:#2563EB"><i class="fas fa-robot"></i></div>
+        <div class="cm-month">머신러닝</div>
+        <div class="cm-title">직접 AI 모델 만들어보기</div>
+        <div class="cm-desc">ML4Kids·Teachable Machine으로 이미지·소리·텍스트를 분류하는 AI 모델을 코드 없이 만들어봅니다.</div>
+        <div class="cm-tags"><span class="cm-tag t-p">Teachable Machine</span><span class="cm-tag t-c">ML4Kids</span><span class="cm-tag t-g">분류모델</span></div>
+      </div>
+      <div class="curr-month rv d3">
+        <div class="cm-icon" style="background:rgba(5,150,105,.1);color:#059669"><i class="fas fa-flask"></i></div>
+        <div class="cm-month">AI 프로젝트</div>
+        <div class="cm-title">AI로 우리 학교 문제 해결하기</div>
+        <div class="cm-desc">학교·지역 문제를 AI 데이터 분석으로 해결하는 프로젝트를 기획·구현합니다. 결과 보고서·발표 포함.</div>
+        <div class="cm-tags"><span class="cm-tag t-a">프로젝트</span><span class="cm-tag t-b">문제해결</span><span class="cm-tag t-g">발표</span></div>
+      </div>
+    </div>
+
+    <!-- 엔지니어링 -->
+    <div class="curr-panel" id="t-eng">
+      <div class="curr-month rv">
+        <div class="cm-icon" style="background:rgba(37,99,235,.1);color:#2563EB"><i class="fas fa-sitemap"></i></div>
+        <div class="cm-month">컴퓨팅 사고</div>
+        <div class="cm-title">문제를 코드로 쪼개는 법</div>
+        <div class="cm-desc">복잡한 문제를 분해·패턴화·추상화·알고리즘으로 풀어가는 컴퓨팅 사고력을 기릅니다. 순서도·의사코드 작성.</div>
+        <div class="cm-tags"><span class="cm-tag t-g">컴퓨팅사고</span><span class="cm-tag t-b">알고리즘</span><span class="cm-tag t-a">순서도</span></div>
+      </div>
+      <div class="curr-month rv d1">
+        <div class="cm-icon" style="background:rgba(8,145,178,.1);color:#0891B2"><i class="fas fa-code"></i></div>
+        <div class="cm-month">파이썬 기초</div>
+        <div class="cm-title">파이썬 문법 완전 정복</div>
+        <div class="cm-desc">변수·조건문·반복문·함수 등 파이썬 핵심 문법을 계산기·퀴즈·게임 만들기로 실습합니다.</div>
+        <div class="cm-tags"><span class="cm-tag t-b">Python</span><span class="cm-tag t-c">조건문</span><span class="cm-tag t-p">반복문</span></div>
+      </div>
+      <div class="curr-month rv d2">
+        <div class="cm-icon" style="background:rgba(217,119,6,.1);color:#D97706"><i class="fas fa-sort-amount-up"></i></div>
+        <div class="cm-month">알고리즘</div>
+        <div class="cm-title">정렬·탐색 알고리즘 이해</div>
+        <div class="cm-desc">버블 정렬, 이진 탐색 등 기본 알고리즘을 시각화 도구로 이해하고 파이썬으로 직접 구현합니다.</div>
+        <div class="cm-tags"><span class="cm-tag t-g">정렬</span><span class="cm-tag t-a">탐색</span><span class="cm-tag t-b">Python</span></div>
+      </div>
+      <div class="curr-month rv d3">
+        <div class="cm-icon" style="background:rgba(124,58,237,.1);color:#7C3AED"><i class="fas fa-laptop-code"></i></div>
+        <div class="cm-month">미니 프로젝트</div>
+        <div class="cm-title">나만의 프로그램 만들기</div>
+        <div class="cm-desc">계산기, 텍스트 게임, 간단한 웹 크롤러 등 자신이 원하는 프로그램을 기획·개발·발표합니다.</div>
+        <div class="cm-tags"><span class="cm-tag t-p">PBL</span><span class="cm-tag t-c">포트폴리오</span><span class="cm-tag t-g">발표</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ OPTIONAL SERVICES ══ -->
+<section class="sec sec-alt" id="remote">
+  <div class="wrap">
+    <div class="center rv">
+      <div class="sec-label">선택 옵션</div>
+      <h2 class="sec-title">필요한 구성만<br><span class="hl">추가로 조합하세요</span></h2>
+      <p class="sec-sub" style="margin:0 auto">캠프, 원격수업, 기기 렌탈까지 학교 상황과 예산에 맞춰 필요한 옵션만 선택할 수 있습니다.</p>
+    </div>
+
+    <div class="option-grid">
+      <article class="option-card featured rv d1">
+        <div class="option-icon"><i class="fas fa-campground"></i></div>
+        <div class="option-kicker">1day camp</div>
+        <h3 class="option-title">1day 코딩캠프 / 진로캠프</h3>
+        <div class="option-price"><strong>50만원~</strong><span>/회</span></div>
+        <p class="option-desc">하루 일정으로 운영하는 방문형 코딩·AI·진로 캠프입니다. 학년군과 기관 목표에 맞춰 주제와 난이도를 설계합니다.</p>
+        <ul class="option-list">
+          <li><i class="fas fa-check"></i>1일 현장 방문 출장 수업</li>
+          <li><i class="fas fa-check"></i>1회 4~6시간, 일정 협의 후 확정</li>
+          <li><i class="fas fa-check"></i>AI 창작, 코딩, 메타버스 등 주제 선택</li>
+          <li><i class="fas fa-check"></i>코딩교육지도사 1급 전문 강사</li>
+          <li><i class="fas fa-check"></i>진로진학 컨설턴트 1급 전문 강사</li>
+        </ul>
+        <div class="option-actions">
+          <a class="btn btn-p" href="#contact"><i class="fas fa-arrow-right"></i> 상담하기</a>
+        </div>
+      </article>
+
+      <article class="option-card remote rv d2" id="remote-col">
+        <div class="option-icon"><i class="fas fa-video"></i></div>
+        <div class="option-kicker">live online</div>
+        <h3 class="option-title">원격수업</h3>
+        <div class="option-price"><strong>16.5만원</strong><span>/월</span></div>
+        <p class="option-desc">Zoom 또는 Google Meet으로 진행하는 실시간 AI·코딩 수업입니다. 전문 강사가 직접 수업하고 피드백을 제공합니다.</p>
+        <ul class="option-list">
+          <li><i class="fas fa-check"></i>주 1회, 40~60분 기본 운영</li>
+          <li><i class="fas fa-check"></i>수업 횟수와 시간은 맞춤 조율</li>
+          <li><i class="fas fa-check"></i>수업 녹화본 및 과제 피드백 제공</li>
+          <li><i class="fas fa-check"></i>최대 10명 기준 분반 운영 가능</li>
+        </ul>
+        <div class="option-actions">
+          <button class="btn btn-p" onclick="openRemoteModal()"><i class="fas fa-arrow-right"></i> 자세히 보기</button>
+        </div>
+      </article>
+
+      <article class="option-card rv d3" id="laptop">
+        <div class="option-icon"><i class="fas fa-laptop"></i></div>
+        <div class="option-kicker">device rental</div>
+        <h3 class="option-title">노트북 렌탈</h3>
+        <div class="option-price"><strong>4.5만원~</strong><span>/대·월</span></div>
+        <p class="option-desc">수업 환경이 세팅된 교육용 노트북을 제공합니다. 초기 기기 준비 부담을 줄이고 바로 수업을 시작할 수 있습니다.</p>
+        <ul class="option-list">
+          <li><i class="fas fa-check"></i>최소 5대부터 수량 추가 가능</li>
+          <li><i class="fas fa-check"></i>임대형 4.5만원/대/월</li>
+          <li><i class="fas fa-check"></i>인수형 6.8만원/대/월</li>
+          <li><i class="fas fa-check"></i>약정기간 종료 후 기기 소유권 이전</li>
+          <li><i class="fas fa-check"></i>세팅 완료 후 직배송, 임대 기간 내 무상 A/S</li>
+        </ul>
+        <div class="option-actions">
+          <button class="btn btn-p" onclick="openLaptopModal()"><i class="fas fa-arrow-right"></i> 자세히 보기</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CASES ══ -->
+<section class="sec" id="cases">
+  <div class="wrap">
+    <div class="center rv">
+      <div class="sec-label">교육 사례</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem">
+        <h2 class="sec-title" style="margin-bottom:0">함께한 교육기관들의<br><span class="hl">실제 수업 이야기</span></h2>
+        <a href="oneday.html" class="btn btn-o" style="font-size:.83rem;padding:.45rem 1.1rem;white-space:nowrap;flex-shrink:0;align-self:flex-end;margin-bottom:.15rem"><i class="fas fa-bolt"></i> 1DAY 출강</a>
+        <a href="https://pong2.app" class="btn btn-p" target="_blank" rel="noopener" style="font-size:.83rem;padding:.45rem 1.1rem;white-space:nowrap;flex-shrink:0;align-self:flex-end;margin-bottom:.15rem"><i class="fas fa-external-link-alt"></i> 작품전시관</a>
+      </div>
+      <p class="sec-sub" style="margin:0 auto">학교·학원·대안학교에서 실제로 운영한 수업 사례입니다.</p>
+    </div>
+
+    <div class="cases-grid">
+
+      <!-- 사례 1: 온라인학교 -->
+      <a href="cases/online.html" class="case-card rv">
+        <div class="case-photo">
+          <img src="brochure/uploads/mk학교_지역소개콘텐츠_ZEP메타버스_중1죠해나.png" alt="MK 온라인학교 메타버스 수업" class="case-img">
+        </div>
+        <div class="case-body">
+          <div class="case-tag">온라인학교</div>
+          <h4 class="case-title">"제가 사는 도시를 메타버스로 만들었어요."</h4>
+          <p class="case-desc">러시아에 사는 학생이 ZEP 메타버스로 자기 도시를 소개하고, 친구들이 직접 방문하는 공간을 만들었습니다.</p>
+        </div>
+      </a>
+
+      <!-- 사례 2: 대안학교 -->
+      <a href="cases/daean.html" class="case-card rv d1">
+        <div class="case-photo">
+          <img src="brochure/uploads/곤충맞추기.png" alt="하늘아이 대안학교 곤충퀴즈 수업" class="case-img">
+        </div>
+        <div class="case-body">
+          <div class="case-tag">대안학교</div>
+          <h4 class="case-title">"제가 모은 곤충 사진으로 퀴즈를 만들었어요."</h4>
+          <p class="case-desc">곤충 이름을 줄줄 외우던 학생의 관심사가 친구들이 함께 참여하는 바이브코딩 퀴즈가 됐습니다.</p>
+        </div>
+      </a>
+
+      <!-- 사례 3: 코딩센터 -->
+      <a href="cases/coding.html" class="case-card rv d2">
+        <div class="case-photo">
+          <img src="brochure/uploads/브로셔_이미지/3페이지-사례/SDGs지속가능한개발주제_앱만들기_중2김유주2.jpg" alt="SDGs 앱 만들기" class="case-img">
+        </div>
+        <div class="case-body">
+          <div class="case-tag">코딩센터 · 학원</div>
+          <h4 class="case-title">"제가 직접 주제를 정하고 앱을 만들어 보았어요."</h4>
+          <p class="case-desc">중2 학생이 SDGs 주제를 정하고 생태 기록 앱을 처음부터 끝까지 직접 완성했습니다.</p>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="cases-note rv" style="margin-top:2.2rem">
+      <i class="fas fa-info-circle" style="color:var(--blue);margin-right:.4rem"></i>
+      사례 추가 예정입니다. 먼저 경험해보고 싶으신 분은 <a href="#contact" style="color:var(--blue);font-weight:600">무료 상담</a>을 신청해 주세요.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ CONTACT ══ -->
+<section class="sec sec-alt" id="contact">
+  <div class="wrap">
+    <div class="center rv">
+      <div class="sec-label">무료 상담 신청</div>
+      <h2 class="sec-title">지금 바로 시작하세요<br><span class="hl">첫 상담은 무료입니다</span></h2>
+      <p class="sec-sub">학교 현황을 알려주시면 영업일 1일 이내에 맞춤 제안서와 견적서를 보내드립니다.</p>
+    </div>
+
+    <div class="contact-wrap">
+      <div class="contact-info rv">
+        <h3>AI 수업,<br>함께 설계해 드립니다.</h3>
+        <p>규모가 작아도, 장비가 없어도, 커리큘럼이 없어도 괜찮습니다. 현재 상황을 알려주시면 가장 맞는 방법을 제안해 드립니다.</p>
+        <div class="ci-list">
+          <div class="ci-item"><div class="ci-icon"><i class="fas fa-clock"></i></div><span>신청 후 <strong style="color:var(--text)">1영업일 이내</strong> 연락</span></div>
+          <div class="ci-item"><div class="ci-icon"><i class="fas fa-won-sign"></i></div><span>상담·견적서 제공 <strong style="color:var(--text)">완전 무료</strong></span></div>
+          <div class="ci-item"><div class="ci-icon"><i class="fas fa-file-alt"></i></div><span>맞춤 커리큘럼 + 견적서 함께 제공</span></div>
+          <div class="ci-item"><div class="ci-icon"><i class="fas fa-shield-alt"></i></div><span>개인정보는 상담 목적으로만 사용</span></div>
+        </div>
+      </div>
+
+      <div class="form-card rv d1">
+        <form id="cForm" novalidate>
+          <div class="form-grid">
+            <div class="fg"><label>학교(기관)명 <span>*</span></label><input id="f-school" type="text" class="fi" placeholder="○○학교 / ○○학원" required></div>
+            <div class="fg">
+              <label>지역 <span>*</span></label>
+              <select id="f-region" class="fs" required>
+                <option value="" disabled selected>시/도 선택</option>
+                <option>서울</option><option>경기</option><option>인천</option><option>부산</option>
+                <option>대구</option><option>광주</option><option>대전</option><option>울산</option>
+                <option>세종</option><option>강원</option><option>충북</option><option>충남</option>
+                <option>전북</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option>
+              </select>
+            </div>
+            <div class="fg"><label>담당자 이름 <span>*</span></label><input id="f-contact" type="text" class="fi" placeholder="홍길동" required></div>
+            <div class="fg"><label>연락처 <span>*</span></label><input id="f-phone" type="tel" class="fi" placeholder="010-0000-0000" required></div>
+            <div class="fg"><label>이메일</label><input id="f-email" type="email" class="fi" placeholder="example@school.kr"></div>
+            <div class="fg">
+              <label>학생 수 (예상)</label>
+              <select id="f-students" class="fs">
+                <option value="" disabled selected>선택</option>
+                <option>5명 미만</option><option>5~10명</option><option>11~20명</option><option>21명 이상</option>
+              </select>
+            </div>
+            <div class="fg full">
+              <label>관심 패키지</label>
+              <select id="f-package" class="fs">
+                <option value="" disabled selected>선택 (선택사항)</option>
+                <option value="플랫폼 기본형">플랫폼 기본형 (월 11만원)</option>
+                <option value="플랫폼+원격수업">플랫폼 + 원격수업 (월 27.5만원~)</option>
+                <option value="ALL-IN-ONE">ALL-IN-ONE (노트북 렌탈 포함)</option>
+                <option value="상담 후 결정">아직 잘 모르겠어요 / 상담 후 결정</option>
+              </select>
+            </div>
+            <div class="fg full"><label>문의 내용</label><textarea id="f-message" class="ft" placeholder="현재 학교 상황, 궁금한 점, 원하는 수업 방향 등을 자유롭게 적어주세요."></textarea></div>
+          </div>
+          <div class="form-submit"><button type="submit" id="f-submit"><i class="fas fa-paper-plane"></i> 무료 상담 신청하기</button></div>
+          <p class="form-note">입력하신 정보는 상담 목적으로만 사용되며, 제3자에게 제공되지 않습니다.</p>
+        </form>
+        <div class="form-success" id="fSuccess">
+          <div class="fs-icon"><i class="fas fa-check"></i></div>
+          <h3>신청이 완료되었습니다!</h3>
+          <p>영업일 기준 1일 이내로 연락드리겠습니다.<br>급하신 경우 아래 번호로 전화 주세요.</p>
+          <a href="tel:070-4337-4337" class="btn btn-o" style="margin-top:.4rem"><i class="fas fa-phone"></i> 070-4337-4337</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="https://www.cosmoedu.co.kr" class="footer-logo"><img src="https://app.cosmoedu.co.kr/resource/cosmoedu_logo(black)_1024x180.png" alt="코스모에듀" height="22" style="width:auto" loading="lazy"></a>
+        <p>AI·코딩 교육 전문 파트너</p>
+      </div>
+    </div>
+    <div style="padding:1.2rem 0;border-top:1px solid rgba(255,255,255,.06);font-size:.77rem;color:#475569;line-height:1.9">
+      <p>코스모에듀벤처주식회사 &nbsp;|&nbsp; 대표자 : 전두표 &nbsp;|&nbsp; 소재지 : 경기도 용인시 흥덕2로 117번길 19, 918호 흥덕리치안레이크타워</p>
+      <p>사업자 등록번호 : 484-88-03275 &nbsp;|&nbsp; 통신판매신고번호 : 제2025-용인기흥-0020호</p>
+      <p>개인정보관리책임자 : 전두표 &nbsp;|&nbsp; 문의 : 070-4337-4337</p>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 코스모에듀벤처주식회사. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="유튜브"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="인스타그램"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="블로그"><i class="fas fa-blog"></i></a>
+        <a href="#" aria-label="카카오톡"><i class="fas fa-comment"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══ RIGHT SIDE NAV ══ -->
+<nav class="side-nav" id="sideNav" aria-label="페이지 내 이동">
+  <a class="sn-item" href="#packages" data-sec="packages"><span class="sn-label">패키지 선택</span><span class="sn-dot"></span></a>
+  <a class="sn-item" href="#platform" data-sec="platform"><span class="sn-label">플랫폼</span><span class="sn-dot"></span></a>
+  <a class="sn-item" href="#curriculum" data-sec="curriculum"><span class="sn-label">커리큘럼</span><span class="sn-dot"></span></a>
+  <a class="sn-item" href="#remote" data-sec="remote"><span class="sn-label">원격·노트북</span><span class="sn-dot"></span></a>
+  <a class="sn-item" href="#cases" data-sec="cases"><span class="sn-label">교육 사례</span><span class="sn-dot"></span></a>
+  <a class="sn-item" href="#contact" data-sec="contact"><span class="sn-label">상담 신청</span><span class="sn-dot"></span></a>
+</nav>
+
+
+<!-- ══ REMOTE MODAL ══ -->
+<div class="qmodal-overlay" id="remoteModalOverlay">
+  <div class="qmodal" id="remoteModal">
+    <div class="qm-hd">
+      <div class="qm-hd-title"><i class="fas fa-video" style="color:var(--blue)"></i> 원격수업 상세 안내</div>
+      <button class="qm-close" onclick="closeRemoteModal()" aria-label="닫기"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="qm-body">
+      <div class="remote-how">
+        <div class="remote-card">
+          <h4><i class="fas fa-calendar-alt"></i> 수업 구성</h4>
+          <ul class="remote-list">
+            <li><i class="fas fa-dot-circle"></i> <span>주 1회 실시간 수업 (60분)</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>월 4회 기준 운영 (한 달이 5주면 4회 진행)</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>수업 전 선생님과 일정 협의 후 확정</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>불가피한 사정 시 보충 수업 제공</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>방학·학교 행사 기간 조율 가능</span></li>
+          </ul>
+        </div>
+        <div class="remote-card">
+          <h4><i class="fas fa-chalkboard-teacher"></i> 수업 방식</h4>
+          <ul class="remote-list">
+            <li><i class="fas fa-dot-circle"></i> <span>Zoom 또는 Google Meet 실시간 화상 수업</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>강사 화면 공유로 실습 동시 진행</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>학생 개별 질문 실시간 답변</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>수업 녹화본 제공 (복습·결석자 대비)</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>수업 후 과제 플랫폼 제출 → 강사 피드백</span></li>
+          </ul>
+        </div>
+        <div class="remote-card">
+          <h4><i class="fas fa-user-tie"></i> 강사 정보</h4>
+          <ul class="remote-list">
+            <li><i class="fas fa-dot-circle"></i> <span>AI·코딩 교육 전문 강사</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>학교·학원·대안학교 수업 경험 보유</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>학생 수준에 맞춘 맞춤형 진도 조절</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>수업 외 질문 채널(카카오 오픈채팅 등) 운영</span></li>
+          </ul>
+        </div>
+        <div class="remote-card">
+          <h4><i class="fas fa-laptop-code"></i> 준비물 (학생)</h4>
+          <ul class="remote-list">
+            <li><i class="fas fa-dot-circle"></i> <span>인터넷이 연결된 컴퓨터 또는 노트북</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>마이크 (내장 마이크도 가능)</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>Zoom 또는 Google Meet 설치</span></li>
+            <li><i class="fas fa-dot-circle"></i> <span>코스모에듀 플랫폼 계정 (입학 시 발급)</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:2rem 0 .8rem">수업 한 회 진행 흐름</h3>
+      <div class="remote-flow">
+        <div class="rf-step"><div class="rf-icon"><i class="fas fa-sign-in-alt"></i></div><div class="rf-title">입장 &amp; 준비</div><div class="rf-desc">5분 전 접속, 지난 수업 복습</div></div>
+        <div class="rf-step"><div class="rf-icon"><i class="fas fa-play"></i></div><div class="rf-title">개념 설명</div><div class="rf-desc">강사 화면 공유, 이론 설명 (~20분)</div></div>
+        <div class="rf-step"><div class="rf-icon"><i class="fas fa-code"></i></div><div class="rf-title">실습 코딩</div><div class="rf-desc">학생 직접 코딩, 실시간 Q&amp;A (~30분)</div></div>
+        <div class="rf-step"><div class="rf-icon"><i class="fas fa-tasks"></i></div><div class="rf-title">과제 안내</div><div class="rf-desc">다음 주까지 과제, 플랫폼 제출 (~10분)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LAPTOP MODAL ══ -->
+<div class="qmodal-overlay" id="laptopModalOverlay">
+  <div class="qmodal" id="laptopModal">
+    <div class="qm-hd">
+      <div class="qm-hd-title"><i class="fas fa-laptop" style="color:var(--blue)"></i> 노트북 렌탈 상세 안내</div>
+      <button class="qm-close" onclick="closeLaptopModal()" aria-label="닫기"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="qm-body">
+      <div class="rental-price-banner" style="margin-bottom:1.8rem">
+        <div class="rpb-top"><h4>노트북 렌탈 요금</h4><p>교육용 노트북 · 기본 프로그램 세팅 완료 · 원격 지원 환경 구성 포함 · 대당 단가 · VAT 포함 · 계약기간 12개월</p></div>
+        <div class="rpb-dual">
+          <div class="rpb-type-card lease">
+            <div class="rpb-type-label"><span class="badge lease">임대형</span> 계약 종료 후 <span style="color:var(--blue)">노트북 반납</span></div>
+            <div style="margin-top:.5rem">
+              <div style="font-size:2rem;font-weight:900;color:var(--blue);line-height:1">4.5만원<span style="font-size:.85rem;font-weight:400;color:var(--muted)">/대 · 월</span></div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:.3rem">12개월 × 4.5만 = <strong style="color:var(--text)">54만원</strong> · 만기 후 반납</div>
+            </div>
+          </div>
+          <div class="rpb-divider">또는</div>
+          <div class="rpb-type-card own">
+            <div class="rpb-type-label"><span class="badge own">인수형</span> 만기 후 <span style="color:var(--purple)">노트북 소유권 취득</span></div>
+            <div style="margin-top:.5rem">
+              <div style="font-size:2rem;font-weight:900;color:var(--purple);line-height:1">6.8만원<span style="font-size:.85rem;font-weight:400;color:var(--muted)">/대 · 월</span></div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:.3rem">12개월 × 6.8만 = <strong style="color:var(--text)">81.6만원</strong> · 만기 후 소유</div>
+            </div>
+          </div>
+        </div>
+        <div class="rpb-vat">10대 이상 계약 및 단기(3·6개월) 요금은 별도 문의</div>
+      </div>
+      <div class="laptop-grid" style="margin-bottom:1.8rem">
+        <div class="laptop-spec-card">
+          <h4><i class="fas fa-laptop"></i> 기기 사양</h4>
+          <div class="spec-list">
+            <div class="spec-item"><span class="spec-k">운영체제</span><span class="spec-v">Windows 11 Home</span></div>
+            <div class="spec-item"><span class="spec-k">프로세서</span><span class="spec-v">Intel Core i3 이상</span></div>
+            <div class="spec-item"><span class="spec-k">메모리</span><span class="spec-v">8GB RAM</span></div>
+            <div class="spec-item"><span class="spec-k">저장공간</span><span class="spec-v">256GB SSD</span></div>
+            <div class="spec-item"><span class="spec-k">화면</span><span class="spec-v">14인치 FHD</span></div>
+            <div class="spec-item"><span class="spec-k">배터리</span><span class="spec-v">최대 8시간</span></div>
+          </div>
+        </div>
+        <div class="laptop-spec-card">
+          <h4><i class="fas fa-box-open"></i> 기본 설치 프로그램</h4>
+          <div class="spec-list">
+            <div class="spec-item"><span class="spec-k">코딩 환경</span><span class="spec-v">VS Code, Python 3.x</span></div>
+            <div class="spec-item"><span class="spec-k">AI 수업</span><span class="spec-v">Jupyter, 엔트리 앱</span></div>
+            <div class="spec-item"><span class="spec-k">원격수업</span><span class="spec-v">Zoom, Google Meet</span></div>
+            <div class="spec-item"><span class="spec-k">협업 도구</span><span class="spec-v">Google Workspace</span></div>
+            <div class="spec-item"><span class="spec-k">원격 지원</span><span class="spec-v">원격 제어 환경 설정 완료</span></div>
+            <div class="spec-item"><span class="spec-k">플랫폼</span><span class="spec-v">코스모에듀 플랫폼 연결</span></div>
+          </div>
+        </div>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 .8rem">렌탈 프로세스</h3>
+      <div class="rental-process">
+        <div class="rp-step"><div class="rp-icon" style="color:var(--blue)"><i class="fas fa-comments"></i></div><h5>신청 &amp; 상담</h5><p>학교 환경·학생 수 파악, 대수 결정</p></div>
+        <div class="rp-step"><div class="rp-icon" style="color:var(--cyan)"><i class="fas fa-key"></i></div><h5>계정 발급</h5><p>플랫폼 계정 생성 및 환경 세팅</p></div>
+        <div class="rp-step"><div class="rp-icon" style="color:var(--purple)"><i class="fas fa-truck"></i></div><h5>배송</h5><p>세팅 완료된 노트북 학교로 직배송</p></div>
+        <div class="rp-step"><div class="rp-icon" style="color:var(--green)"><i class="fas fa-chalkboard-teacher"></i></div><h5>원격 교사교육</h5><p>담당 교사 대상 플랫폼·수업 운영 교육</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ QUOTE MODAL ══ -->
+<div class="qmodal-overlay" id="qmodalOverlay">
+  <div class="qmodal" id="qmodal">
+    <div class="qm-hd">
+      <div class="qm-hd-title"><i class="fas fa-calculator" style="color:var(--blue)"></i> 온라인 견적 계산기</div>
+      <button class="qm-close" id="qmClose" aria-label="닫기"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="qm-body">
+      <div class="tier-label">빠른 구성 선택 — 클릭하면 아래 계산기가 자동 설정됩니다</div>
+      <div class="tier-grid">
+        <div class="tier-card tier-1" data-tier="1">
+          <div class="tc-check"><i class="fas fa-check"></i></div>
+          <div class="tc-badge">최저가</div>
+          <div class="tc-name">플랫폼만</div>
+          <div class="tc-price">11<sub>만원/월</sub></div>
+          <div class="tc-desc">컴퓨터·강사 있음<br>수업 콘텐츠만 필요할 때</div>
+        </div>
+        <div class="tier-card tier-2" data-tier="2">
+          <div class="tc-check"><i class="fas fa-check"></i></div>
+          <div class="tc-badge">가성비형</div>
+          <div class="tc-name">플랫폼 + 원격수업</div>
+          <div class="tc-price">27.5<sub>만원/월</sub></div>
+          <div class="tc-desc">컴퓨터 있음, 강사 없음<br>주 1회 원격수업 포함</div>
+        </div>
+        <div class="tier-card tier-3 on" data-tier="3">
+          <div class="tc-check"><i class="fas fa-check"></i></div>
+          <div class="tc-badge">올인원</div>
+          <div class="tc-name">ALL-IN-ONE</div>
+          <div class="tc-price"><span class="from">from </span>50<sub>만원/월</sub></div>
+          <div class="tc-desc">플랫폼 + 원격 + 노트북<br>임대형 / 인수형 선택 가능</div>
+        </div>
+      </div>
+
+      <div class="calc-layout">
+        <div class="calc-options">
+          <div class="opt-group" id="qtyGroup">
+            <div class="opt-group-title"><i class="fas fa-laptop"></i> 노트북 대수</div>
+            <div class="qty-row">
+              <div class="qty-display">
+                <div class="qty-num" id="qtyNum">5</div>
+                <div class="qty-unit">대</div>
+              </div>
+              <input type="range" class="qty-slider" id="qtySlider" min="5" max="10" value="5" step="1">
+              <div class="qty-btns">
+                <button class="qty-btn" id="qtyUp"><i class="fas fa-plus"></i></button>
+                <button class="qty-btn" id="qtyDown"><i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="qty-marks"><span>5대</span><span>6대</span><span>7대</span><span>8대</span><span>9대</span><span>10대</span></div>
+            <div style="margin-top:.45rem;font-size:.72rem;color:var(--muted)"><i class="fas fa-info-circle" style="color:var(--blue)"></i> 10대 이상은 <a href="#contact" onclick="closeQuoteModal()" style="color:var(--blue);font-weight:600">개별 상담</a>으로 협의합니다</div>
+          </div>
+          <div class="opt-group" id="laptopConfigGroup">
+            <div class="opt-group-title"><i class="fas fa-box-open"></i> 노트북 구성</div>
+            <div class="laptop-options">
+              <div class="laptop-type-card on" data-ltype="lease">
+                <div class="ltc-type">임대형</div>
+                <div class="ltc-name">월 납부 후 반납</div>
+                <div class="ltc-desc">계약 기간 동안 사용 후<br>종료 시 반납. 월 부담 낮음.</div>
+              </div>
+              <div class="laptop-type-card" data-ltype="own">
+                <div class="ltc-type" style="color:var(--purple)">인수형</div>
+                <div class="ltc-name">12개월 후 소유</div>
+                <div class="ltc-desc">납부 완료 후 소유권 취득.<br>자산으로 남음.</div>
+              </div>
+            </div>
+          </div>
+          <div class="opt-group" id="periodGroup">
+            <div class="opt-group-title"><i class="fas fa-calendar-alt"></i> 계약 기간</div>
+            <div class="opt-chips">
+              <button class="q-chip" data-period="6">6개월</button>
+              <button class="q-chip on" data-period="12">12개월 <span style="font-size:.68rem;opacity:.8">(권장)</span></button>
+            </div>
+            <p style="font-size:.73rem;color:var(--dim);margin-top:.5rem;line-height:1.5" id="periodNote">기간이 길수록 대당 월 단가가 낮아집니다. 12개월이 가장 경제적입니다.</p>
+          </div>
+          <div class="opt-group" id="remoteGroup">
+            <div class="opt-group-title"><i class="fas fa-video"></i> 원격수업 횟수 (주당)</div>
+            <div class="class-chips">
+              <button class="class-chip" data-remote="0">
+                <div class="cc-n">없음</div><div class="cc-lbl">수업 불필요</div><div class="cc-price">포함 안됨</div>
+              </button>
+              <button class="class-chip on" data-remote="1">
+                <div class="cc-n">주 1회</div><div class="cc-lbl">월 4회·60분</div><div class="cc-price">+16.5만원/월</div>
+              </button>
+              <button class="class-chip" data-remote="2">
+                <div class="cc-n">주 2회</div><div class="cc-lbl">월 8회·60분</div><div class="cc-price">+33만원/월</div>
+              </button>
+              <button class="class-chip" data-remote="3">
+                <div class="cc-n">주 3회</div><div class="cc-lbl">월 12회·60분</div><div class="cc-price">+49.5만원/월</div>
+              </button>
+            </div>
+            <p style="font-size:.73rem;color:var(--dim);margin-top:.6rem;line-height:1.5">Zoom/Google Meet 실시간 진행. 수업 녹화본 제공 포함.</p>
+          </div>
+        </div>
+
+        <div class="calc-result" id="calcResult">
+          <div class="cr-title"><i class="fas fa-receipt" style="margin-right:.35rem"></i>견적 내역</div>
+          <div class="pay-toggle" id="payToggle">
+            <button class="pt-btn on" id="ptMonthly">월납</button>
+            <button class="pt-btn" id="ptAnnual">연납 <span class="pt-discount">-10%</span></button>
+          </div>
+          <div class="cr-items" id="crItems"></div>
+          <hr class="cr-divider">
+          <div class="cr-total-row">
+            <span class="cr-total-label" id="crTotalLabel">월 합계</span>
+            <span class="cr-total-price" id="crMonthly">—</span>
+          </div>
+          <div class="cr-period-row">
+            <span>계약기간 총액 (<span id="crPeriodLabel">12개월</span>)</span>
+            <span class="cr-period-val" id="crTotal">—</span>
+          </div>
+          <div style="font-size:.73rem;min-height:1.1rem;margin-bottom:.5rem;line-height:1.5" id="crAnnualNote"></div>
+          <div class="cr-extras" id="crExtras"></div>
+          <button class="cr-cta" id="crCtaBtn">
+            <i class="fas fa-comments"></i> 이 견적으로 상담 신청
+          </button>
+          <p class="cr-note">견적은 참고용입니다. 정확한 금액은 상담 후 확정됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FLOATING WIDGET ══ -->
+<div class="float-stack">
+  <a href="#contact" class="float-consult">
+    <div class="float-consult-btn"><i class="fas fa-comment-dots"></i></div>
+    <span class="float-consult-label">무료 상담</span>
+  </a>
+  <div class="kakao-float">
+    <a href="https://pf.kakao.com/_xjZsxjX/chat" class="kakao-float-btn" target="_blank" rel="noopener" aria-label="카카오톡 채널 상담">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3C6.477 3 2 6.72 2 11.27c0 2.9 1.857 5.452 4.67 6.953l-.993 3.568a.3.3 0 0 0 .46.328L10.08 19.8c.628.09 1.27.137 1.92.137 5.523 0 10-3.72 10-8.267C22 6.72 17.523 3 12 3z"/>
+      </svg>
+    </a>
+    <span class="kakao-float-label">카톡문의</span>
+  </div>
+</div>
+
+<!-- ══ JS ══ -->
+<script>
+  /* ── 견적 모달 ── */
+  function openQuoteModal(){
+    document.getElementById('qmodalOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeQuoteModal(){
+    document.getElementById('qmodalOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  window.openQuoteModal = openQuoteModal;
+  window.closeQuoteModal = closeQuoteModal;
+  document.getElementById('qmClose').addEventListener('click', closeQuoteModal);
+  document.getElementById('qmodalOverlay').addEventListener('click', function(e){
+    if(e.target === this) closeQuoteModal();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeQuoteModal(); closeRemoteModal(); closeLaptopModal(); } });
+
+  /* ── 견적 계산기 로직 ── */
+  (function(){
+    var PLATFORM=11;
+    var REMOTE_PRICE={0:0,1:16.5,2:33,3:49.5};
+    var LAPTOP={lease:{6:4.5,12:4.5},own:{12:6.8}};
+    var TIER_CONFIG={1:{laptopType:'none',remote:0,period:12},2:{laptopType:'none',remote:1,period:12},3:{laptopType:'lease',remote:1,period:12}};
+    var state={qty:5,period:12,laptopType:'lease',remote:1,annual:false};
+    function fmt(n){return (Math.round(n*10)/10).toString().replace(/\.0$/,'');}
+    function fmtK(n){return fmt(n)+'만원';}
+    function canAnnual(){return state.period===12||state.laptopType==='none';}
+    function updateSections(){
+      var hasLaptop=state.laptopType!=='none';
+      ['qtyGroup','laptopConfigGroup','periodGroup'].forEach(function(id){
+        document.getElementById(id).style.display=hasLaptop?'':'none';
+      });
+    }
+    function calc(){
+      var qty=state.qty,platform=PLATFORM,remote=REMOTE_PRICE[state.remote],laptopUnit=0;
+      if(state.laptopType!=='none') laptopUnit=LAPTOP[state.laptopType][state.period];
+      var laptopTotal=laptopUnit*qty,monthly=platform+remote+laptopTotal;
+      var contractTotal=monthly*state.period,annualTotal=Math.round(monthly*12*.9*10)/10;
+      return {platform,remote,laptopUnit,laptopTotal,monthly,contractTotal,annualTotal,qty,laptopType:state.laptopType};
+    }
+    function render(){
+      updateSections();
+      var r=calc();
+      var items=[];
+      items.push({icon:'fa-layer-group',label:'코스모에듀 플랫폼',val:fmtK(r.platform),active:true,color:'var(--blue)'});
+      if(r.remote>0) items.push({icon:'fa-video',label:'원격수업 주'+state.remote+'회',val:fmtK(r.remote)+'/월',active:true,color:'var(--cyan)'});
+      else items.push({icon:'fa-video',label:'원격수업',val:'포함 안됨',active:false});
+      if(r.laptopType!=='none'){
+        var tl=r.laptopType==='lease'?'임대형':'인수형';
+        items.push({icon:'fa-laptop',label:'노트북 '+r.qty+'대 (Win11·'+tl+')',val:fmtK(r.laptopTotal)+'/월',active:true,color:'var(--purple)'});
+      } else items.push({icon:'fa-laptop',label:'노트북',val:'제외',active:false});
+      var html='';
+      items.forEach(function(it){
+        var col=it.color?'style="color:'+it.color+'"':'';
+        html+='<div class="cr-item'+(it.active?' active':'')+'"><span class="ci-label"><i class="fas '+it.icon+'" '+col+'></i>'+it.label+'</span><span class="'+(it.active?'ci-val':'ci-val dim')+'">'+it.val+'</span></div>';
+      });
+      document.getElementById('crItems').innerHTML=html;
+      var ptAnnual=document.getElementById('ptAnnual'),payToggle=document.getElementById('payToggle'),available=canAnnual();
+      if(!available){state.annual=false;ptAnnual.disabled=true;ptAnnual.classList.remove('on');document.getElementById('ptMonthly').classList.add('on');payToggle.style.opacity='.4';}
+      else{ptAnnual.disabled=false;payToggle.style.opacity='1';}
+      var mEl=document.getElementById('crMonthly'),noteEl=document.getElementById('crAnnualNote'),labelEl=document.getElementById('crTotalLabel');
+      if(state.annual&&available){
+        var origAnnual=r.monthly*12,saved=Math.round((origAnnual-r.annualTotal)*10)/10;
+        labelEl.textContent='연납 합계';
+        mEl.innerHTML='<div class="price-original">'+fmtK(origAnnual)+'/년</div>'+fmt(r.annualTotal)+'<sub>만원/년</sub>';
+        document.getElementById('crTotal').innerHTML='<span class="save-badge"><i class="fas fa-bolt"></i> '+fmtK(saved)+' 절감!</span>';
+        document.getElementById('crPeriodLabel').textContent='10% 할인';
+        noteEl.innerHTML='<span style="color:var(--muted);font-size:.73rem">월 환산 약 '+fmt(Math.round(r.annualTotal/12*10)/10)+'만원</span>';
+      } else {
+        labelEl.textContent='월 합계';
+        mEl.innerHTML='<span style="font-size:.95rem;color:var(--muted)">월 </span>'+fmt(r.monthly)+'<sub>만원</sub>';
+        document.getElementById('crTotal').textContent=fmtK(r.contractTotal);
+        document.getElementById('crPeriodLabel').textContent=state.period+'개월';
+        noteEl.innerHTML=available?'<span style="color:var(--dim);font-size:.73rem">연납 선택 시 '+fmtK(r.annualTotal)+'/년 — '+fmtK(Math.round((r.monthly*12-r.annualTotal)*10)/10)+' 절감</span>':'';
+      }
+      var extras='<strong>초기 세팅비</strong>: 수도권·경기 10만원 / 그 외 지방 20만원 (별도)';
+      if(r.laptopType==='own') extras+='<br><strong style="color:var(--purple)">12개월 납부 완료 후 노트북 소유권 취득</strong>';
+      document.getElementById('crExtras').innerHTML=extras;
+      var s=document.getElementById('qtySlider');
+      var pct=((state.qty-5)/5*100).toFixed(1);
+      s.style.background='linear-gradient(to right, var(--blue) 0%, var(--blue) '+pct+'%, rgba(15,23,42,.12) '+pct+'%)';
+    }
+    function forceOwnPeriod(){
+      state.period=12;
+      document.querySelectorAll('[data-period]').forEach(function(b){
+        b.classList.toggle('on',parseInt(b.dataset.period)===12);
+        if(parseInt(b.dataset.period)===6){b.disabled=true;b.style.opacity='.35';b.style.cursor='not-allowed';}
+      });
+      document.getElementById('periodNote').textContent='인수형은 12개월 계약 전용입니다.';
+    }
+    function resetPeriodUI(){
+      document.querySelectorAll('[data-period]').forEach(function(b){b.disabled=false;b.style.opacity='1';b.style.cursor='';});
+      document.getElementById('periodNote').textContent='기간이 길수록 대당 월 단가가 낮아집니다. 12개월이 가장 경제적입니다.';
+    }
+    var slider=document.getElementById('qtySlider');
+    slider.addEventListener('input',function(){state.qty=parseInt(this.value);document.getElementById('qtyNum').textContent=state.qty;render();});
+    document.getElementById('qtyUp').addEventListener('click',function(){if(state.qty<10){state.qty++;slider.value=state.qty;document.getElementById('qtyNum').textContent=state.qty;render();}});
+    document.getElementById('qtyDown').addEventListener('click',function(){if(state.qty>5){state.qty--;slider.value=state.qty;document.getElementById('qtyNum').textContent=state.qty;render();}});
+    document.querySelectorAll('[data-period]').forEach(function(btn){
+      btn.addEventListener('click',function(){if(this.disabled)return;state.period=parseInt(this.dataset.period);document.querySelectorAll('[data-period]').forEach(function(b){b.classList.remove('on');});this.classList.add('on');render();});
+    });
+    document.querySelectorAll('.laptop-type-card').forEach(function(card){
+      card.addEventListener('click',function(){state.laptopType=this.dataset.ltype;document.querySelectorAll('.laptop-type-card').forEach(function(c){c.classList.remove('on');});this.classList.add('on');if(state.laptopType==='own'){forceOwnPeriod();}else{resetPeriodUI();}render();});
+    });
+    document.querySelectorAll('[data-remote]').forEach(function(btn){
+      btn.addEventListener('click',function(){state.remote=parseInt(this.dataset.remote);document.querySelectorAll('[data-remote]').forEach(function(b){b.classList.remove('on');});this.classList.add('on');render();});
+    });
+    document.getElementById('ptMonthly').addEventListener('click',function(){state.annual=false;this.classList.add('on');document.getElementById('ptAnnual').classList.remove('on');render();});
+    document.getElementById('ptAnnual').addEventListener('click',function(){if(this.disabled)return;state.annual=true;this.classList.add('on');document.getElementById('ptMonthly').classList.remove('on');render();});
+    document.querySelectorAll('.tier-card').forEach(function(card){
+      card.addEventListener('click',function(){
+        var tier=parseInt(this.dataset.tier),cfg=TIER_CONFIG[tier];
+        state.laptopType=cfg.laptopType;state.remote=cfg.remote;state.period=cfg.period;
+        document.querySelectorAll('.tier-card').forEach(function(c){c.classList.remove('on');});this.classList.add('on');
+        document.querySelectorAll('[data-remote]').forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.remote)===cfg.remote);});
+        document.querySelectorAll('.laptop-type-card').forEach(function(c){c.classList.toggle('on',c.dataset.ltype===cfg.laptopType);});
+        if(cfg.laptopType==='own'){forceOwnPeriod();}else{resetPeriodUI();document.querySelectorAll('[data-period]').forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.period)===cfg.period);});}
+        render();
+      });
+    });
+    document.getElementById('crCtaBtn').addEventListener('click',function(){
+      var r=calc();
+      var pkg=(state.laptopType==='none')?(state.remote>0?'플랫폼+원격수업':'플랫폼 기본형'):'ALL-IN-ONE';
+      var laptopDesc=state.laptopType==='none'?'노트북 제외':(state.laptopType==='lease'?'임대형('+state.period+'개월)':'인수형(12개월)');
+      var payDesc=(state.annual&&canAnnual())?'연납(10%할인)':'월납';
+      var msg='[견적 구성]\n노트북 '+state.qty+'대 · '+laptopDesc+' · 원격수업 주'+state.remote+'회 · Windows 11 · '+payDesc+'\n월 합계: 약 '+fmt(r.monthly)+'만원';
+      if(state.annual&&canAnnual()) msg+='\n연납 합계: 약 '+fmt(r.annualTotal)+'만원 (10% 할인 적용)';
+      sessionStorage.setItem('quoteMsg',msg);
+      sessionStorage.setItem('quotePkg',pkg);
+      closeQuoteModal();
+      var contact=document.getElementById('contact');
+      if(contact){setTimeout(function(){contact.scrollIntoView({behavior:'smooth'});},150);}
+    });
+    (function init(){document.querySelectorAll('.laptop-type-card').forEach(function(c){c.classList.toggle('on',c.dataset.ltype==='lease');});})();
+    render();
+  })();
+
+  /* ── 원격수업 모달 ── */
+  window.openRemoteModal = function(){
+    document.getElementById('remoteModalOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeRemoteModal = function(){
+    document.getElementById('remoteModalOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  };
+  document.getElementById('remoteModalOverlay').addEventListener('click',function(e){if(e.target===this)window.closeRemoteModal();});
+
+  /* ── 노트북 모달 ── */
+  window.openLaptopModal = function(){
+    document.getElementById('laptopModalOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeLaptopModal = function(){
+    document.getElementById('laptopModalOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  };
+  document.getElementById('laptopModalOverlay').addEventListener('click',function(e){if(e.target===this)window.closeLaptopModal();});
+
+(function(){
+  'use strict';
+
+  /* 헤더 스크롤 */
+  var hd = document.getElementById('hd');
+  window.addEventListener('scroll', function(){ hd.classList.toggle('scrolled', window.scrollY > 50); }, {passive:true});
+
+  /* 모바일 메뉴 */
+  var mob = document.getElementById('hdMob'), nav = document.getElementById('hdNav');
+  mob.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  nav.querySelectorAll('.hd-link').forEach(function(l){ l.addEventListener('click', function(){ nav.classList.remove('open'); document.body.style.overflow = ''; }); });
+
+  /* reveal 애니메이션 */
+  document.body.classList.add('jr');
+  var ro = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
+  }, {threshold:0.08, rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ ro.observe(el); });
+
+  /* 커리큘럼 탭 */
+  document.querySelectorAll('.curr-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.curr-tab').forEach(function(b){ b.classList.remove('on'); });
+      document.querySelectorAll('.curr-panel').forEach(function(p){ p.classList.remove('on'); });
+      btn.classList.add('on');
+      var target = document.getElementById(btn.dataset.tab);
+      if(target){ target.classList.add('on'); target.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); }); }
+    });
+  });
+
+  /* 오른쪽 사이드 내비 활성화 */
+  var secs = ['packages','platform','curriculum','remote','cases','contact'];
+  var snItems = document.querySelectorAll('.sn-item');
+  function updateNav(){
+    var cur = '';
+    secs.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && window.scrollY >= el.offsetTop - 160) cur = id;
+    });
+    snItems.forEach(function(item){ item.classList.toggle('on', item.dataset.sec === cur); });
+  }
+  window.addEventListener('scroll', updateNav, {passive:true});
+  updateNav();
+
+  /* ALL-IN-ONE 임대형/인수형 토글 */
+  var pkgAll = document.getElementById('pkgAll');
+  if(pkgAll){
+    var curType = 'lease';
+    // 타입 토글
+    pkgAll.querySelectorAll('.pk-type-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        pkgAll.querySelectorAll('.pk-type-btn').forEach(function(b){ b.classList.remove('on'); });
+        btn.classList.add('on');
+        curType = btn.dataset.ptype;
+        document.getElementById('pp-lease').classList.toggle('on', curType==='lease');
+        document.getElementById('pp-own').classList.toggle('on', curType==='own');
+        // 기본 볼륨 선택 초기화 (7대)
+        pkgAll.querySelectorAll('.pk-vol-item').forEach(function(it){ it.classList.remove('on'); });
+        var defItem = pkgAll.querySelectorAll('#pp-'+curType+' .pk-vol-item')[1];
+        defItem.classList.add('on');
+        var defNb = defItem.dataset.nb;
+        var defQty = defNb.split('대')[0];
+        var defTotal = defNb.split(' ')[1];
+        var defPer = defItem.dataset.per;
+        if(curType==='lease'){
+          document.getElementById('pp-lease-price').innerHTML = defItem.dataset.lease+'만<sub>원/월</sub>';
+          document.getElementById('lp-nb').textContent = defNb;
+          document.getElementById('lp-formula').textContent = defPer+'만원 × '+defQty+'대 = '+defTotal+'만원';
+        } else {
+          document.getElementById('pp-own-price').innerHTML = defItem.dataset.own+'만<sub>원/월</sub>';
+          document.getElementById('op-nb').textContent = defNb;
+          document.getElementById('op-formula').textContent = defPer+'만원 × '+defQty+'대 = '+defTotal+'만원';
+        }
+      });
+    });
+    // 볼륨 선택
+    pkgAll.querySelectorAll('.pk-vol-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        var panel = item.closest('.pk-price-panel');
+        panel.querySelectorAll('.pk-vol-item').forEach(function(it){ it.classList.remove('on'); });
+        item.classList.add('on');
+        var nb = item.dataset.nb; // e.g. "7대 31.5"
+        var qty = nb.split('대')[0];
+        var total = nb.split(' ')[1];
+        var per = item.dataset.per;
+        if(curType==='lease'){
+          document.getElementById('pp-lease-price').innerHTML = item.dataset.lease+'만<sub>원/월</sub>';
+          document.getElementById('lp-nb').textContent = nb;
+          document.getElementById('lp-formula').textContent = per+'만원 × '+qty+'대 = '+total+'만원';
+        } else {
+          document.getElementById('pp-own-price').innerHTML = item.dataset.own+'만<sub>원/월</sub>';
+          document.getElementById('op-nb').textContent = nb;
+          document.getElementById('op-formula').textContent = per+'만원 × '+qty+'대 = '+total+'만원';
+        }
+      });
+    });
+  }
+
+  /* 상담 폼 */
+  var form = document.getElementById('cForm'), succ = document.getElementById('fSuccess');
+
+  /* 견적 계산기에서 넘어온 데이터 자동 채우기 */
+  (function(){
+    var qMsg = sessionStorage.getItem('quoteMsg');
+    var qPkg = sessionStorage.getItem('quotePkg');
+    if(qMsg){ document.getElementById('f-message').value = qMsg; sessionStorage.removeItem('quoteMsg'); }
+    if(qPkg){ document.getElementById('f-package').value = qPkg; sessionStorage.removeItem('quotePkg'); }
+  })();
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    form.querySelectorAll('[required]').forEach(function(f){
+      if(!f.value.trim()){ ok = false; f.style.borderColor = '#EF4444'; f.addEventListener('input', function(){ f.style.borderColor = ''; }, {once:true}); }
+    });
+    if(!ok) return;
+
+    var btn = document.getElementById('f-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 전송 중...';
+
+    var payload = {
+      school_name:      document.getElementById('f-school').value.trim(),
+      region:           document.getElementById('f-region').value,
+      contact_name:     document.getElementById('f-contact').value.trim(),
+      phone:            document.getElementById('f-phone').value.trim(),
+      email:            document.getElementById('f-email').value.trim(),
+      student_count:    document.getElementById('f-students').value,
+      package_interest: document.getElementById('f-package').value,
+      message:          document.getElementById('f-message').value.trim()
+    };
+    /* 선택사항 — 빈 값 제거 */
+    ['email','student_count','package_interest','message'].forEach(function(k){ if(!payload[k]) delete payload[k]; });
+
+    fetch('https://app.cosmoedu.co.kr/api/consultation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.success){
+        form.style.display = 'none';
+        succ.classList.add('show');
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> 무료 상담 신청하기';
+        alert(data.message || '전송에 실패했습니다. 다시 시도해 주세요.');
+      }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> 무료 상담 신청하기';
+      alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
