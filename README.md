@@ -122,3 +122,6 @@ https://cosmoedu25.github.io/
 ## 라이센스
 
 © 2024 코스모에듀벤처. All rights reserved.
+
+
+<!-- Security scan triggered at 2026-08-31 16:28:10 -->
